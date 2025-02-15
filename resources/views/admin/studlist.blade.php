@@ -328,35 +328,27 @@
                                         <tr class="bg-gradient-dark text-light">
                                             <th>ID</th>
                                             <th>Date Created</th>
-                                            <th>School ID</th>
+                                            <th>Section</th>
                                             <th>Name</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr class="bg-gradient-dark text-light">
-                                            <th>ID</th>
-                                            <th>Date Created</th>
-                                            <th>School ID</th>
-                                            <th>Name</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
+                                        @foreach ($students as $student)
                                         <tr>
-                                            <td>1</td>
-                                            <td>2022/08/09</td>
-                                            <td>0122301119</td>
-                                            <td>Pallasigue, Derek Joy C.</td>
+                                            <td>{{ $student->id }}</td>
+                                            <td>{{ $student->created_at->format('Y/m/d') }}</td>
+                                            <td>{{ $student->section ? $student->section->title : 'No Section' }}</td>
+                                            <td>{{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }}</td>
                                             <td>
                                                 <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
                                             </td>
                                             <td items-align="center">
-                                                <a href="studdetail.php" class="btn btn-flat btn-default btn-sm border"><i class="fa fa-eye"></i> View</a>
+
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -410,13 +402,13 @@
         </div>
     </div>
 
-@vite('resources/js/jquery.min.js')
-@vite('resources/js/bootstrap.bundle.min.js')
-@vite('resources/js/jquery.easing.min.js')
-@vite('resources/js/sb-admin-2.min.js')
-@vite('resources/js/jquery.dataTables.min.js')
-@vite('resources/js/dataTables.bootstrap4.min.js')
-@vite('resources/js/datatables-demo.js')
+    @vite('resources/js/jquery.min.js')
+    @vite('resources/js/bootstrap.bundle.min.js')
+    @vite('resources/js/jquery.easing.min.js')
+    @vite('resources/js/sb-admin-2.min.js')
+    @vite('resources/js/jquery.dataTables.min.js')
+    @vite('resources/js/dataTables.bootstrap4.min.js')
+    @vite('resources/js/datatables-demo.js')
 
 </body>
 
