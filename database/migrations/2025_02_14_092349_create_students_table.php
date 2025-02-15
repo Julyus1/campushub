@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->integer('stud_id');
+            $table->integer('stud_id')->unique();
+            $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
             $table->string('year_level');
             $table->string('stud_class');
             $table->string('department');
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('middlename')->nullable();
             $table->string('lastname');
-            $table->string('gender');
+            $table->string('gender')->in(['Male', 'Female']);
             $table->date('birthdate');
             $table->string('contact')->nullable();
             $table->string('religion')->nullable();
@@ -40,7 +41,6 @@ return new class extends Migration
             $table->string('emergencyperson');
             $table->string('relationship');
             $table->string('emergencycontact');
-            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
             $table->timestamps();
         });
     }

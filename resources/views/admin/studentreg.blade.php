@@ -341,11 +341,11 @@
                                             <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="studid" class="control-label">Student ID: </label>
-                                                    <input type="text" name="studid" id="studid" autofocus class="form-control form-control-sm rounded-0" required>
+                                                    <input type="text" name="stud_id" id="studid" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="yearlevel" class="control-label">Year Level: </label>
-                                                    <select name="yearlevel" id="yearlevel" class="form-control form-control-sm rounded-0" required>
+                                                    <select name="year_level" id="yearlevel" class="form-control form-control-sm rounded-0" required>
                                                         <option>Others</option>
                                                         <option>3rd Year</option>
                                                     </select>
@@ -380,15 +380,12 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="section" class="control-label">Section: </label>
-                                                    <select name="section" id="section" class="form-control form-control-sm rounded-0" required>
-                                                        <option>CCIS-6A</option>
-                                                        <option>CCIS-6B</option>
-                                                        <option>CCIS-6C</option>
-                                                        <option>CCIS-6D</option>
-                                                        <option>CCIS-6E</option>
-                                                        <option>CCIS-6F</option>
-                                                        <option>Others</option>
-                                                    </select>
+                                                    <select name="section_id" id="section_id" class="form-control form-control-sm rounded-0" required>
+                                                        <option value="">Select Section</option>
+                                                        @foreach($sections as $section)
+                                                        <option value="{{ $section->id }}">{{ $section->title }}</option>
+                                                        @endforeach
+                                                    </select>>
                                                 </div>
                                             </div>
                                             <div class="row">
