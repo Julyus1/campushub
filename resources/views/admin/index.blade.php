@@ -83,14 +83,14 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="department.php">
+                <a class="nav-link" href="register-department">
                     <i class="bi bi-building-fill"></i>
                     <span>Department Lists</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="coursereg.php">
+                <a class="nav-link" href="register-course">
                     <i class="bi bi-book-fill"></i>
                     <span>Course Registration</span></a>
             </li>

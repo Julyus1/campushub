@@ -13,17 +13,25 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function show()
+    public function show_stud()
     {
         return view('admin.studlist');
     }
-    public function create()
+    public function create_stud()
     {
         return view('admin.studentreg');
     }
 
-    public function store()
+    public function store_stud()
     {
-        dd('store some values');
+        dd('hello');
+    }
+    public function show_course()
+    {
+        return view('admin.coursereg');
+    }
+    public function show_department()
+    {
+        return view('admin.department');
     }
 }
