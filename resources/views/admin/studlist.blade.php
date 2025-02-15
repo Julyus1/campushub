@@ -345,9 +345,7 @@
                                                 <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
                                             </td>
                                             <td items-align="center">
-                                                <!-- <a href="{{ route('admin.show', $student->id) }}" class="btn btn-flat btn-default btn-sm border">
-                                                    <i class="fa fa-eye"></i> View
-                                                </a> -->
+
                                             </td>
                                         </tr>
                                         @endforeach
@@ -404,13 +402,13 @@
         </div>
     </div>
 
-@vite('resources/js/jquery.min.js')
-@vite('resources/js/bootstrap.bundle.min.js')
-@vite('resources/js/jquery.easing.min.js')
-@vite('resources/js/sb-admin-2.min.js')
-@vite('resources/js/jquery.dataTables.min.js')
-@vite('resources/js/dataTables.bootstrap4.min.js')
-@vite('resources/js/datatables-demo.js')
+    @vite('resources/js/jquery.min.js')
+    @vite('resources/js/bootstrap.bundle.min.js')
+    @vite('resources/js/jquery.easing.min.js')
+    @vite('resources/js/sb-admin-2.min.js')
+    @vite('resources/js/jquery.dataTables.min.js')
+    @vite('resources/js/dataTables.bootstrap4.min.js')
+    @vite('resources/js/datatables-demo.js')
 
 </body>
 
