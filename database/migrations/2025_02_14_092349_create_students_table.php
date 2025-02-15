@@ -13,9 +13,34 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('section_id')->constrained()->onDelete('cascade');
+            $table->integer('stud_id');
+            $table->string('year_level');
+            $table->string('stud_class');
+            $table->string('department');
+            $table->string('course');
+            $table->string('section');
             $table->string('firstname');
+            $table->string('middlename')->nullable();
             $table->string('lastname');
+            $table->string('gender');
+            $table->date('birthdate');
+            $table->string('contact')->nullable();
+            $table->string('religion')->nullable();
+            $table->string('origin')->nullable();
+            $table->string('nationality');
+            $table->string('civilstatus')->nullable();
+            $table->string('birthplace')->nullable();
+            $table->string('stname')->nullable();
+            $table->string('brgy')->nullable();
+            $table->string('city');
+            $table->string('province');
+            $table->integer('postalcode')->nullable();
+            $table->string('homenumber')->nullable();
+            $table->string('mobilenumber');
+            $table->string('emergencyperson');
+            $table->string('relationship');
+            $table->string('emergencycontact');
+            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
             $table->timestamps();
         });
     }

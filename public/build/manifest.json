@@ -1,0 +1,84 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-l0sNRNKZ.js",
+    "name": "app",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/bootstrap.min.css": {
+    "file": "assets/bootstrap-BcrZBWr1.css",
+    "src": "resources/css/bootstrap.min.css",
+    "isEntry": true
+  },
+  "resources/css/sb-admin-2.min.css": {
+    "file": "assets/sb-admin-2-C9FIOHsF.css",
+    "src": "resources/css/sb-admin-2.min.css",
+    "isEntry": true
+  },
+  "resources/js/Chart.min.js": {
+    "file": "assets/Chart.min-PAXd0iIH.js",
+    "name": "Chart.min",
+    "src": "resources/js/Chart.min.js",
+    "isEntry": true
+  },
+  "resources/js/bootstrap.bundle.min.js": {
+    "file": "assets/bootstrap.bundle.min-uO3lio1e.js",
+    "name": "bootstrap.bundle.min",
+    "src": "resources/js/bootstrap.bundle.min.js",
+    "isEntry": true
+  },
+  "resources/js/chart-area-demo.js": {
+    "file": "assets/chart-area-demo-B2QHIRb7.js",
+    "name": "chart-area-demo",
+    "src": "resources/js/chart-area-demo.js",
+    "isEntry": true
+  },
+  "resources/js/chart-bar-demo.js": {
+    "file": "assets/chart-bar-demo-DCUBMOmI.js",
+    "name": "chart-bar-demo",
+    "src": "resources/js/chart-bar-demo.js",
+    "isEntry": true
+  },
+  "resources/js/chart-pie-demo.js": {
+    "file": "assets/chart-pie-demo-DKolrWA_.js",
+    "name": "chart-pie-demo",
+    "src": "resources/js/chart-pie-demo.js",
+    "isEntry": true
+  },
+  "resources/js/dataTables.bootstrap4.min.js": {
+    "file": "assets/dataTables.bootstrap4.min-9eo7fBpj.js",
+    "name": "dataTables.bootstrap4.min",
+    "src": "resources/js/dataTables.bootstrap4.min.js",
+    "isEntry": true
+  },
+  "resources/js/datatables-demo.js": {
+    "file": "assets/datatables-demo-C6p5adA_.js",
+    "name": "datatables-demo",
+    "src": "resources/js/datatables-demo.js",
+    "isEntry": true
+  },
+  "resources/js/jquery.dataTables.min.js": {
+    "file": "assets/jquery.dataTables.min-Bt8GWZ_t.js",
+    "name": "jquery.dataTables.min",
+    "src": "resources/js/jquery.dataTables.min.js",
+    "isEntry": true
+  },
+  "resources/js/jquery.easing.min.js": {
+    "file": "assets/jquery.easing.min-BVrlFFR9.js",
+    "name": "jquery.easing.min",
+    "src": "resources/js/jquery.easing.min.js",
+    "isEntry": true
+  },
+  "resources/js/jquery.min.js": {
+    "file": "assets/jquery.min-5GtrIU7X.js",
+    "name": "jquery.min",
+    "src": "resources/js/jquery.min.js",
+    "isEntry": true
+  },
+  "resources/js/sb-admin-2.min.js": {
+    "file": "assets/sb-admin-2.min-CsR1zvID.js",
+    "name": "sb-admin-2.min",
+    "src": "resources/js/sb-admin-2.min.js",
+    "isEntry": true
+  }
+}
