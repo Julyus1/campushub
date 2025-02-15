@@ -99,14 +99,14 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="department.php">
+                <a class="nav-link" href="register-department">
                     <i class="bi bi-building-fill"></i>
                     <span>Department Lists</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="coursereg.php">
+                <a class="nav-link" href="register-course">
                     <i class="bi bi-book-fill"></i>
                     <span>Course Registration</span></a>
             </li>
@@ -567,21 +567,13 @@
 
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="../js/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../js/jquery.dataTables.min.js"></script>
-    <script src="../js/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../js/datatables-demo.js"></script>
+@vite('resources/js/jquery.min.js')
+@vite('resources/js/bootstrap.bundle.min.js')
+@vite('resources/js/jquery.easing.min.js')
+@vite('resources/js/sb-admin-2.min.js')
+@vite('resources/js/jquery.dataTables.min.js')
+@vite('resources/js/dataTables.bootstrap4.min.js')
+@vite('resources/js/datatables-demo.js')
 
 </body>
 

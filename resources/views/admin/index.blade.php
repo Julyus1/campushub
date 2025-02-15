@@ -33,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminn">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <img src="../img/ch-logo.png" style="height: 40px; width: 40px;">
                 </div>
