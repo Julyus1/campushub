@@ -523,12 +523,8 @@
                 <div class="modal-body">
                     <label for="deptname" class="control-label">Department</label>
                     <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value ="" required>
-                </div>
-                <div class="modal-body">
                     <label for="deptdescription" class="control-label">Description</label>
                     <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
-                </div>
-                <div class="modal-body">
                     <label for="status" class="control-label">Status</label>
                     <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
                         <option value="1">Active</option>
@@ -559,12 +555,8 @@
                 <div class="modal-body">
                     <label for="deptname" class="control-label">Department</label>
                     <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value ="" required>
-                </div>
-                <div class="modal-body">
                     <label for="deptdescription" class="control-label">Description</label>
                     <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
-                </div>
-                <div class="modal-body">
                     <label for="status" class="control-label">Status</label>
                     <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
                         <option value="1">Active</option>
