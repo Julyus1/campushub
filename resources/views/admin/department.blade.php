@@ -22,7 +22,7 @@
 
 </head>
 
-<body id="page-top">
+< id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -542,6 +542,7 @@
         </div>
     </div>
 
+<form action="" method="POST">
     <div class="modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -574,6 +575,7 @@
             </div>
         </div>
     </div>
+</form>
 
     <div class="modal fade" id="delDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
