@@ -306,7 +306,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-2 text-gray-800">Department Lists</h1>
-                        <div class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm add-btn" id="editBtn"><i
+                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addDepartment"><i
                             class="fas fa-plus fa-sm text-white-50"></i> Add New Department</div>
                         </div>
 
@@ -348,11 +348,9 @@
                                                 <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item view_data"><span class="fa fa-eye text-dark"></span> View</a>
+                                                    <a class="dropdown-item edit_data" data-toggle="modal" data-target="#editDepartment"><span class="fa fa-edit text-primary"></span> Edit</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
+                                                    <a class="dropdown-item delete_data" data-toggle="modal" data-target="#delDepartment"><span class="fa fa-trash text-danger"></span> Delete</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -367,8 +365,6 @@
                                                 <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item view_data"><span class="fa fa-eye text-dark"></span> View</a>
-                                                    <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
@@ -386,8 +382,6 @@
                                                 <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item view_data"><span class="fa fa-eye text-dark"></span> View</a>
-                                                    <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
@@ -405,8 +399,6 @@
                                                 <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item view_data"><span class="fa fa-eye text-dark"></span> View</a>
-                                                    <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
@@ -424,8 +416,6 @@
                                                 <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item view_data"><span class="fa fa-eye text-dark"></span> View</a>
-                                                    <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
@@ -443,8 +433,6 @@
                                                 <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item view_data"><span class="fa fa-eye text-dark"></span> View</a>
-                                                    <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
@@ -462,8 +450,6 @@
                                                 <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item view_data"><span class="fa fa-eye text-dark"></span> View</a>
-                                                    <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
@@ -522,6 +508,92 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Department</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="deptname" class="control-label">Department</label>
+                    <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value ="" required>
+                </div>
+                <div class="modal-body">
+                    <label for="deptdescription" class="control-label">Description</label>
+                    <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                </div>
+                <div class="modal-body">
+                    <label for="status" class="control-label">Status</label>
+                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="#">Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Department Details</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="deptname" class="control-label">Department</label>
+                    <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value ="" required>
+                </div>
+                <div class="modal-body">
+                    <label for="deptdescription" class="control-label">Description</label>
+                    <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                </div>
+                <div class="modal-body">
+                    <label for="status" class="control-label">Status</label>
+                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="#">Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="delDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Are you sure to delete this Department permanently?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="#">Continue</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Bootstrap core JavaScript-->
 @vite('resources/js/jquery.min.js')

@@ -11,14 +11,32 @@
     <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
     <link rel="stylesheet" href="../icons/font/bootstrap-icons.css">
     @vite('resources/css/bootstrap.min.css')
-    <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <title>CampusHub - Course Registration</title>
+    <title>CampusHub - Student Update</title>
 
 
-    <!-- Custom styles for this template-->
     @vite('resources/css/sb-admin-2.min.css')
+
+    <!-- Custom Styles -->
+    <style>
+        .section-title,
+        .section-title:hover {
+            text-decoration: none;
+            color: gold;
+        }
+
+        .img-thumb-path {
+            width: 100px;
+            height: 80px;
+            object-fit: scale-down;
+            object-position: center center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
 
 </head>
 
@@ -57,18 +75,18 @@
             </div>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStudent"
-                aria-expanded="true" aria-controls="collapseStudent">
+                    aria-expanded="true" aria-controls="collapseStudent">
                     <i class="fas fa-fw fa-list-alt"></i>
                     <span>Manage Students</span></a>
-                    <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Students Module:</h6>
-                            <a class="collapse-item" href="student-list">Student Lists</a>
-                            <a class="collapse-item" href="register-student">Student Registration</a>
-                        </div>
+                <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Students Module:</h6>
+                        <a class="collapse-item" href="student-list">Student Lists</a>
+                        <a class="collapse-item" href="register-student">Student Registration</a>
                     </div>
+                </div>
             </li>
 
             <!-- Divider -->
@@ -87,7 +105,7 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="register-course">
                     <i class="bi bi-book-fill"></i>
                     <span>Course Registration</span></a>
@@ -115,7 +133,7 @@
                     <!-- Sidebar Toggler (Sidebar) -->
                     <div class="text-center d-none d-md-inline">
                         <button class="btn btn-link rounded-circle border-0" id="sidebarToggleTop"><i class="fa fa-bars"></i></button>
-                        <span class="ms-2"><strong>CampusHub</strong></span>
+                        <span class="ms-2"><strong>SYSTEMS PLUS COLLEGE FOUNDATION</strong></span>
                     </div>
 
                     <!-- Topbar Navbar -->
@@ -305,175 +323,204 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-2 text-gray-800">Course Registration</h1>
-                    <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addCourse"><i
-                        class="fas fa-plus fa-sm text-white-50"></i> Add New Course</div>
+                        <h1 class="h3 mb-2 text-gray-800">Student Information Management</h1>
                     </div>
 
-                    <!-- DataTales Example -->
+                    <!-- Student Information Form -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Course Lists</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Update Student - 0122301119</h6>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr class="bg-gradient-dark text-light">
-                                            <th>ID</th>
-                                            <th>Date Created</th>
-                                            <th>Department</th>
-                                            <th>Course</th>
-                                            <th>Description</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr class="bg-gradient-dark text-light">
-                                            <th>ID</th>
-                                            <th>Date Created</th>
-                                            <th>Department</th>
-                                            <th>Course</th>
-                                            <th>Description</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>01/01/1980</td>
-                                            <td>CCIS</td>
-                                            <td>BSCS</td>
-                                            <td>Bachelor of Science in Computer Science</td>
-                                            <td>
-                                                <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    Action
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data" data-toggle="modal" data-target="#editCourse"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data" data-toggle="modal" data-target="#delCourse"><span class="fa fa-trash text-danger"></span> Delete</a>
+                        <form method="POST" action="student">
+                            @csrf
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <form action="" id="student_form">
+                                        <input type="hidden" name="id">
+                                        <fieldset class="border-bottom">
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="studid" class="control-label">Student ID: </label>
+                                                    <input type="text" name="studid" id="studid" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>01/01/1980</td>
-                                            <td>CCIS</td>
-                                            <td>BSIT-NETAD</td>
-                                            <td>Bachelor of Science in Information Technology with Specialization in Network Administration</td>
-                                            <td>
-                                                <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    Action
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
+                                                <div class="form-group col-md-4">
+                                                    <label for="yearlevel" class="control-label">Year Level: </label>
+                                                    <select name="yearlevel" id="yearlevel" class="form-control form-control-sm rounded-0" required>
+                                                        <option>Others</option>
+                                                        <option>3rd Year</option>
+                                                    </select>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>01/01/1980</td>
-                                            <td>CCIS</td>
-                                            <td>BSIT-MOBDEV</td>
-                                            <td>Bachelor of Science in Information Technology with Specialization in Mobile Development</td>
-                                            <td>
-                                                <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    Action
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
+                                                <div class="form-group col-md-4">
+                                                    <label for="studclass" class="control-label">Student Class: </label>
+                                                    <select name="studclass" id="studclass" class="form-control form-control-sm rounded-0" required>
+                                                        <option>Old Student</option>
+                                                        <option>New Student</option>
+                                                    </select>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>01/01/1980</td>
-                                            <td>CCIS</td>
-                                            <td>BSEMC-AM</td>
-                                            <td>Bachelor of Science in Entertainment and Multimedia Computing with Specialization in Animation</td>
-                                            <td>
-                                                <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    Action
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="department" class="control-label">Department: </label>
+                                                    <select name="department" id="department" class="form-control form-control-sm rounded-0" required>
+                                                        <option>CCIS</option>
+                                                        <option>Others</option>
+                                                    </select>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>01/01/1980</td>
-                                            <td>CCIS</td>
-                                            <td>BSEMC-GD</td>
-                                            <td>Bachelor of Science in Entertainment and Multimedia Computing with Specialization in Game Development</td>
-                                            <td>
-                                                <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    Action
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
+                                                <div class="form-group col-md-4">
+                                                    <label for="course" class="control-label">Course: </label>
+                                                    <select name="course" id="course" class="form-control form-control-sm rounded-0" required>
+                                                        <option>BSCS</option>
+                                                        <option>BSIT-NETAD</option>
+                                                        <option>BSIT-MOBDEV</option>
+                                                        <option>BSEMC-AM</option>
+                                                        <option>BSEMC-GM</option>
+                                                        <option>BSIS</option>
+                                                        <option>Others</option>
+                                                    </select>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>01/01/1980</td>
-                                            <td>CCIS</td>
-                                            <td>BSIS</td>
-                                            <td>Bachelor of Science in Information Systems</td>
-                                            <td>
-                                                <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">Inactive</span>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    Action
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
+                                                <div class="form-group col-md-4">
+                                                    <label for="section" class="control-label">Section: </label>
+                                                    <select name="section" id="section" class="form-control form-control-sm rounded-0" required>
+                                                        <option>CCIS-6A</option>
+                                                        <option>CCIS-6B</option>
+                                                        <option>CCIS-6C</option>
+                                                        <option>CCIS-6D</option>
+                                                        <option>CCIS-6E</option>
+                                                        <option>CCIS-6F</option>
+                                                        <option>Others</option>
+                                                    </select>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="firstname" class="control-label">First Name: </label>
+                                                    <input type="text" name="firstname" id="firstname" class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="middlename" class="control-label">Middle Name: </label>
+                                                    <input type="text" name="middlename" id="middlename" class="form-control form-control-sm rounded-0" placeholder="optional">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="lastname" class="control-label">Last Name: </label>
+                                                    <input type="text" name="lastname" id="lastname" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="gender" class="control-label">Gender: </label>
+                                                    <select name="gender" id="gender" class="form-control form-control-sm rounded-0" required>
+                                                        <option>Male</option>
+                                                        <option>Female</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="dob" class="control-label">Date of Birth: </label>
+                                                    <input type="date" name="dob" id="dob" class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="contact" class="control-label">Contact #</label>
+                                                    <input type="text" name="contact" id="contact" class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="religion" class="control-label">Religion: </label>
+                                                    <input type="text" name="religion" id="religion" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="origin" class="control-label">Province Origin: </label>
+                                                    <input type="text" name="origin" id="origin" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="nationality" class="control-label">Nationality: </label>
+                                                    <select name="nationality" id="nationality" class="form-control form-control-sm rounded-0" required>
+                                                        <option>Filipino</option>
+                                                        <option>Foreign</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="civilstatus" class="control-label">Civil Status: </label>
+                                                    <select name="civilstatus" id="civilstatus" class="form-control form-control-sm rounded-0" required>
+                                                        <option>Single</option>
+                                                        <option>Married</option>
+                                                        <option>Widdowed</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="birthplace" class="control-label">Place of Birth: </label>
+                                                    <input type="text" name="birthplace" id="birthplace" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="stname" class="control-label">Number & Street Name: </label>
+                                                    <input type="text" name="stname" id="stname" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="brgy" class="control-label">Brgy, Bario, Village, Subdivision: </label>
+                                                    <input type="text" name="brgy" id="brgy" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="city" class="control-label">Municipality, City: </label>
+                                                    <input type="text" name="city" id="city" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="province" class="control-label">Province: </label>
+                                                    <input type="text" name="province" id="province" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="postalcode" class="control-label">Postal Code: </label>
+                                                    <input type="text" name="postalcode" id="postalcode" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="homenumber" class="control-label">Home Phone No.: </label>
+                                                    <input type="text" name="homenumber" id="homenumber" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="mobilenumber" class="control-label">Mobile Phone No.: </label>
+                                                    <input type="text" name="mobilenumber" id="mobilenumber" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="emergencyperson" class="control-label">Emergency Contact Person: </label>
+                                                    <input type="text" name="emergencyperson" id="emergencyperson" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="relationship" class="control-label">Relationship: </label>
+                                                    <select name="relationship" id="relationship" class="form-control form-control-sm rounded-0" required>
+                                                        <option>Father</option>
+                                                        <option>Mother</option>
+                                                        <option>Guardian</option>
+                                                        <option>Partner</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="emergencycontact" class="control-label">Emergency Contact No.: </label>
+                                                    <input type="text" name="emergencycontact" id="emergencycontact" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                            </div>
+
+                                </div>
+
+
+                                </fieldset>
+
                             </div>
-                        </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-flat btn-primary btn-sm" type="submit">Save Student Details</button>
+                                <a href="./?page=students" class="btn btn-flat btn-default border btn-sm">Cancel</a>
+                            </div>
+                        </form>
                     </div>
 
+
                 </div>
+
                 <!-- /.container-fluid -->
 
             </div>
@@ -520,104 +567,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="addCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add New Course</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label for="deptname" class="control-label">Department</label>
-                    <select name="deptname" id="deptname" class="form-control form-control-sm form-control-border" required>
-                        <option value="1">CCIS</option>
-                        <option value="0">Others</option>
-                    </select>
-                </div>
-                <div class="modal-body">
-                    <label for="coursename" class="control-label">Course</label>
-                    <input type="text" name="coursename" id="coursename" class="form-control form-control-border" placeholder="Enter Course Name" value ="" required>
-                </div>
-                <div class="modal-body">
-                    <label for="coursedescription" class="control-label">Description</label>
-                    <textarea rows="3" name="coursedescription" id="coursedescription" class="form-control form-control-sm rounded-0" required></textarea>
-                </div>
-                <div class="modal-body">
-                    <label for="status" class="control-label">Status</label>
-                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
-                        <option value="1">Active</option>
-                        <option value="0">Inactive</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="#">Save</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="editCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Course Details</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label for="deptname" class="control-label">Department</label>
-                    <select name="deptname" id="deptname" class="form-control form-control-sm form-control-border" required>
-                        <option value="1">CCIS</option>
-                        <option value="0">Others</option>
-                    </select>
-                </div>
-                <div class="modal-body">
-                    <label for="coursename" class="control-label">Course</label>
-                    <input type="text" name="coursename" id="coursename" class="form-control form-control-border" placeholder="Enter Course Name" value ="" required>
-                </div>
-                <div class="modal-body">
-                    <label for="coursedescription" class="control-label">Description</label>
-                    <textarea rows="3" name="coursedescription" id="coursedescription" class="form-control form-control-sm rounded-0" required></textarea>
-                </div>
-                <div class="modal-body">
-                    <label for="status" class="control-label">Status</label>
-                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
-                        <option value="1">Active</option>
-                        <option value="0">Inactive</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="#">Save</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="delCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Are you sure to delete this Course permanently?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="#">Continue</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
 @vite('resources/js/jquery.min.js')

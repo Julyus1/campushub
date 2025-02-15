@@ -316,10 +316,10 @@
                         <div class="card-header d-flex justify-content-between align-items-center py-4">
                             <h6 class="m-0 font-weight-bold text-primary">Student Details</h6>
                             <div class="card-tools d-flex gap-2">
-                                <a class="btn btn-sm btn-primary btn-flat" href="#"><i class="fa fa-edit"></i> Edit</a>
-                                <button class="btn btn-sm btn-danger btn-flat" id="delete_student"><i class="fa fa-trash"></i> Delete</button>
-                                <button class="btn btn-sm btn-navy bg-navy btn-flat" type="button" id="add_academic"><i class="fa fa-plus"></i> Add Academic</button>
-                                <button class="btn btn-sm btn-info bg-info btn-flat" type="button" id="update_status">Updated Status</button>
+                                <a class="btn btn-sm btn-primary btn-flat" href="studupdate.php"><i class="fa fa-edit"></i> Edit</a>
+                                <button class="btn btn-sm btn-danger btn-flat" data-toggle="modal" data-target="#delStudent"><i class="fa fa-trash"></i> Delete</button>
+                                <button class="btn btn-sm btn-navy bg-navy btn-flat" type="button" data-toggle="modal" data-target="#addAcad"><i class="fa fa-plus"></i> Add Academic</button>
+                                <button class="btn btn-sm btn-info bg-info btn-flat" type="button" data-toggle="modal" data-target="#updateStatus">Update Status</button>
                                 <button class="btn btn-sm btn-success bg-success btn-flat" type="button" id="print"><i class="fa fa-print"></i> Print</button>
                                 <a href="studlist.php" class="btn btn-default border btn-sm btn-flat"><i class="fa fa-angle-left"></i> Back to List</a>
                             </div>
@@ -474,6 +474,118 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="login.php">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="delStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Are you sure to delete this Student information permanently?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="#">Continue</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addAcad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Academic Record for 0122301119 - Pallasigue, Derek Joy C.</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="semester" class="control-label">Semester</label>
+                <select name="semester" id="semester" class="form-control form-control-sm  form-control-border rounded-0" required>
+                    <option>First Semester</option>
+                    <option>Second Semester</option>
+                    <option>Third Semester</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="schoolyear" class="control-label">School Year</label>
+                <input type="text" id="schoolyear" name ="schoolyear" value="" class="form-control form-control-border form-control-sm" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="course_id" class="control-label">Course</label>
+                <select name="course_id" id="course_id" class="form-control form-control-sm form-control-border rounded-0 select2" required>
+                    <option>BSIT-NETAD</option>
+                    <option>Others</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="year" class="control-label">Year</label>
+                <input type="text" id="year" name ="year" value="" class="form-control form-control-border form-control-sm" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="status" class="control-label">Beginning of Semester Status</label>
+                <select name="status" class="form-control form-control-sm form-control-border rounded-0" required>
+                    <option value="1">New</option>
+                    <option value="2">Regular</option>
+                    <option value="3">Returnee</option>
+                    <option value="4">Transferee</option>
+                </select>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="end_status" class="control-label">End of Semester Status</label>
+                <select name="end_status" class="form-control form-control-sm form-control-border rounded-0" required>
+                    <option value="0">Pending</option>
+                    <option value="1">Completed</option>
+                    <option value="2">Dropout</option>
+                    <option value="3">Failed</option>
+                    <option value="4">Transferred Out</option>
+                    <option value="5">Graduated</option>
+                </select>
+            </div>
+        </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="#">Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="updateStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Status of 0122301119</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                    <label for="status" class="control-label">Status</label>
+                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="#">Save</a>
                 </div>
             </div>
         </div>

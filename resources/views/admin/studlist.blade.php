@@ -311,7 +311,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-2 text-gray-800">List of Students</h1>
-                        <div class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm add-btn" id="editBtn">
+                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" id="editBtn">
                             <i class="fas fa-plus fa-sm text-white-50"></i><a href="register-student" style="text-decoration: none; color:  white;"> Add New Student</a>
                         </div>
                     </div>
