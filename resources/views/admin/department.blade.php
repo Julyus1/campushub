@@ -22,7 +22,7 @@
 
 </head>
 
-< id="page-top">
+<body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -59,16 +59,16 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStudent"
-                aria-expanded="true" aria-controls="collapseStudent">
+                    aria-expanded="true" aria-controls="collapseStudent">
                     <i class="fas fa-fw fa-list-alt"></i>
                     <span>Manage Students</span></a>
-                    <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Students Module:</h6>
-                            <a class="collapse-item" href="student-list">Student Lists</a>
-                            <a class="collapse-item" href="register-student">Student Registration</a>
-                        </div>
+                <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Students Module:</h6>
+                        <a class="collapse-item" href="student-list">Student Lists</a>
+                        <a class="collapse-item" href="register-student">Student Registration</a>
                     </div>
+                </div>
             </li>
 
             <!-- Divider -->
@@ -307,8 +307,8 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-2 text-gray-800">Department Lists</h1>
                         <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addDepartment"><i
-                            class="fas fa-plus fa-sm text-white-50"></i> Add New Department</div>
-                        </div>
+                                class="fas fa-plus fa-sm text-white-50"></i> Add New Department</div>
+                    </div>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -345,7 +345,7 @@
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                     Action
-                                                <span class="sr-only">Toggle Dropdown</span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
                                                     <a class="dropdown-item edit_data" data-toggle="modal" data-target="#editDepartment"><span class="fa fa-edit text-primary"></span> Edit</a>
@@ -362,7 +362,7 @@
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                     Action
-                                                <span class="sr-only">Toggle Dropdown</span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
                                                     <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
@@ -379,7 +379,7 @@
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                     Action
-                                                <span class="sr-only">Toggle Dropdown</span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
                                                     <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
@@ -396,7 +396,7 @@
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                     Action
-                                                <span class="sr-only">Toggle Dropdown</span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
                                                     <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
@@ -413,7 +413,7 @@
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                     Action
-                                                <span class="sr-only">Toggle Dropdown</span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
                                                     <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
@@ -430,7 +430,7 @@
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                     Action
-                                                <span class="sr-only">Toggle Dropdown</span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
                                                     <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
@@ -447,7 +447,7 @@
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                     Action
-                                                <span class="sr-only">Toggle Dropdown</span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
                                                     <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
@@ -521,7 +521,7 @@
                 </div>
                 <div class="modal-body">
                     <label for="deptname" class="control-label">Department</label>
-                    <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value ="" required>
+                    <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
                 </div>
                 <div class="modal-body">
                     <label for="deptdescription" class="control-label">Description</label>
@@ -542,40 +542,36 @@
         </div>
     </div>
 
-<form action="" method="POST">
-    <div class="modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Department Details</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label for="deptname" class="control-label">Department</label>
-                    <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value ="" required>
-                </div>
-                <div class="modal-body">
-                    <label for="deptdescription" class="control-label">Description</label>
-                    <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
-                </div>
-                <div class="modal-body">
-                    <label for="status" class="control-label">Status</label>
-                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
-                        <option value="1">Active</option>
-                        <option value="0">Inactive</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="#">Save</a>
+    <form method="POST" action='department'>
+        @csrf
+        <div class=" modal fade" id="edSitDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Department Details</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="deptname" class="control-label">Department</label>
+                        <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
+                    </div>
+                    <div class="modal-body">
+                        <label for="deptdescription" class="control-label">Description</label>
+                        <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+
 
     <div class="modal fade" id="delDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -597,15 +593,16 @@
     </div>
 
 
-    <!-- Bootstrap core JavaScript-->
-@vite('resources/js/jquery.min.js')
-@vite('resources/js/bootstrap.bundle.min.js')
-@vite('resources/js/jquery.easing.min.js')
-@vite('resources/js/sb-admin-2.min.js')
-@vite('resources/js/jquery.dataTables.min.js')
-@vite('resources/js/dataTables.bootstrap4.min.js')
-@vite('resources/js/datatables-demo.js')
 
-</body>
+    <!-- Bootstrap core JavaScript-->
+    @vite('resources/js/jquery.min.js')
+    @vite('resources/js/bootstrap.bundle.min.js')
+    @vite('resources/js/jquery.easing.min.js')
+    @vite('resources/js/sb-admin-2.min.js')
+    @vite('resources/js/jquery.dataTables.min.js')
+    @vite('resources/js/dataTables.bootstrap4.min.js')
+    @vite('resources/js/datatables-demo.js')
+
+    </bod>
 
 </html>

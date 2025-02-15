@@ -567,13 +567,13 @@
 
 
     <!-- Bootstrap core JavaScript-->
-@vite('resources/js/jquery.min.js')
-@vite('resources/js/bootstrap.bundle.min.js')
-@vite('resources/js/jquery.easing.min.js')
-@vite('resources/js/sb-admin-2.min.js')
-@vite('resources/js/jquery.dataTables.min.js')
-@vite('resources/js/dataTables.bootstrap4.min.js')
-@vite('resources/js/datatables-demo.js')
+    @vite('resources/js/jquery.min.js')
+    @vite('resources/js/bootstrap.bundle.min.js')
+    @vite('resources/js/jquery.easing.min.js')
+    @vite('resources/js/sb-admin-2.min.js')
+    @vite('resources/js/jquery.dataTables.min.js')
+    @vite('resources/js/dataTables.bootstrap4.min.js')
+    @vite('resources/js/datatables-demo.js')
 
 </body>
 
