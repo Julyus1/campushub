@@ -22,7 +22,7 @@
 
 </head>
 
-< id="page-top">
+<body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -519,6 +519,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
+                <form action="" method="post">
                 <div class="modal-body">
                     <label for="deptname" class="control-label">Department</label>
                     <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value ="" required>
@@ -536,13 +537,14 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="#">Save</a>
+                    <button class="btn btn-primary" type="submit">Save</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
 
-<form action="" method="POST">
+
     <div class="modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -553,6 +555,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
+                <form action="" method="post">
                 <div class="modal-body">
                     <label for="deptname" class="control-label">Department</label>
                     <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value ="" required>
@@ -570,13 +573,12 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="#">Save</a>
+                    <button class="btn btn-primary" type="submit">Save</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
-</form>
-
     <div class="modal fade" id="delDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -587,11 +589,13 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
+                <form action="" method="post">
                 <div class="modal-body">Are you sure to delete this Department permanently?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="#">Continue</a>
+                    <button class="btn btn-primary" type="submit">Continue</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
