@@ -62,40 +62,6 @@ class AdminController extends Controller
 
         ]);
         return redirect('register-student');
-        // $validated = $request->validate([
-        //     'section_id' => 'required|integer|exists:sections,id',
-        //     'stud_id' => 'required|integer|unique:students,stud_id',
-        //     'year_level' => 'required|string',
-        //     'stud_class' => 'required|string',
-        //     'department' => 'required|string',
-        //     'course' => 'required|string',
-        //     'section' => 'required|string',
-        //     'firstname' => 'required|string',
-        //     'middlename' => 'nullable|string',
-        //     'lastname' => 'required|string',
-        //     'gender' => 'required|string|in:Male,Female',
-        //     'birthdate' => 'required|date',
-        //     'contact' => 'nullable|string',
-        //     'religion' => 'nullable|string',
-        //     'origin' => 'nullable|string',
-        //     'nationality' => 'required|string',
-        //     'civilstatus' => 'nullable|string',
-        //     'birthplace' => 'nullable|string',
-        //     'stname' => 'nullable|string',
-        //     'brgy' => 'nullable|string',
-        //     'city' => 'required|string',
-        //     'province' => 'required|string',
-        //     'postalcode' => 'nullable|integer',
-        //     'homenumber' => 'nullable|string',
-        //     'mobilenumber' => 'required|string',
-        //     'emergencyperson' => 'required|string',
-        //     'relationship' => 'required|string',
-        //     'emergencycontact' => 'required|string',
-        // ]);
-
-        // $student = Student::create($validated);
-
-        // return redirect()->route('students.index')->with('success', 'Student registered successfully!');
     }
     public function show_course()
     {
@@ -104,5 +70,10 @@ class AdminController extends Controller
     public function show_department()
     {
         return view('admin.department');
+    }
+
+    public function store_department()
+    {
+        dd("tanginang");
     }
 }
