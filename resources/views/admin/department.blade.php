@@ -548,7 +548,7 @@
 
         <form method="POST" action='department'>
             @csrf
-            <div class=" modal fade" id="edSitDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            <div class=" modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -561,12 +561,9 @@
                         <div class="modal-body">
                             <label for="deptname" class="control-label">Department</label>
                             <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
-                        </div>
-                        <div class="modal-body">
                             <label for="deptdescription" class="control-label">Description</label>
                             <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
                         </div>
-
                         <div class="modal-footer">
                             <button class="btn btn-primary" type="submit">Save</button>
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -597,7 +594,6 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
     </div>
 
     <div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -682,10 +678,6 @@
             </div>
         </div>
     </div>
-=======
-
-
->>>>>>> e1a9c04de3c6ec4726ccc0f885e7933280583e43
 
         <!-- Bootstrap core JavaScript-->
         @vite('resources/js/jquery.min.js')
