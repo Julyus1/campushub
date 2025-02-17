@@ -18,8 +18,8 @@ class AdminController extends Controller
 
     public function show_stud()
     {
-        $students = Student::all();
-        return view('admin.studlist', compact('students'));
+        $students = Student::latest()->get();
+        return view('admin.studlist', ['students' => $students]);
     }
     public function create_stud()
     {
@@ -80,5 +80,10 @@ class AdminController extends Controller
     public function update_department()
     {
         dd("tanginang");
+    }
+
+    public function stud_profile(Student $student)
+    {
+        return view('admin.studdetail', ['student' => $student]);
     }
 }

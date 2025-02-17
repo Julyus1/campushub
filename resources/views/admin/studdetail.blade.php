@@ -21,7 +21,7 @@
     @vite('resources/css/sb-admin-2.min.css')
 
     <style>
-        
+
     </style>
 
 </head>
@@ -63,16 +63,16 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStudent"
-                aria-expanded="true" aria-controls="collapseStudent">
+                    aria-expanded="true" aria-controls="collapseStudent">
                     <i class="fas fa-fw fa-list-alt"></i>
                     <span>Manage Students</span></a>
-                    <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Students Module:</h6>
-                            <a class="collapse-item" href="student-list">Student Lists</a>
-                            <a class="collapse-item" href="register-student">Student Registration</a>
-                        </div>
+                <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Students Module:</h6>
+                        <a class="collapse-item" href="student-list">Student Lists</a>
+                        <a class="collapse-item" href="register-student">Student Registration</a>
                     </div>
+                </div>
             </li>
 
             <!-- Divider -->
@@ -96,7 +96,7 @@
                     <i class="bi bi-book-fill"></i>
                     <span>Course Registration</span></a>
             </li>
-        
+
         </ul>
         <!-- End of Sidebar -->
 
@@ -309,7 +309,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-2 text-gray-800">Student Information Management</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Student Information Management</h1>
                     </div>
 
                     <div class="card shadow mb-4">
@@ -325,110 +325,111 @@
                             </div>
                         </div>
                         <div class="card-body">
-                        <div class="container-fluid" id="outprint">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label text-muted">Student ID</label>
-                            <div class="pl-4">0122301119</div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label text-muted">Status</label>
-                            <div class="pl-4">
-                                <span class="rounded-pill badge badge-primary bg-gradient-primary px-3">Active</span>
-                                           
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <fieldset class="border-bottom">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Name</label>
-                                <div class="pl-4">Pallasigue, Derek Joy C.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Gender</label>
-                                <div class="pl-4">Male</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Date of Birth</label>
-                                <div class="pl-4">February 13, 2003</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Contact #</label>
-                                <div class="pl-4">09474835441</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Complete Address</label>
-                                <div class="pl-4">Blk. 19 Lot 22, Sameera Subd. Brgy Sapalibutad, Angeles City Pampanga, 2009</div>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend class="text-muted">Academic History</legend>
-                    <table class="table table-stripped table-bordered" id="academic-history">
-                        <thead>
-                            <tr class="bg-gradient-dark text-light">
-                                <th class="py-1 text-center">ID</th>
-                                <th class="py-1 text-center">Department/Course</th>
-                                <th class="py-1 text-center">Semester/School Yr.</th>
-                                <th class="py-1 text-center">Year</th>
-                                <th class="py-1 text-center">Beg. of Sem. Status</th>
-                                <th class="py-1 text-center">End of Sem. Status</th>
-                                <th class="py-1 text-center">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="px-2 py-1 align-middle text-center">1</td>
-                                <td class="px-2 py-1 align-middle">
-                                    <small><span class="">CCIS</span></small><br>
-                                    <small><span class="">BSIT-MOBDEV</span></small>
-                                </td>
-                                <td class="px-2 py-1 align-middle">
-                                    <small><span class="">First Semester</span></small><br>
-                                    <small><span class="">2022-2023</span></small>
-                                </td>
-                                <td class="px-2 py-1 align-middle">1st Year</td>
-                                <td class="px-2 py-1 align-middle text-center">
-                                    <span class="rounded-pill badge badge-success px-3">Regular</span>
-                                </td>
-                                <td class="px-2 py-1 align-middle text-center">
-                                    <span class="rounded-pill badge badge-success px-3">Completed</span>
-                                </td>
-                                <td class="px-2 py-1 align-middle text-center">
-                                    <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                            Action
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu" role="menu">
-                                        <a class="dropdown-item edit_academic" href="#"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item delete_academic" href="#"><span class="fa fa-trash text-danger"></span> Delete</a>
+                            <div class="container-fluid" id="outprint">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label text-muted">Student ID</label>
+                                            <div class="pl-4">{{$student['stud_id'] }}</div>
+                                        </div>
                                     </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </fieldset>
-            </div>
+
+                                </div>
+                                <fieldset class="border-bottom">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted">Name</label>
+                                                <br>
+                                                {{ $student['lastname'] }}, {{ $student['firstname'] }}
+                                                @if (!empty($student['middlename']))
+                                                {{ Str::substr($student['middlename'], 0, 1) }}.
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted">Gender</label>
+                                                <div class="pl-4">{{ $student->gender }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted">Date of Birth</label>
+                                                <div class="pl-4">{{ \Carbon\Carbon::parse($student->birthdate)->format('F d, Y') }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted">Contact #</label>
+                                                <div class="pl-4">{{ $student->contact }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted">Complete Address</label>
+                                                <div class="pl-4">
+                                                    {{ $student->stname }}, Brgy. {{ $student->brgy }},
+                                                    {{ $student->city }}, {{ $student->province }}, {{ $student->postalcode }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                <fieldset>
+                                    <legend class="text-muted">Academic History</legend>
+                                    <table class="table table-stripped table-bordered" id="academic-history">
+                                        <thead>
+                                            <tr class="bg-gradient-dark text-light">
+                                                <th class="py-1 text-center">ID</th>
+                                                <th class="py-1 text-center">Department/Course</th>
+                                                <th class="py-1 text-center">Semester/School Yr.</th>
+                                                <th class="py-1 text-center">Year</th>
+                                                <th class="py-1 text-center">Beg. of Sem. Status</th>
+                                                <th class="py-1 text-center">End of Sem. Status</th>
+                                                <th class="py-1 text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="px-2 py-1 align-middle text-center">1</td>
+                                                <td class="px-2 py-1 align-middle">
+                                                    <small><span class="">CCIS</span></small><br>
+                                                    <small><span class="">BSIT-MOBDEV</span></small>
+                                                </td>
+                                                <td class="px-2 py-1 align-middle">
+                                                    <small><span class="">First Semester</span></small><br>
+                                                    <small><span class="">2022-2023</span></small>
+                                                </td>
+                                                <td class="px-2 py-1 align-middle">1st Year</td>
+                                                <td class="px-2 py-1 align-middle text-center">
+                                                    <span class="rounded-pill badge badge-success px-3">Regular</span>
+                                                </td>
+                                                <td class="px-2 py-1 align-middle text-center">
+                                                    <span class="rounded-pill badge badge-success px-3">Completed</span>
+                                                </td>
+                                                <td class="px-2 py-1 align-middle text-center">
+                                                    <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                                        Action
+                                                        <span class="sr-only">Toggle Dropdown</span>
+                                                    </button>
+                                                    <div class="dropdown-menu" role="menu">
+                                                        <a class="dropdown-item edit_academic" href="#"><span class="fa fa-edit text-primary"></span> Edit</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item delete_academic" href="#"><span class="fa fa-trash text-danger"></span> Delete</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </fieldset>
+                            </div>
                         </div>
                     </div>
 
@@ -490,11 +491,11 @@
                     </button>
                 </div>
                 <form action="" method="post">
-                <div class="modal-body">Are you sure to delete this Student information permanently?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Continue</button>
-                </div>
+                    <div class="modal-body">Are you sure to delete this Student information permanently?</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Continue</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -511,61 +512,61 @@
                     </button>
                 </div>
                 <form action="" method="post">
-                <div class="modal-body">
-                <div class="row">
-            <div class="col-md-6 form-group">
-                <label for="semester" class="control-label">Semester</label>
-                <select name="semester" id="semester" class="form-control form-control-sm  form-control-border rounded-0" required>
-                    <option>First Semester</option>
-                    <option>Second Semester</option>
-                    <option>Third Semester</option>
-                </select>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="schoolyear" class="control-label">School Year</label>
-                <input type="text" id="schoolyear" name ="schoolyear" value="" class="form-control form-control-border form-control-sm" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 form-group">
-                <label for="course_id" class="control-label">Course</label>
-                <select name="course_id" id="course_id" class="form-control form-control-sm form-control-border rounded-0 select2" required>
-                    <option>BSIT-NETAD</option>
-                    <option>Others</option>
-                </select>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="year" class="control-label">Year</label>
-                <input type="text" id="year" name ="year" value="" class="form-control form-control-border form-control-sm" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 form-group">
-                <label for="status" class="control-label">Beginning of Semester Status</label>
-                <select name="status" class="form-control form-control-sm form-control-border rounded-0" required>
-                    <option value="1">New</option>
-                    <option value="2">Regular</option>
-                    <option value="3">Returnee</option>
-                    <option value="4">Transferee</option>
-                </select>
-            </div>
-            <div class="col-md-6 form-group">
-                <label for="end_status" class="control-label">End of Semester Status</label>
-                <select name="end_status" class="form-control form-control-sm form-control-border rounded-0" required>
-                    <option value="0">Pending</option>
-                    <option value="1">Completed</option>
-                    <option value="2">Dropout</option>
-                    <option value="3">Failed</option>
-                    <option value="4">Transferred Out</option>
-                    <option value="5">Graduated</option>
-                </select>
-            </div>
-        </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Save</button>
-                </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="semester" class="control-label">Semester</label>
+                                <select name="semester" id="semester" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                    <option>First Semester</option>
+                                    <option>Second Semester</option>
+                                    <option>Third Semester</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="schoolyear" class="control-label">School Year</label>
+                                <input type="text" id="schoolyear" name="schoolyear" value="" class="form-control form-control-border form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="course_id" class="control-label">Course</label>
+                                <select name="course_id" id="course_id" class="form-control form-control-sm form-control-border rounded-0 select2" required>
+                                    <option>BSIT-NETAD</option>
+                                    <option>Others</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="year" class="control-label">Year</label>
+                                <input type="text" id="year" name="year" value="" class="form-control form-control-border form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="status" class="control-label">Beginning of Semester Status</label>
+                                <select name="status" class="form-control form-control-sm form-control-border rounded-0" required>
+                                    <option value="1">New</option>
+                                    <option value="2">Regular</option>
+                                    <option value="3">Returnee</option>
+                                    <option value="4">Transferee</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="end_status" class="control-label">End of Semester Status</label>
+                                <select name="end_status" class="form-control form-control-sm form-control-border rounded-0" required>
+                                    <option value="0">Pending</option>
+                                    <option value="1">Completed</option>
+                                    <option value="2">Dropout</option>
+                                    <option value="3">Failed</option>
+                                    <option value="4">Transferred Out</option>
+                                    <option value="5">Graduated</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -587,24 +588,24 @@
                         <option value="1">Active</option>
                         <option value="0">Inactive</option>
                     </select>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Save</button>
-                </div>
-                </form>
             </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+            </form>
         </div>
+    </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-@vite('resources/js/jquery.min.js')
-@vite('resources/js/bootstrap.bundle.min.js')
-@vite('resources/js/jquery.easing.min.js')
-@vite('resources/js/sb-admin-2.min.js')
-@vite('resources/js/jquery.dataTables.min.js')
-@vite('resources/js/dataTables.bootstrap4.min.js')
-@vite('resources/js/datatables-demo.js')
+    @vite('resources/js/jquery.min.js')
+    @vite('resources/js/bootstrap.bundle.min.js')
+    @vite('resources/js/jquery.easing.min.js')
+    @vite('resources/js/sb-admin-2.min.js')
+    @vite('resources/js/jquery.dataTables.min.js')
+    @vite('resources/js/dataTables.bootstrap4.min.js')
+    @vite('resources/js/datatables-demo.js')
 
 
 </body>

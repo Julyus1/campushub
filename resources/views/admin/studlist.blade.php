@@ -345,7 +345,8 @@
                                                 <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
                                             </td>
                                             <td items-align="center">
-
+                                                <a href="student/{{$student->id}}" class="btn btn-flat btn-default btn-sm border">
+                                                    <i class="fa fa-eye"></i> View
                                             </td>
                                         </tr>
                                         @endforeach
