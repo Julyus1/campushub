@@ -9,4 +9,11 @@ class Department extends Model
 {
     /** @use HasFactory<\Database\Factories\DepartmentFactory> */
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function course()
+    {
+        return $this->hasMany(Course::class);
+    }
 }

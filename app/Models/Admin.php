@@ -10,6 +10,5 @@ class Admin extends Model
     /** @use HasFactory<\Database\Factories\AdminFactory> */
     use HasFactory;
 
-
-    
+    protected $guarded = [];
 }

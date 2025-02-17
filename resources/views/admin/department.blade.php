@@ -30,72 +30,7 @@
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-                <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin">
-                    <div class="sidebar-brand-icon rotate-n-15">
-                        <img src="../img/ch-logo.png" style="height: 40px; width: 40px;">
-                    </div>
-                    <div class="sidebar-brand-text mx-3">CampusHub</div>
-                </a>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider my-0">
-
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item">
-                    <a class="nav-link" href="admin">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard</span></a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Student Information
-                </div>
-
-                <!-- Nav Item - Tables -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStudent"
-                        aria-expanded="true" aria-controls="collapseStudent">
-                        <i class="fas fa-fw fa-list-alt"></i>
-                        <span>Manage Students</span></a>
-                    <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Students Module:</h6>
-                            <a class="collapse-item" href="student-list">Student Lists</a>
-                            <a class="collapse-item" href="register-student">Student Registration</a>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Course Module
-                </div>
-
-                <!-- Nav Item - Tables -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="register-department">
-                        <i class="bi bi-building-fill"></i>
-                        <span>Department Lists</span></a>
-                </li>
-
-                <!-- Nav Item - Tables -->
-                <li class="nav-item">
-                    <a class="nav-link" href="register-course">
-                        <i class="bi bi-book-fill"></i>
-                        <span>Course Registration</span></a>
-                </li>
-
-            </ul>
+            <x-sidebar></x-sidebar>
             <!-- End of Sidebar -->
 
             <!-- Content Wrapper -->
@@ -339,125 +274,29 @@
                                             </tr>
                                         </tfoot>
                                         <tbody>
+                                            @foreach($departments as $department)
                                             <tr>
-                                                <td>1</td>
-                                                <td>01/01/1980</td>
-                                                <td>CCIS</td>
-                                                <td>College of Computing and Information Sciences</td>
+                                                <td>{{ $department->id }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($department->created_at)->format('m/d/Y') }}</td>
+                                                <td>{{ $department->title }}</td>
+                                                <td>{{ $department->description }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                         Action
                                                         <span class="sr-only">Toggle Dropdown</span>
                                                     </button>
                                                     <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item edit_data" data-toggle="modal" data-target="#editDepartment"><span class="fa fa-edit text-primary"></span> Edit</a>
+                                                        <a class="dropdown-item edit_data" data-id="{{ $department->id }}" data-toggle="modal" data-target="#editDepartment">
+                                                            <span class="fa fa-edit text-primary"></span> Edit
+                                                        </a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item delete_data" data-toggle="modal" data-target="#delDepartment"><span class="fa fa-trash text-danger"></span> Delete</a>
+                                                        <a class="dropdown-item delete_data" data-id="{{ $department->id }}" data-toggle="modal" data-target="#delDepartment">
+                                                            <span class="fa fa-trash text-danger"></span> Delete
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>01/01/1980</td>
-                                                <td>COE</td>
-                                                <td>College of Engineering</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        Action
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>01/01/1980</td>
-                                                <td>CON</td>
-                                                <td>College of Nursing</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        Action
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>01/01/1980</td>
-                                                <td>COC</td>
-                                                <td>College of Criminology</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        Action
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>01/01/1980</td>
-                                                <td>CASSED</td>
-                                                <td>College of Arts and Social Sciences and Education</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        Action
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>01/01/1980</td>
-                                                <td>COB</td>
-                                                <td>College of Business</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        Action
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>7</td>
-                                                <td>01/01/1980</td>
-                                                <td>CHTM</td>
-                                                <td>College of Hospitality and Tourism Management</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        Action
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -510,7 +349,7 @@
                 </div>
             </div>
         </div>
-        <form method="POST" action='register-department'>
+        <form method="POST" action='{{ url('department/register') }}'>
             @csrf
 
 
@@ -527,18 +366,11 @@
                         <form action="" method="post">
                             <div class="modal-body">
                                 <label for="deptname" class="control-label">Department</label>
-                                <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
+                                <input type="text" name="title" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
                             </div>
                             <div class="modal-body">
                                 <label for="deptdescription" class="control-label">Description</label>
-                                <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
-                            </div>
-                            <div class="modal-body">
-                                <label for="status" class="control-label">Status</label>
-                                <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
+                                <textarea rows="3" name="description" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -550,40 +382,35 @@
             </div>
         </form>
 
-<<<<<<< HEAD
-        <form method="POST" action="">
-            @method('PATCH')
-=======
         <form method="POST" action='department'>
             @csrf
->>>>>>> 4e09a574fcb196e11099308317bdf0126ab70495
             <div class=" modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Update Department Details</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <label for="deptname" class="control-label">Department</label>
-                            <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
-<<<<<<< HEAD
+                <form method="POST" action="">
+                @method('PATCH')
+                <div class=" modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Update Department Details</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <label for="deptname" class="control-label">Department</label>
+                                <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
 
-=======
->>>>>>> 4e09a574fcb196e11099308317bdf0126ab70495
-                            <label for="deptdescription" class="control-label">Description</label>
-                            <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" type="submit">Save</button>
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <label for="deptdescription" class="control-label">Description</label>
+                                <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Save</button>
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </form>
 
 
@@ -597,100 +424,100 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
+                    <form action="" method="post">
+                        <div class="modal-body">Are you sure to delete this Department permanently?</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary" type="submit">Continue</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
 
-                    <div class="modal-body">Are you sure to delete this Department permanently?</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Continue</button>
+        <div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Department</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
                     </div>
-
+                    <form action="" method="post">
+                        <div class="modal-body">
+                            <label for="deptname" class="control-label">Department</label>
+                            <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
+                            <label for="deptdescription" class="control-label">Description</label>
+                            <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                            <label for="status" class="control-label">Status</label>
+                            <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add New Department</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <form action="" method="post">
-                <div class="modal-body">
-                    <label for="deptname" class="control-label">Department</label>
-                    <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value ="" required>
-                    <label for="deptdescription" class="control-label">Description</label>
-                    <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
-                    <label for="status" class="control-label">Status</label>
-                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
-                        <option value="1">Active</option>
-                        <option value="0">Inactive</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Save</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
 
-    <div class="modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Department Details</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+        <div class="modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Department Details</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form action="" method="post">
+                        <div class="modal-body">
+                            <label for="deptname" class="control-label">Department</label>
+                            <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
+                            <label for="deptdescription" class="control-label">Description</label>
+                            <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                            <label for="status" class="control-label">Status</label>
+                            <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
+                    </form>
                 </div>
-                <form action="" method="post">
-                <div class="modal-body">
-                    <label for="deptname" class="control-label">Department</label>
-                    <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value ="" required>
-                    <label for="deptdescription" class="control-label">Description</label>
-                    <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
-                    <label for="status" class="control-label">Status</label>
-                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
-                        <option value="1">Active</option>
-                        <option value="0">Inactive</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Save</button>
-                </div>
-                </form>
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="delDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+        <div class="modal fade" id="delDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form action="" method="post">
+                        <div class="modal-body">Are you sure to delete this Department permanently?</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary" type="submit">Continue</button>
+                        </div>
+                    </form>
                 </div>
-                <form action="" method="post">
-                <div class="modal-body">Are you sure to delete this Department permanently?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Continue</button>
-                </div>
-                </form>
             </div>
         </div>
-    </div>
 
         <!-- Bootstrap core JavaScript-->
         @vite('resources/js/jquery.min.js')

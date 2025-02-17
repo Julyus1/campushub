@@ -28,72 +28,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="../img/ch-logo.png" style="height: 40px; width: 40px;">
-                </div>
-                <div class="sidebar-brand-text mx-3">CampusHub</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="admin">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Student Information
-            </div>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStudent"
-                aria-expanded="true" aria-controls="collapseStudent">
-                    <i class="fas fa-fw fa-list-alt"></i>
-                    <span>Manage Students</span></a>
-                    <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Students Module:</h6>
-                            <a class="collapse-item" href="student-list">Student Lists</a>
-                            <a class="collapse-item" href="register-student">Student Registration</a>
-                        </div>
-                    </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Course Module
-            </div>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="register-department">
-                    <i class="bi bi-building-fill"></i>
-                    <span>Department Lists</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="register-course">
-                    <i class="bi bi-book-fill"></i>
-                    <span>Course Registration</span></a>
-            </li>
-
-        </ul>
+        <x-sidebar></x-sidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -305,9 +240,9 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-2 text-gray-800">Course Registration</h1>
-                    <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addCourse"><i
-                        class="fas fa-plus fa-sm text-white-50"></i> Add New Course</div>
+                        <h1 class="h3 mb-2 text-gray-800">Course Registration</h1>
+                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addCourse"><i
+                                class="fas fa-plus fa-sm text-white-50"></i> Add New Course</div>
                     </div>
 
                     <!-- DataTales Example -->
@@ -341,132 +276,33 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                        @foreach($courses as $course)
                                         <tr>
-                                            <td>1</td>
-                                            <td>01/01/1980</td>
-                                            <td>CCIS</td>
-                                            <td>BSCS</td>
-                                            <td>Bachelor of Science in Computer Science</td>
+                                            <td>{{ $course->id }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($course->created_at)->format('m/d/Y') }}</td>
+                                            <td>{{ $course->department->name ?? 'N/A' }}</td> {{-- Assuming there's a relationship --}}
+                                            <td>{{ $course->title }}</td>
+                                            <td>Bachelor of Science in {{ ucfirst($course->title) }}</td> {{-- Example description --}}
                                             <td>
                                                 <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                     Action
-                                                <span class="sr-only">Toggle Dropdown</span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data" data-toggle="modal" data-target="#editCourse"><span class="fa fa-edit text-primary"></span> Edit</a>
+                                                    <a class="dropdown-item edit_data" data-toggle="modal" data-target="#editCourse" data-id="{{ $course->id }}">
+                                                        <span class="fa fa-edit text-primary"></span> Edit
+                                                    </a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data" data-toggle="modal" data-target="#delCourse"><span class="fa fa-trash text-danger"></span> Delete</a>
+                                                    <a class="dropdown-item delete_data" data-toggle="modal" data-target="#delCourse" data-id="{{ $course->id }}">
+                                                        <span class="fa fa-trash text-danger"></span> Delete
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>01/01/1980</td>
-                                            <td>CCIS</td>
-                                            <td>BSIT-NETAD</td>
-                                            <td>Bachelor of Science in Information Technology with Specialization in Network Administration</td>
-                                            <td>
-                                                <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    Action
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>01/01/1980</td>
-                                            <td>CCIS</td>
-                                            <td>BSIT-MOBDEV</td>
-                                            <td>Bachelor of Science in Information Technology with Specialization in Mobile Development</td>
-                                            <td>
-                                                <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    Action
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>01/01/1980</td>
-                                            <td>CCIS</td>
-                                            <td>BSEMC-AM</td>
-                                            <td>Bachelor of Science in Entertainment and Multimedia Computing with Specialization in Animation</td>
-                                            <td>
-                                                <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    Action
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>01/01/1980</td>
-                                            <td>CCIS</td>
-                                            <td>BSEMC-GD</td>
-                                            <td>Bachelor of Science in Entertainment and Multimedia Computing with Specialization in Game Development</td>
-                                            <td>
-                                                <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    Action
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>01/01/1980</td>
-                                            <td>CCIS</td>
-                                            <td>BSIS</td>
-                                            <td>Bachelor of Science in Information Systems</td>
-                                            <td>
-                                                <span class="rounded-pill badge badge-danger bg-gradient-danger px-3">Inactive</span>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    Action
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -530,27 +366,25 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="" method="post">
-                <div class="modal-body">
-                    <label for="deptname" class="control-label">Department</label>
-                    <select name="deptname" id="deptname" class="form-control form-control-sm form-control-border" required>
-                        <option value="1">CCIS</option>
-                        <option value="0">Others</option>
-                    </select>
-                    <label for="coursename" class="control-label">Course</label>
-                    <input type="text" name="coursename" id="coursename" class="form-control form-control-border" placeholder="Enter Course Name" value ="" required>
-                    <label for="coursedescription" class="control-label">Description</label>
-                    <textarea rows="3" name="coursedescription" id="coursedescription" class="form-control form-control-sm rounded-0" required></textarea>
-                    <label for="status" class="control-label">Status</label>
-                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
-                        <option value="1">Active</option>
-                        <option value="0">Inactive</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Save</button>
-                </div>
+                <form action="{{ url('course/register') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <label for="deptname" class="control-label">Department</label>
+                        <select name="department_id" id="deptname" class="form-control form-control-sm form-control-border" required>
+                            @foreach ($departments as $department )
+                            <option value="{{ $department->id }}">{{ $department->title }}</option>
+                            @endforeach
+                        </select>
+                        <label for="coursename" class="control-label">Course</label>
+                        <input type="text" name="title" id="coursename" class="form-control form-control-border" placeholder="Enter Course Name" value="" required>
+                        <label for="coursedescription" class="control-label">Description</label>
+                        <textarea rows="3" name="description" id="coursedescription" class="form-control form-control-sm rounded-0" required></textarea>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -567,26 +401,26 @@
                     </button>
                 </div>
                 <form action="" method="post">
-                <div class="modal-body">
-                    <label for="deptname" class="control-label">Department</label>
-                    <select name="deptname" id="deptname" class="form-control form-control-sm form-control-border" required>
-                        <option value="1">CCIS</option>
-                        <option value="0">Others</option>
-                    </select>
-                    <label for="coursename" class="control-label">Course</label>
-                    <input type="text" name="coursename" id="coursename" class="form-control form-control-border" placeholder="Enter Course Name" value ="" required>
-                    <label for="coursedescription" class="control-label">Description</label>
-                    <textarea rows="3" name="coursedescription" id="coursedescription" class="form-control form-control-sm rounded-0" required></textarea>
-                    <label for="status" class="control-label">Status</label>
-                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
-                        <option value="1">Active</option>
-                        <option value="0">Inactive</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Save</button>
-                </div>
+                    <div class="modal-body">
+                        <label for="deptname" class="control-label">Department</label>
+                        <select name="deptname" id="deptname" class="form-control form-control-sm form-control-border" required>
+                            <option value="1">CCIS</option>
+                            <option value="0">Others</option>
+                        </select>
+                        <label for="coursename" class="control-label">Course</label>
+                        <input type="text" name="coursename" id="coursename" class="form-control form-control-border" placeholder="Enter Course Name" value="" required>
+                        <label for="coursedescription" class="control-label">Description</label>
+                        <textarea rows="3" name="coursedescription" id="coursedescription" class="form-control form-control-sm rounded-0" required></textarea>
+                        <label for="status" class="control-label">Status</label>
+                        <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -603,24 +437,24 @@
                     </button>
                 </div>
                 <form action="" method="post">
-                <div class="modal-body">Are you sure to delete this Course permanently?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Continue</button>
-                </div>
+                    <div class="modal-body">Are you sure to delete this Course permanently?</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Continue</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-@vite('resources/js/jquery.min.js')
-@vite('resources/js/bootstrap.bundle.min.js')
-@vite('resources/js/jquery.easing.min.js')
-@vite('resources/js/sb-admin-2.min.js')
-@vite('resources/js/jquery.dataTables.min.js')
-@vite('resources/js/dataTables.bootstrap4.min.js')
-@vite('resources/js/datatables-demo.js')
+    @vite('resources/js/jquery.min.js')
+    @vite('resources/js/bootstrap.bundle.min.js')
+    @vite('resources/js/jquery.easing.min.js')
+    @vite('resources/js/sb-admin-2.min.js')
+    @vite('resources/js/jquery.dataTables.min.js')
+    @vite('resources/js/dataTables.bootstrap4.min.js')
+    @vite('resources/js/datatables-demo.js')
 
 </body>
 

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('stud_class');
             $table->string('department');
             $table->string('course');
-            $table->string('section');
             $table->string('firstname');
             $table->string('middlename')->nullable();
             $table->string('lastname');
