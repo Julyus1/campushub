@@ -56,29 +56,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
+                        
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -260,7 +238,6 @@
                                             <th>Department</th>
                                             <th>Course</th>
                                             <th>Description</th>
-                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -271,7 +248,6 @@
                                             <th>Department</th>
                                             <th>Course</th>
                                             <th>Description</th>
-                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -283,9 +259,6 @@
                                             <td>{{ $course->department->name ?? 'N/A' }}</td> {{-- Assuming there's a relationship --}}
                                             <td>{{ $course->title }}</td>
                                             <td>Bachelor of Science in {{ ucfirst($course->title) }}</td> {{-- Example description --}}
-                                            <td>
-                                                <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
-                                            </td>
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                     Action
@@ -411,11 +384,6 @@
                         <input type="text" name="coursename" id="coursename" class="form-control form-control-border" placeholder="Enter Course Name" value="" required>
                         <label for="coursedescription" class="control-label">Description</label>
                         <textarea rows="3" name="coursedescription" id="coursedescription" class="form-control form-control-sm rounded-0" required></textarea>
-                        <label for="status" class="control-label">Status</label>
-                        <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                        </select>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>

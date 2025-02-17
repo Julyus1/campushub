@@ -14,7 +14,7 @@
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <title>CampusHub - Departments</title>
+    <title>CampusHub - Sections</title>
 
 
     <!-- Custom styles for this template-->
@@ -240,15 +240,15 @@
 
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-2 text-gray-800">Department Lists</h1>
-                            <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addDepartment"><i
-                                    class="fas fa-plus fa-sm text-white-50"></i> Add New Department</div>
+                            <h1 class="h3 mb-2 text-gray-800">Section Lists</h1>
+                            <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addSection"><i
+                                    class="fas fa-plus fa-sm text-white-50"></i> Add New Section</div>
                         </div>
 
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Department Lists</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Section Lists</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -257,8 +257,8 @@
                                             <tr class="bg-gradient-dark text-light">
                                                 <th>ID</th>
                                                 <th>Date Created</th>
-                                                <th>Name</th>
-                                                <th>Description</th>
+                                                <th>Course</th>
+                                                <th>Section</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -266,29 +266,28 @@
                                             <tr class="bg-gradient-dark text-light">
                                                 <th>ID</th>
                                                 <th>Date Created</th>
-                                                <th>Name</th>
-                                                <th>Description</th>
+                                                <th>Course</th>
+                                                <th>Section</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
-                                            @foreach($departments as $department)
                                             <tr>
-                                                <td>{{ $department->id }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($department->created_at)->format('m/d/Y') }}</td>
-                                                <td>{{ $department->title }}</td>
-                                                <td>{{ $department->description }}</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                                 <td>
                                                     <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                         Action
                                                         <span class="sr-only">Toggle Dropdown</span>
                                                     </button>
                                                     <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item edit_data" data-id="{{ $department->id }}" data-toggle="modal" data-target="#editDepartment">
+                                                        <a class="dropdown-item edit_data" data-id="" data-toggle="modal" data-target="#editSection">
                                                             <span class="fa fa-edit text-primary"></span> Edit
                                                         </a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item delete_data" data-id="{{ $department->id }}" data-toggle="modal" data-target="#delDepartment">
+                                                        <a class="dropdown-item delete_data" data-id="" data-toggle="modal" data-target="#delSection">
                                                             <span class="fa fa-trash text-danger"></span> Delete
                                                         </a>
                                                     </div>
@@ -297,23 +296,26 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    <form method="POST" action='department'>
+                                    <form method="POST" action=''>
                                         @csrf
                                         @method('PATCH')
-                                        <div class="modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="editSection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Update Department Details</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Update Section Details</h5>
                                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <label for="deptname" class="control-label">Department</label>
-                                                        <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" required>
-                                                        <label for="deptdescription" class="control-label">Description</label>
-                                                        <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                                                        <label for="coursename" class="control-label">Select Course</label>
+                                                            <select name="coursename" id="coursename" class="form-control form-control-sm form-control-border" required>
+                                                                <option value="1">CCIS</option>
+                                                                <option value="0">Others</option>
+                                                            </select>
+                                                        <label for="section" class="control-label">Section</label>
+                                                        <input type="text" name="section" id="section" class="form-control form-control-border" placeholder="Enter Section Code" value="" required>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-primary" type="submit">Save</button>
@@ -374,26 +376,27 @@
             </div>
         </div>
 
-        <form method="POST" action='{{ url('department/register') }}'>
+        <form method="POST" action=''>
             @csrf
-            <div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="addSection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add New Department</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Add New Section</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
                         <form action="" method="post">
                             <div class="modal-body">
-                                <label for="deptname" class="control-label">Department</label>
-                                <input type="text" name="title" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
-                            </div>
-                            <div class="modal-body">
-                                <label for="deptdescription" class="control-label">Description</label>
-                                <textarea rows="3" name="description" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                                <label for="coursename" class="control-label">Select Course</label>
+                                    <select name="coursename" id="coursename" class="form-control form-control-sm form-control-border" required>
+                                        <option value="1">CCIS</option>
+                                        <option value="0">Others</option>
+                                    </select>
+                                    <label for="section" class="control-label">Section</label>
+                                    <input type="text" name="section" id="section" class="form-control form-control-border" placeholder="Enter Section Code" value="" required>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -406,7 +409,7 @@
         </form>
 
 
-        <div class="modal fade" id="delDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="delSection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -416,7 +419,7 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                        <div class="modal-body">Are you sure to delete this Department permanently?</div>
+                        <div class="modal-body">Are you sure to delete this Section permanently?</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                             <button class="btn btn-primary" type="submit">Continue</button>
@@ -425,22 +428,6 @@
             </div>
         </div>
         </div>
-
-
-        <script>
-            $(document).on('click', '.edit_data', function() {
-                let id = $(this).data('id');
-                let title = $(this).data('title');
-                let description = $(this).data('description');
-
-                // Populate the form fields
-                $('#editDepartment').find('#deptname').val(title);
-                $('#editDepartment').find('#deptdescription').val(description);
-                
-                // Update form action with the department ID
-                $('#editDepartment').find('form').attr('action', '/department/' + id);
-            });
-        </script>
 
 
         <!-- Bootstrap core JavaScript-->

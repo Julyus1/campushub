@@ -8,21 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
-    <link rel="stylesheet" href="../icons/font/bootstrap-icons.css">
+    <link rel="icon" href="{{ asset('img/ch-logo.png') }}" type="image/png" />
+    @vite('public/icons/font/bootstrap-icons.css')
     @vite('resources/css/bootstrap.min.css')
     <!-- Custom fonts for this template-->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    @vite('public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"')
 
     <title>CampusHub - Student Details</title>
 
 
     <!-- Custom styles for this template-->
     @vite('resources/css/sb-admin-2.min.css')
-
-    <style>
-
-    </style>
 
 </head>
 
@@ -32,7 +28,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <x-sidebar></x-sidebar>
+        <x-sidebar>
+        </x-sidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -60,30 +57,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
+                    
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
@@ -151,8 +125,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg"
-                                            alt="...">
+                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -163,8 +136,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg"
-                                            alt="...">
+                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -175,8 +147,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg"
-                                            alt="...">
+                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -208,8 +179,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Karl Barroa</span>
-                                <img class="img-profile rounded-circle"
-                                    src="../img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}" alt="Profile Image">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -261,10 +231,11 @@
                         </div>
                         <div class="card-body">
                             <div class="container-fluid" id="outprint">
+                                <label><h3>Student Profile</h3></label>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label text-muted">Student ID</label>
+                                            <label class="control-label text-muted font-weight-bold">Student ID</label>
                                             <div class="pl-4">{{$student['stud_id'] }}</div>
                                         </div>
                                     </div>
@@ -274,7 +245,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="control-label text-muted">Name</label>
+                                                <label class="control-label text-muted font-weight-bold">Name</label>
                                                 <br>
                                                 {{ $student['lastname'] }}, {{ $student['firstname'] }}
                                                 @if (!empty($student['middlename']))
@@ -286,20 +257,62 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="control-label text-muted">Gender</label>
+                                                <label class="control-label text-muted font-weight-bold">Gender</label>
                                                 <div class="pl-4">{{ $student->gender }}</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="control-label text-muted">Date of Birth</label>
+                                                <label class="control-label text-muted font-weight-bold">Date of Birth</label>
                                                 <div class="pl-4">{{ \Carbon\Carbon::parse($student->birthdate)->format('F d, Y') }}</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="control-label text-muted">Contact #</label>
+                                                <label class="control-label text-muted font-weight-bold">Contact #</label>
                                                 <div class="pl-4">{{ $student->contact }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted font-weight-bold">Religion</label>
+                                                <div class="pl-4"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted font-weight-bold">Province of Origin</label>
+                                                <div class="pl-4"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted font-weight-bold">Nationality</label>
+                                                <div class="pl-4"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted font-weight-bold">Civil Status</label>
+                                                <div class="pl-4"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted font-weight-bold">Place of Birth</label>
+                                                <div class="pl-4"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted font-weight-bold">Email</label>
+                                                <div class="pl-4"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -307,11 +320,35 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="control-label text-muted">Complete Address</label>
+                                                <label class="control-label text-muted font-weight-bold">Complete Address</label>
                                                 <div class="pl-4">
                                                     {{ $student->stname }}, Brgy. {{ $student->brgy }},
                                                     {{ $student->city }}, {{ $student->province }}, {{ $student->postalcode }}
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="border-bottom">    
+                                    <label><h3>Emergency Contact</h3></label>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted font-weight-bold">Emergency Contact Person</label>
+                                                <div class="pl-4"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted font-weight-bold">Relationship</label>
+                                                <div class="pl-4"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted font-weight-bold">Emergency Contact #</label>
+                                                <div class="pl-4"></div>
                                             </div>
                                         </div>
                                     </div>

@@ -61,29 +61,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
+                        
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -265,10 +243,18 @@
                                             <th>Date Created</th>
                                             <th>Section</th>
                                             <th>Name</th>
-                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
+                                    <tfoot>
+                                        <tr class="bg-gradient-dark text-light">
+                                            <th>ID</th>
+                                            <th>Date Created</th>
+                                            <th>Section</th>
+                                            <th>Name</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
                                     <tbody>
                                         @foreach ($students as $student)
                                         <tr>
@@ -276,9 +262,6 @@
                                             <td>{{ $student->created_at->format('Y/m/d') }}</td>
                                             <td>{{ $student->section ? $student->section->title : 'No Section' }}</td>
                                             <td>{{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }}</td>
-                                            <td>
-                                                <span class="rounded-pill badge badge-success bg-gradient-teal px-3">Active</span>
-                                            </td>
                                             <td items-align="center">
                                                 <a href="{{url('student/profile/' . $student->id) }}" class="btn btn-flat btn-default btn-sm border">
                                                     <i class="fa fa-eye"></i> View

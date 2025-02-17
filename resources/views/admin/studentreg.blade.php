@@ -68,35 +68,13 @@
                     <!-- Sidebar Toggler (Sidebar) -->
                     <div class="text-center d-none d-md-inline">
                         <button class="btn btn-link rounded-circle border-0" id="sidebarToggleTop"><i class="fa fa-bars"></i></button>
-                        <span class="ms-2"><strong>SYSTEMS PLUS COLLEGE FOUNDATION</strong></span>
+                        <span class="ms-2"><strong>CampusHub</strong></span>
                     </div>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
+                        
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -273,6 +251,7 @@
                                     <form action="" id="student_form">
                                         <input type="hidden" name="id">
                                         <fieldset class="border-bottom">
+                                            <label><h3>Student Profile</h3></label>
                                             <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="studid" class="control-label">Student ID: </label>
@@ -385,11 +364,16 @@
                                                     <input type="text" name="birthplace" id="birthplace" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
+                                                    <label for="email" class="control-label">Email: </label>
+                                                    <input type="text" name="email" id="email" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                            </div>
+                                            <label><h3>Complete Address</h3></label>
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
                                                     <label for="stname" class="control-label">Number & Street Name: </label>
                                                     <input type="text" name="stname" id="stname" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
-                                            </div>
-                                            <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="brgy" class="control-label">Brgy, Bario, Village, Subdivision: </label>
                                                     <input type="text" name="brgy" id="brgy" autofocus class="form-control form-control-sm rounded-0" required>
@@ -398,12 +382,12 @@
                                                     <label for="city" class="control-label">Municipality, City: </label>
                                                     <input type="text" name="city" id="city" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="province" class="control-label">Province: </label>
                                                     <input type="text" name="province" id="province" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
-                                            </div>
-                                            <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="postalcode" class="control-label">Postal Code: </label>
                                                     <input type="text" name="postalcode" id="postalcode" autofocus class="form-control form-control-sm rounded-0" required>
@@ -412,11 +396,14 @@
                                                     <label for="homenumber" class="control-label">Home Phone No.: </label>
                                                     <input type="text" name="homenumber" id="homenumber" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="mobilenumber" class="control-label">Mobile Phone No.: </label>
                                                     <input type="text" name="mobilenumber" id="mobilenumber" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                             </div>
+                                            <label><h3>In Case of Emergency</h3></label>
                                             <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="emergencyperson" class="control-label">Emergency Contact Person: </label>
