@@ -76,4 +76,9 @@ class AdminController extends Controller
     {
         dd("tanginang");
     }
+
+    public function update_department()
+    {
+        dd("tanginang");
+    }
 }

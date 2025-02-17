@@ -385,7 +385,7 @@
                                                         @foreach($sections as $section)
                                                         <option value="{{ $section->id }}">{{ $section->title }}</option>
                                                         @endforeach
-                                                    </select>>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="row">
