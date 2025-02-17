@@ -537,16 +537,10 @@
                         <option value="1">CCIS</option>
                         <option value="0">Others</option>
                     </select>
-                </div>
-                <div class="modal-body">
                     <label for="coursename" class="control-label">Course</label>
                     <input type="text" name="coursename" id="coursename" class="form-control form-control-border" placeholder="Enter Course Name" value ="" required>
-                </div>
-                <div class="modal-body">
                     <label for="coursedescription" class="control-label">Description</label>
                     <textarea rows="3" name="coursedescription" id="coursedescription" class="form-control form-control-sm rounded-0" required></textarea>
-                </div>
-                <div class="modal-body">
                     <label for="status" class="control-label">Status</label>
                     <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
                         <option value="1">Active</option>
@@ -579,16 +573,10 @@
                         <option value="1">CCIS</option>
                         <option value="0">Others</option>
                     </select>
-                </div>
-                <div class="modal-body">
                     <label for="coursename" class="control-label">Course</label>
                     <input type="text" name="coursename" id="coursename" class="form-control form-control-border" placeholder="Enter Course Name" value ="" required>
-                </div>
-                <div class="modal-body">
                     <label for="coursedescription" class="control-label">Description</label>
                     <textarea rows="3" name="coursedescription" id="coursedescription" class="form-control form-control-sm rounded-0" required></textarea>
-                </div>
-                <div class="modal-body">
                     <label for="status" class="control-label">Status</label>
                     <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
                         <option value="1">Active</option>

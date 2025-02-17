@@ -550,8 +550,13 @@
             </div>
         </form>
 
+<<<<<<< HEAD
         <form method="POST" action="">
             @method('PATCH')
+=======
+        <form method="POST" action='department'>
+            @csrf
+>>>>>>> 4e09a574fcb196e11099308317bdf0126ab70495
             <div class=" modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -565,7 +570,10 @@
                         <div class="modal-body">
                             <label for="deptname" class="control-label">Department</label>
                             <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4e09a574fcb196e11099308317bdf0126ab70495
                             <label for="deptdescription" class="control-label">Description</label>
                             <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
                         </div>
@@ -599,8 +607,90 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Department</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="" method="post">
+                <div class="modal-body">
+                    <label for="deptname" class="control-label">Department</label>
+                    <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value ="" required>
+                    <label for="deptdescription" class="control-label">Description</label>
+                    <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                    <label for="status" class="control-label">Status</label>
+                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
+    <div class="modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Department Details</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="" method="post">
+                <div class="modal-body">
+                    <label for="deptname" class="control-label">Department</label>
+                    <input type="text" name="deptname" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value ="" required>
+                    <label for="deptdescription" class="control-label">Description</label>
+                    <textarea rows="3" name="deptdescription" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                    <label for="status" class="control-label">Status</label>
+                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="delDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="" method="post">
+                <div class="modal-body">Are you sure to delete this Department permanently?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Continue</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
         <!-- Bootstrap core JavaScript-->
         @vite('resources/js/jquery.min.js')

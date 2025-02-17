@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
     <link rel="stylesheet" href="../icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    @vite('resources/css/bootstrap.min.css')
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
@@ -18,7 +18,7 @@
 
 
     <!-- Custom styles for this template-->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    @vite('resources/css/sb-admin-2.min.css')
 
     <style>
         
@@ -35,7 +35,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <img src="../img/ch-logo.png" style="height: 40px; width: 40px;">
                 </div>
@@ -47,7 +47,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="admin">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -69,8 +69,8 @@
                     <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Students Module:</h6>
-                            <a class="collapse-item" href="studlist.php">Student Lists</a>
-                            <a class="collapse-item" href="studentreg.php">Student Registration</a>
+                            <a class="collapse-item" href="student-list">Student Lists</a>
+                            <a class="collapse-item" href="register-student">Student Registration</a>
                         </div>
                     </div>
             </li>
@@ -85,14 +85,14 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="department.php">
+                <a class="nav-link" href="register-department">
                     <i class="bi bi-building-fill"></i>
                     <span>Department Lists</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="coursereg.php">
+                <a class="nav-link" href="register-course">
                     <i class="bi bi-book-fill"></i>
                     <span>Course Registration</span></a>
             </li>
@@ -321,7 +321,7 @@
                                 <button class="btn btn-sm btn-navy bg-navy btn-flat" type="button" data-toggle="modal" data-target="#addAcad"><i class="fa fa-plus"></i> Add Academic</button>
                                 <button class="btn btn-sm btn-info bg-info btn-flat" type="button" data-toggle="modal" data-target="#updateStatus">Update Status</button>
                                 <button class="btn btn-sm btn-success bg-success btn-flat" type="button" id="print"><i class="fa fa-print"></i> Print</button>
-                                <a href="studlist.php" class="btn btn-default border btn-sm btn-flat"><i class="fa fa-angle-left"></i> Back to List</a>
+                                <a href="student-list" class="btn btn-default border btn-sm btn-flat"><i class="fa fa-angle-left"></i> Back to List</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -598,21 +598,14 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
+@vite('resources/js/jquery.min.js')
+@vite('resources/js/bootstrap.bundle.min.js')
+@vite('resources/js/jquery.easing.min.js')
+@vite('resources/js/sb-admin-2.min.js')
+@vite('resources/js/jquery.dataTables.min.js')
+@vite('resources/js/dataTables.bootstrap4.min.js')
+@vite('resources/js/datatables-demo.js')
 
-    <!-- Core plugin JavaScript-->
-    <script src="../js/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../js/jquery.dataTables.min.js"></script>
-    <script src="../js/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../js/datatables-demo.js"></script>
 
 </body>
 
