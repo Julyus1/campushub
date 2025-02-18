@@ -57,7 +57,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                    
+
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
@@ -125,7 +125,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -136,7 +136,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -147,7 +147,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -221,8 +221,10 @@
                         <div class="card-header d-flex justify-content-between align-items-center py-4">
                             <h6 class="m-0 font-weight-bold text-primary">Student Details</h6>
                             <div class="card-tools d-flex gap-2">
-                                <a class="btn btn-sm btn-primary btn-flat" href="studupdate.php"><i class="fa fa-edit"></i> Edit</a>
-                                <button class="btn btn-sm btn-danger btn-flat" data-toggle="modal" data-target="#delStudent"><i class="fa fa-trash"></i> Delete</button>
+                                <a class="btn btn-sm btn-primary btn-flat" href="{{ url('student/update/' . $student->id) }}"><i class="fa fa-edit"></i> Edit</a>
+                                <button class="btn btn-sm btn-danger btn-flat delete-btn" data-id="{{ $student->id }}" data-toggle="modal" data-target="#delStudent">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
                                 <button class="btn btn-sm btn-navy bg-navy btn-flat" type="button" data-toggle="modal" data-target="#addAcad"><i class="fa fa-plus"></i> Add Academic</button>
                                 <button class="btn btn-sm btn-info bg-info btn-flat" type="button" data-toggle="modal" data-target="#updateStatus">Update Status</button>
                                 <button class="btn btn-sm btn-success bg-success btn-flat" type="button" id="print"><i class="fa fa-print"></i> Print</button>
@@ -231,7 +233,9 @@
                         </div>
                         <div class="card-body">
                             <div class="container-fluid" id="outprint">
-                                <label><h3>Student Profile</h3></label>
+                                <label>
+                                    <h3>Student Profile</h3>
+                                </label>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -330,8 +334,10 @@
                                     </div>
                                 </fieldset>
 
-                                <fieldset class="border-bottom">    
-                                    <label><h3>Emergency Contact</h3></label>
+                                <fieldset class="border-bottom">
+                                    <label>
+                                        <h3>Emergency Contact</h3>
+                                    </label>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -462,8 +468,12 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="" method="post">
-                    <div class="modal-body">Are you sure to delete this Student information permanently?</div>
+                <form id="deleteForm" method="POST">
+                    @csrf
+                    @method('DELETE') <!-- Override method to DELETE -->
+                    <div class="modal-body">
+                        Are you sure you want to delete this student permanently?
+                    </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button class="btn btn-primary" type="submit">Continue</button>
@@ -570,6 +580,20 @@
     </div>
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get all delete buttons
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    let studentId = this.getAttribute('data-id'); // Get student ID
+                    let deleteForm = document.getElementById('deleteForm');
+
+                    // Set the correct action URL dynamically
+                    deleteForm.setAttribute('action', `{{ url('student/delete') }}/${studentId}`);
+                });
+            });
+        });
+    </script>
     <!-- Bootstrap core JavaScript-->
     @vite('resources/js/jquery.min.js')
     @vite('resources/js/bootstrap.bundle.min.js')

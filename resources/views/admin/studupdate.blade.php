@@ -264,10 +264,11 @@
                     <!-- Student Information Form -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Update Student - 0122301119</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Update Student -{{ $student->lastname . ", " . $student->firstname . "    " . $student->stud_id }}</h6>
                         </div>
-                        <form method="POST" action="student">
+                        <form method="POST" action="{{ url('student/update/' . $student->id) }}">
                             @csrf
+                            @method('PATCH')
                             <div class="card-body">
                                 <div class="container-fluid">
                                     <form action="" id="student_form">
@@ -275,21 +276,23 @@
                                         <fieldset class="border-bottom">
                                             <div class="row">
                                                 <div class="form-group col-md-4">
-                                                    <label for="studid" class="control-label">Student ID: </label>
-                                                    <input type="text" name="studid" id="studid" autofocus class="form-control form-control-sm rounded-0" required>
+                                                    <label for="studid" class="control-label">Student ID</label>
+                                                    <input type="text" name="stud_id" id="studid" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="yearlevel" class="control-label">Year Level: </label>
-                                                    <select name="yearlevel" id="yearlevel" class="form-control form-control-sm rounded-0" required>
+                                                    <label for="yearlevel" class="control-label">Year Level</label>
+                                                    <select name="year_level" id="yearlevel" class="form-control form-control-sm rounded-0" required>
                                                         <option>Others</option>
                                                         <option>3rd Year</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="studclass" class="control-label">Student Class: </label>
-                                                    <select name="studclass" id="studclass" class="form-control form-control-sm rounded-0" required>
-                                                        <option>Old Student</option>
+                                                    <select name="stud_class" id="studclass" class="form-control form-control-sm rounded-0" required>
                                                         <option>New Student</option>
+                                                        <option>Old Student</option>
+
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -315,14 +318,10 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="section" class="control-label">Section: </label>
-                                                    <select name="section" id="section" class="form-control form-control-sm rounded-0" required>
-                                                        <option>CCIS-6A</option>
-                                                        <option>CCIS-6B</option>
-                                                        <option>CCIS-6C</option>
-                                                        <option>CCIS-6D</option>
-                                                        <option>CCIS-6E</option>
-                                                        <option>CCIS-6F</option>
-                                                        <option>Others</option>
+                                                    <select name="section_id" id="section" class="form-control form-control-sm rounded-0" required>
+                                                        @foreach($sections as $section)
+                                                        <option value="{{ $section->id }}">{{ $section->title }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -502,7 +501,20 @@
         </div>
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get all delete buttons
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    let studentId = this.getAttribute('data-id'); // Get student ID
+                    let deleteForm = document.getElementById('deleteForm');
 
+                    // Set the correct action URL dynamically
+                    deleteForm.setAttribute('action', `{{ url('student/delete') }}/${studentId}`);
+                });
+            });
+        });
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     @vite('resources/js/jquery.min.js')

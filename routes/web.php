@@ -16,6 +16,9 @@ Route::get('course/register', [AdminController::class, 'show_course']);
 
 Route::post('course/register', [AdminController::class, 'store_course']);
 
+Route::get('student/update/{student}', [AdminController::class, 'stud_showupdate']);
+Route::patch('student/update/{student}', [AdminController::class, 'stud_update']);
+Route::delete('student/delete/{student}', [AdminController::class, 'stud_destroy']);
 Route::get('department/register', [AdminController::class, 'show_department']);
 Route::post('department/register', [AdminController::class, 'store_department']);
 Route::patch('register-department', [AdminController::class, 'store_department']);
