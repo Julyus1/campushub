@@ -1,92 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberHub - Login</title>
+  <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../icons/font/bootstrap-icons.css">
+  <style>
+    body {
+      background: url('../img/bg3.png') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      z-index: -1;
+    }
 
-    <title>CampusHub - LogIn</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Custom styles for this template-->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
-
+    .login-container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      overflow: hidden;
+      display: flex;
+      max-width: 900px;
+      width: 100%;
+    }
+    .login-content {
+      padding: 40px;
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    .login-content img {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+    .login-step {
+      display: none;
+    }
+    .login-step.active {
+      display: block;
+    }
+    .btn-option {
+      margin: 10px;
+      min-width: 150px;
+    }
+    .login-image {
+      flex: 1;
+      background: url('../img/bg2.jpeg') no-repeat center center;
+      background-size: cover;
+      opacity: 0.8;
+    }
+    .progress-dots span {
+      width: 10px;
+      height: 10px;
+      margin: 0 5px;
+      border-radius: 50%;
+      display: inline-block;
+      background-color: #ccc;
+    }
+    .progress-dots span.active {
+      background-color: #0d6efd;
+    }
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
 </head>
-
-<body class="bg-gradient-primary">
-
-    <div class="container">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-
-            <div class="col-xl-10 col-lg-12 col-md-9">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                                    </div>
-                                    <form class="user">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div>
-                                        <a href="index.php" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
-                                        
-                                    </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.php">Forgot Password?</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+<body>
+  <div class="login-container">
+    <div class="login-content">
+      <img src="../img/ch-logo.png" alt="CyberHub Logo" />
+      <!--
+      <div id="step1" class="login-step active">
+        <h2>Sign In as...</h2>
+        <button class="btn btn-primary btn-option" onclick="nextStep()"> <i class="bi bi-person-fill"></i> Student</button>
+        <button class="btn btn-primary btn-option" onclick="nextStep()"> <i class="bi bi-briefcase-fill"></i> Faculty</button>
+        <button class="btn btn-primary btn-option" onclick="nextStep()"> <i class="bi bi-shield-lock-fill"></i> Admin</button>
+      </div>
+  -->
+      <div id="step2" class="login-step active"> <!-- Remove nalang yung 'active' dito kapag need na yung sign in as -->
+        <span class="back-button" onclick="prevStep()"><i class="bi bi-arrow-left"></i></span>
+        <h2>Welcome to CyberHub!</h2>
+        <p>An institution delivering world-class education.</p>
+        <form>
+          <input type="email" class="form-control mb-3" placeholder="Enter your email" required />
+          <input type="password" class="form-control mb-3" placeholder="Enter your password" required />
+          <div class="d-flex justify-content-between mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="remember" />
+              <label class="form-check-label" for="remember">Remember</label>
             </div>
-
-        </div>
-
+            <a href="forgot-password.php" class="text-decoration-none">Forgot Password</a>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Log in</button>
+        </form>
+      </div>
+      <div class="progress-dots mt-3">
+        <span id="dot1" class="active"></span>
+        <span id="dot2"></span>
+      </div>
     </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="../js/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
-
+    <div class="login-image d-none d-md-block"></div>
+  </div>
+  <!--
+  <script>
+    function nextStep() {
+      document.getElementById('step1').classList.remove('active');
+      document.getElementById('step2').classList.add('active');
+      document.getElementById('dot1').classList.remove('active');
+      document.getElementById('dot2').classList.add('active');
+    }
+    function prevStep() {
+      document.getElementById('step2').classList.remove('active');
+      document.getElementById('step1').classList.add('active');
+      document.getElementById('dot2').classList.remove('active');
+      document.getElementById('dot1').classList.add('active');
+    }
+  </script>
+-->
+  <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
