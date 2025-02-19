@@ -74,7 +74,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        
+
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -251,12 +251,11 @@
                                     <form action="" id="student_form">
                                         <input type="hidden" name="id">
                                         <fieldset class="border-bottom">
-                                            <label><h3>Student Profile</h3></label>
+                                            <label>
+                                                <h3>Student Profile</h3>
+                                            </label>
                                             <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="studid" class="control-label">Student ID: </label>
-                                                    <input type="text" name="stud_id" id="studid" autofocus class="form-control form-control-sm rounded-0" required>
-                                                </div>
+
                                                 <div class="form-group col-md-4">
                                                     <label for="yearlevel" class="control-label">Year Level: </label>
                                                     <select name="year_level" id="yearlevel" class="form-control form-control-sm rounded-0" required>
@@ -368,7 +367,9 @@
                                                     <input type="text" name="email" id="email" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                             </div>
-                                            <label><h3>Complete Address</h3></label>
+                                            <label>
+                                                <h3>Complete Address</h3>
+                                            </label>
                                             <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="stname" class="control-label">Number & Street Name: </label>
@@ -403,7 +404,9 @@
                                                     <input type="text" name="mobilenumber" id="mobilenumber" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                             </div>
-                                            <label><h3>In Case of Emergency</h3></label>
+                                            <label>
+                                                <h3>In Case of Emergency</h3>
+                                            </label>
                                             <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="emergencyperson" class="control-label">Emergency Contact Person: </label>

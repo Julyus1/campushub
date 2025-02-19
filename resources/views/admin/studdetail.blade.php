@@ -236,15 +236,7 @@
                                 <label>
                                     <h3>Student Profile</h3>
                                 </label>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label text-muted font-weight-bold">Student ID</label>
-                                            <div class="pl-4">{{$student['stud_id'] }}</div>
-                                        </div>
-                                    </div>
 
-                                </div>
                                 <fieldset class="border-bottom">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -283,19 +275,19 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label text-muted font-weight-bold">Religion</label>
-                                                <div class="pl-4"></div>
+                                                <div class="pl-4">{{ $student->religion }}</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label text-muted font-weight-bold">Province of Origin</label>
-                                                <div class="pl-4"></div>
+                                                <div class="pl-4">{{ $student->origin }}</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label text-muted font-weight-bold">Nationality</label>
-                                                <div class="pl-4"></div>
+                                                <div class="pl-4">{{ $student->nationality }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -304,19 +296,19 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label text-muted font-weight-bold">Civil Status</label>
-                                                <div class="pl-4"></div>
+                                                <div class="pl-4">{{ $student->civilstatus }}</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label text-muted font-weight-bold">Place of Birth</label>
-                                                <div class="pl-4"></div>
+                                                <div class="pl-4">{{ $student->birthplace }}</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label text-muted font-weight-bold">Email</label>
-                                                <div class="pl-4"></div>
+                                                <div class="pl-4">{{ $student->email }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -342,19 +334,19 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label text-muted font-weight-bold">Emergency Contact Person</label>
-                                                <div class="pl-4"></div>
+                                                <div class="pl-4">{{ $student->emergencycontact }}</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label text-muted font-weight-bold">Relationship</label>
-                                                <div class="pl-4"></div>
+                                                <div class="pl-4">{{ $student->relationship  }}</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label text-muted font-weight-bold">Emergency Contact #</label>
-                                                <div class="pl-4"></div>
+                                                <div class="pl-4">{{ $student->emergencycontact }}</div>
                                             </div>
                                         </div>
                                     </div>

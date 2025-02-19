@@ -264,7 +264,7 @@
                     <!-- Student Information Form -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Update Student -{{ $student->lastname . ", " . $student->firstname . "    " . $student->stud_id }}</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Update Student -{{ $student->lastname . ", " . $student->firstname}}</h6>
                         </div>
                         <form method="POST" action="{{ url('student/update/' . $student->id) }}">
                             @csrf
@@ -275,10 +275,7 @@
                                         <input type="hidden" name="id">
                                         <fieldset class="border-bottom">
                                             <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="studid" class="control-label">Student ID</label>
-                                                    <input type="text" name="stud_id" id="studid" autofocus class="form-control form-control-sm rounded-0" required>
-                                                </div>
+
                                                 <div class="form-group col-md-4">
                                                     <label for="yearlevel" class="control-label">Year Level</label>
                                                     <select name="year_level" id="yearlevel" class="form-control form-control-sm rounded-0" required>

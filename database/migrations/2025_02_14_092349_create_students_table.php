@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\Rules\Email;
 
 return new class extends Migration
 {
@@ -13,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->integer('stud_id')->unique();
+
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
             $table->string('year_level');
             $table->string('stud_class');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('middlename')->nullable();
             $table->string('lastname');
+            $table->string('email');
             $table->string('gender')->in(['Male', 'Female']);
             $table->date('birthdate');
             $table->string('contact')->nullable();
