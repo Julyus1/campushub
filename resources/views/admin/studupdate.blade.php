@@ -328,7 +328,7 @@
                                             <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="firstname" class="control-label">First Name: </label>
-                                                    <input type="text" name="firstname" id="firstname" class="form-control form-control-sm rounded-0" required>
+                                                    <input type="text" name="firstname" id="firstname" class="form-control form-control-sm rounded-0" value="{{ old('firstname', $student->firstname) }}" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="middlename" class="control-label">Middle Name: </label>
@@ -501,20 +501,7 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Get all delete buttons
-            document.querySelectorAll('.delete-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    let studentId = this.getAttribute('data-id'); // Get student ID
-                    let deleteForm = document.getElementById('deleteForm');
 
-                    // Set the correct action URL dynamically
-                    deleteForm.setAttribute('action', `{{ url('student/delete') }}/${studentId}`);
-                });
-            });
-        });
-    </script>
 
     <!-- Bootstrap core JavaScript-->
     @vite('resources/js/jquery.min.js')

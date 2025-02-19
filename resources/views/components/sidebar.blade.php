@@ -65,7 +65,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('#') }}">
+        <a class="nav-link" href="{{ url('section/list') }}">
             <i class="fas fa-fw fa-id-card"></i>
             <span>Section Registration</span></a>
     </li>

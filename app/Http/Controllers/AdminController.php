@@ -123,6 +123,9 @@ class AdminController extends Controller
     {
         $courses = Course::all();
         $departments = Department::all();
+
+        //validate
+
         return view('admin.coursereg', compact('courses', 'departments'));
     }
 
@@ -136,6 +139,30 @@ class AdminController extends Controller
 
         return redirect('course/register');
     }
+
+    public function update_course(Request $request, Course $course)
+    {
+
+        // Validate input before updating
+        $validated = $request->validate([
+            'department_id' => 'required|exists:departments,id', // Ensure the department exists
+            'title' => 'required|string|max:255',
+            'description' => 'required|string'
+        ]);
+
+        // Update the course with validated data
+        $course->update($validated);
+
+        // Redirect back to the course list with a success message
+        return redirect(url('course/register'));
+    }
+
+    public function destroy_course(Course $course)
+    {
+        $course->delete();
+        return redirect(url('course/register'));
+    }
+
     public function show_department()
     {
         $departments = Department::all();
@@ -154,8 +181,24 @@ class AdminController extends Controller
         return  redirect('department/register');
     }
 
-    public function update_department()
+    public function update_department(Request $request, Department $department)
     {
-        dd("tanginang");
+        // Validate input
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+
+        // Find the department
+        $department = Department::findOrFail($department);
+
+        // Update the department
+        $department->update([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        // ✅ Redirect to department/register (unchanged)
+        return redirect(url('department/register'));
     }
 }
