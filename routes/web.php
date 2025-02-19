@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SectionController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+Route::post('login/admin', [AdminController::class, 'store']);
+
 
 Route::get('/admin', [AdminController::class, 'index']);
 Route::get('student/list', [AdminController::class, 'show_stud']);
@@ -22,7 +25,6 @@ Route::post('course/add', [AdminController::class, 'store_course']);
 Route::patch('course/update/{course}', [AdminController::class, 'update_course']);
 Route::delete('course/delete/{course}', [AdminController::class, 'destroy_course']);
 
-
 Route::get('department/register', [AdminController::class, 'show_department']);
 Route::post('department/register', [AdminController::class, 'store_department']);
 Route::patch('department/update/{department}', [AdminController::class, 'update_department']);
@@ -32,3 +34,15 @@ Route::get('section/list', [SectionController::class, 'show']);
 Route::post('section/add', [SectionController::class, 'store']);
 Route::patch('section/update/{section}', [SectionController::class, 'update']);
 Route::delete('section/delete/{department}', [SectionController::class, 'destroy']);
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__ . '/auth.php';

@@ -140,7 +140,8 @@ class AdminController extends Controller
         return redirect('course/register');
     }
 
-    public function update_course(Request $request, Course $course)
+    public function
+    course(Request $request, Course $course)
     {
 
         // Validate input before updating
@@ -184,19 +185,15 @@ class AdminController extends Controller
     public function update_department(Request $request, Department $department)
     {
         // Validate input
-        $request->validate([
+        $validated =  $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
 
-        // Find the department
-        $department = Department::findOrFail($department);
+
 
         // Update the department
-        $department->update([
-            'title' => $request->title,
-            'description' => $request->description,
-        ]);
+        $department->update($validated);
 
         // ✅ Redirect to department/register (unchanged)
         return redirect(url('department/register'));
