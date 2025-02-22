@@ -402,7 +402,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete this course?
+                    Are you sure you want to delete this course permanently??
                 </div>
                 <div class="modal-footer">
                     <form id="deleteForm" method="POST" action="">

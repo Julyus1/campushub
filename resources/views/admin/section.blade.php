@@ -324,8 +324,8 @@
                                                     <input type="text" name="section" id="edit_section" class="form-control form-control-border" placeholder="Enter Section Code" required>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button class="btn btn-primary" type="submit">Save</button>
                                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                    <button class="btn btn-primary" type="submit">Save</button>
                                                 </div>
                                             </form>
                                         </div>

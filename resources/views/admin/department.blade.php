@@ -398,8 +398,8 @@
                         <textarea rows="3" name="description" id="edit_deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" type="submit">Save</button>
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -443,10 +443,10 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Are you sure to delete this Department permanently?</div>
+                <div class="modal-body">Are you sure you want to delete this Department permanently?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Continue</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </div>
             </div>
         </div>

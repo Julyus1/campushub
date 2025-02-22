@@ -225,9 +225,9 @@
                                 <button class="btn btn-sm btn-danger btn-flat delete-btn" data-id="{{ $student->id }}" data-toggle="modal" data-target="#delStudent">
                                     <i class="fa fa-trash"></i> Delete
                                 </button>
-                                <button class="btn btn-sm btn-navy bg-navy btn-flat" type="button" data-toggle="modal" data-target="#addAcad"><i class="fa fa-plus"></i> Add Academic</button>
+                                <!-- <button class="btn btn-sm btn-navy bg-navy btn-flat" type="button" data-toggle="modal" data-target="#addAcad"><i class="fa fa-plus"></i> Add Academic</button>
                                 <button class="btn btn-sm btn-info bg-info btn-flat" type="button" data-toggle="modal" data-target="#updateStatus">Update Status</button>
-                                <button class="btn btn-sm btn-success bg-success btn-flat" type="button" id="print"><i class="fa fa-print"></i> Print</button>
+                                <button class="btn btn-sm btn-success bg-success btn-flat" type="button" id="print"><i class="fa fa-print"></i> Print</button>-->
                                 <a href="student-list" class="btn btn-default border btn-sm btn-flat"><i class="fa fa-angle-left"></i> Back to List</a>
                             </div>
                         </div>
@@ -468,7 +468,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Continue</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
                     </div>
                 </form>
             </div>

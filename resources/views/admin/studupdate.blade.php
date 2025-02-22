@@ -69,7 +69,7 @@
                     <!-- Sidebar Toggler (Sidebar) -->
                     <div class="text-center d-none d-md-inline">
                         <button class="btn btn-link rounded-circle border-0" id="sidebarToggleTop"><i class="fa fa-bars"></i></button>
-                        <span class="ms-2"><strong>SYSTEMS PLUS COLLEGE FOUNDATION</strong></span>
+                        <span class="ms-2"><strong>CampusHub</strong></span>
                     </div>
 
                     <!-- Topbar Navbar -->
