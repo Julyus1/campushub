@@ -415,33 +415,29 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    @vite('resources/js/jquery-3.6.0.min.js')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
         $(document).on("click", ".edit_data", function() {
             let courseId = $(this).data("id");
-            let courseTitle = $(this).closest("tr").find("td:nth-child(4)").text(); // Course name
-            let courseDescription = $(this).closest("tr").find("td:nth-child(5)").text(); // Description
-            let departmentId = $(this).closest("tr").find("td:nth-child(3)").data("deptid"); // Department ID (You need to add this)
+            let courseTitle = $(this).closest("tr").find("td:nth-child(4)").text();
+            let courseDescription = $(this).closest("tr").find("td:nth-child(5)").text();
+            let departmentId = $(this).closest("tr").find("td:nth-child(3)").data("deptid");
             console.log("Course ID:", courseId);
-            // Set form action
+
             $("#editForm").attr("action", "/course/update/" + courseId);
-
-
-            // Fill form fields
-            $("#editcoursename").val(courseTitle);
+            $("#editcoursename").val(courseTitle);  
             $("#editdescription").val(courseDescription);
             $("#editdept").val(departmentId);
         });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.delete_data').on('click', function() {
-                let courseId = $(this).data('id');
-                let actionUrl = "/course/delete/" + courseId; // Adjust URL to match your route
-                $('#deleteForm').attr('action', actionUrl);
-            });
+
+        $('.delete_data').on('click', function() {
+            let courseId = $(this).data('id');
+            let actionUrl = "/course/delete/" + courseId;
+            $('#deleteForm').attr('action', actionUrl);
         });
-    </script>
+    });
+</script>
     <!-- Bootstrap core JavaScript-->
     @vite('resources/js/jquery.min.js')
     @vite('resources/js/bootstrap.bundle.min.js')
