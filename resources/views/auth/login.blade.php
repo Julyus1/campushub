@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CyberHub - Login</title>
+    <title>CampusHub - Login</title>
     <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
     @vite('resources/css/bootstrap.min.css')
     <link rel="stylesheet" href="../icons/font/bootstrap-icons.css">
@@ -109,8 +109,8 @@
       </div>
   -->
             <div id="step2" class="login-step active"> <!-- Remove nalang yung 'active' dito kapag need na yung sign in as -->
-                <span class="back-button" onclick="prevStep()"><i class="bi bi-arrow-left"></i></span>
-                <h2>Welcome to CyberHub!</h2>
+                <!-- <span class="back-button" onclick="prevStep()"><i class="bi bi-arrow-left"></i></span> -->
+                <h2>Welcome to CampusHub!</h2>
                 <p>An institution delivering world-class education.</p>
                 <form method="POST" action="{{ url('login/admin') }}">
                     @csrf

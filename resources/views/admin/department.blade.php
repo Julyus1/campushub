@@ -406,9 +406,9 @@
         </div>
     </div>
 
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    @vite('resources/js/jquery-3.6.0.min.js')
+ <script>
+    document.addEventListener("DOMContentLoaded", function() {
         $(document).ready(function() {
             $('.edit_data').on('click', function() {
                 var id = $(this).data('id');
@@ -426,7 +426,8 @@
                 $('#editForm').attr('action', '/department/update/' + id);
             });
         });
-    </script>
+    });
+</script>
 
 
 
