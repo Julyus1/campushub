@@ -346,7 +346,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label text-muted font-weight-bold">Emergency Contact #</label>
-                                                <div class="pl-4">{{ $student->emergencycontact }}</div>
+                                                <div class="pl-4">{{ $student->emergencyperson }}</div>
                                             </div>
                                         </div>
                                     </div>
