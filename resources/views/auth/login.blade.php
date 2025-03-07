@@ -112,10 +112,11 @@
                 <!-- <span class="back-button" onclick="prevStep()"><i class="bi bi-arrow-left"></i></span> -->
                 <h2>Welcome to CampusHub!</h2>
                 <p>An institution delivering world-class education.</p>
-                <form method="POST" action="{{ url('login/admin') }}">
+
+                <form method="POST" action="{{ route('login') }}">
                     @csrf
-                    <input type="email" class="form-control mb-3" placeholder="Enter your email" required />
-                    <input type="password" class="form-control mb-3" placeholder="Enter your password" required />
+                    <input type="email" name="email" class="form-control mb-3" placeholder="Enter your email" required />
+                    <input type="password" name="password" class="form-control mb-3" placeholder="Enter your password" required />
                     <div class="d-flex justify-content-between mb-3">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="remember" />
@@ -125,6 +126,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Log in</button>
                 </form>
+
             </div>
             <div class="progress-dots mt-3">
                 <span id="dot1" class="active"></span>

@@ -358,24 +358,8 @@
             </div>
         </div>
     </form>
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-logoutmodal></x-logoutmodal>
+
 
 
     <div class="modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -407,27 +391,27 @@
     </div>
 
     @vite('resources/js/jquery-3.6.0.min.js')
- <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        $(document).ready(function() {
-            $('.edit_data').on('click', function() {
-                var id = $(this).data('id');
-                var title = $(this).data('title');
-                var description = $(this).data('description');
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            $(document).ready(function() {
+                $('.edit_data').on('click', function() {
+                    var id = $(this).data('id');
+                    var title = $(this).data('title');
+                    var description = $(this).data('description');
 
-                // Open the modal
-                $('#editDepartment').modal('show');
+                    // Open the modal
+                    $('#editDepartment').modal('show');
 
-                // Set form field values
-                $('#edit_deptname').val(title);
-                $('#edit_deptdescription').val(description);
+                    // Set form field values
+                    $('#edit_deptname').val(title);
+                    $('#edit_deptdescription').val(description);
 
-                // Dynamically set the form action URL
-                $('#editForm').attr('action', '/department/update/' + id);
+                    // Dynamically set the form action URL
+                    $('#editForm').attr('action', '/department/update/' + id);
+                });
             });
         });
-    });
-</script>
+    </script>
 
 
 
