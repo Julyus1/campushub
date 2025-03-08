@@ -39,6 +39,8 @@ class AuthenticatedSessionController extends Controller
             return redirect('/student/dashboard');
         } elseif ($user->usertype === 'faculty') {
             return redirect('/faculty/dashboard');
+        } else {
+            dd('not allowed');
         }
     }
 

@@ -32,7 +32,7 @@ class AdminController extends Controller
 
     public function store_stud()
     {
-        //fucking validate
+
         Student::create([
             'section_id' => request('section_id'),
             'stud_id' => request('stud_id'),
@@ -142,8 +142,7 @@ class AdminController extends Controller
         return redirect('course/register');
     }
 
-    public function
-    course(Request $request, Course $course)
+    public function update_course(Request $request, Course $course)
     {
 
         // Validate input before updating
@@ -153,10 +152,10 @@ class AdminController extends Controller
             'description' => 'required|string'
         ]);
 
-        // Update the course with validated data
+
         $course->update($validated);
 
-        // Redirect back to the course list with a success message
+
         return redirect(url('course/register'));
     }
 
@@ -194,10 +193,16 @@ class AdminController extends Controller
 
 
 
-        // Update the department
+
         $department->update($validated);
 
-        // ✅ Redirect to department/register (unchanged)
+
+        return redirect(url('department/register'));
+    }
+
+    public function destroy_department(Department $department)
+    {
+        $department->delete();
         return redirect(url('department/register'));
     }
 }

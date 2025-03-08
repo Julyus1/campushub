@@ -349,7 +349,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form id="editForm" action="{{ url('course/update/') }}" method="POST">
+                <form id="editForm" method="POST">
 
 
                     @csrf

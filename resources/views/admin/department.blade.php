@@ -389,6 +389,28 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="delDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form method="POST" id="deleteForm">
+                    @csrf
+                    @method('DELETE');
+                    <div class="modal-body">Are you sure you want to delete this Department permanently?</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     @vite('resources/js/jquery-3.6.0.min.js')
     <script>
@@ -410,6 +432,15 @@
                     $('#editForm').attr('action', '/department/update/' + id);
                 });
             });
+
+
+            $('.delete_data').on('click', function() {
+                let departmentId = $(this).data('id');
+                let actionUrl = "/department/delete/" + departmentId;
+                $('#deleteForm').attr('action', actionUrl);
+            });
+
+
         });
     </script>
 
@@ -417,25 +448,7 @@
 
 
 
-    <div class="modal fade" id="delDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Are you sure you want to delete this Department permanently?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+
 
 
 
