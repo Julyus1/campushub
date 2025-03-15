@@ -31,7 +31,9 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'userrole:1'])->group(function () {
     Route::get('/superadmin/dashboard', [SuperAdminController::class, 'index']);
-    Route::get('admin/list', [SuperadminController::class, 'admin_list']);
+    Route::get('superadmin/admin/list', [SuperadminController::class, 'admin_list']);
+    Route::get('superadmin/faculty/list', [SuperadminController::class, 'faculty_list']);
+    Route::get('superadmin/student/list', [SuperadminController::class, 'student_list']);
 });
 
 Route::middleware(['auth', 'userrole:2'])->group(function () {

@@ -31,7 +31,7 @@
 
         <!--Side Bar-->
         <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-light sidebar sidebar-light accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-light sidebar sidebar-light accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/superadmin') }}">
@@ -68,14 +68,14 @@
                 <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">User Lists:</h6>
-                        <a class="collapse-item" href="{{ url('admin/list') }}">Admin</a>
-                        <a class="collapse-item" href="{{ url('faculty/list') }}">Faculty</a>
-                        <a class="collapse-item" href="{{ url('student/list') }}">Student</a>
+                        <a class="collapse-item" href="{{ url('superadmin/admin/list') }}">Admin</a>
+                        <a class="collapse-item" href="{{ url('superadmin/faculty/list') }}">Faculty</a>
+                        <a class="collapse-item" href="{{ url('superadmin/student/list') }}">Student</a>
                     </div>
                 </div>
             </li>
 
-            </ul>
+        </ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

@@ -14,4 +14,12 @@ class SuperAdminController extends Controller
     {
         return view('superadmin.admin-user');
     }
+    public function faculty_list()
+    {
+        return view('superadmin.faculty-user');
+    }
+    public function student_list()
+    {
+        return view('superadmin.student-user');
+    }
 }
