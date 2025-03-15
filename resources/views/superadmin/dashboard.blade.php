@@ -34,9 +34,9 @@
         <ul class="navbar-nav bg-gradient-light sidebar sidebar-light accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/superadmin') }}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/superadmin/dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="{{ asset('img/ch-logo.png') }}" style="height: 40px; width: 40px;">
+                    <img src="{{ asset('../img/ch-logo.png') }}" style="height: 40px; width: 40px;">
                 </div>
                 <div class="sidebar-brand-text mx-3">CampusHub</div>
             </a>
@@ -46,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/superadmin') }}">
+                <a class="nav-link" href="{{ url('/superadmin/dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span class="text-dark">Dashboard</span></a>
             </li>

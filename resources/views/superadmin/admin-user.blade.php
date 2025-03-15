@@ -8,13 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
-    <link rel="stylesheet" href="../icons/font/bootstrap-icons.css">
+
+    <link rel="icon" href="{{ asset('img/ch-logo.png') }}" type="image/png" />
+    @vite('public/icons/font/bootstrap-icons.css')
     @vite('resources/css/bootstrap.min.css')
     <!-- Custom fonts for this template-->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    @vite('public/vendor/fontawesome-free/css/all.min.css')
 
-    <title>CampusHub - Departments</title>
+    <title>CampusHub - Manage Users</title>
 
 
     <!-- Custom styles for this template-->
@@ -31,7 +32,7 @@
         <ul class="navbar-nav bg-gradient-light sidebar sidebar-light accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/superadmin') }}">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/superadmin/dashboard') }}">
             <div class="sidebar-brand-icon rotate-n-15">
                 <img src="{{ asset('img/ch-logo.png') }}" style="height: 40px; width: 40px;">
             </div>
@@ -43,7 +44,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('/superadmin') }}">
+            <a class="nav-link" href="{{ url('/superadmin/dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span class="text-dark">Dashboard</span></a>
         </li>
@@ -65,9 +66,9 @@
             <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">User Lists:</h6>
-                    <a class="collapse-item" href="{{ url('admin/list') }}">Admin</a>
-                    <a class="collapse-item" href="{{ url('faculty/list') }}">Faculty</a>
-                    <a class="collapse-item" href="{{ url('student/list') }}">Student</a>
+                    <a class="collapse-item" href="{{ url('/superadmin/admin/list') }}">Admin</a>
+                    <a class="collapse-item" href="{{ url('/superadmin/faculty/list') }}">Faculty</a>
+                    <a class="collapse-item" href="{{ url('/superadmin/student/list') }}">Student</a>
                 </div>
             </div>
         </li>
@@ -191,8 +192,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg"
-                                            alt="...">
+                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -203,8 +203,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg"
-                                            alt="...">
+                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -215,8 +214,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg"
-                                            alt="...">
+                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -248,8 +246,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Karl Barroa</span>
-                                <img class="img-profile rounded-circle"
-                                    src="../img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}" alt="Profile Image">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -285,14 +282,14 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-2 text-gray-800">User Management</h1>
-                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addStudent"><i
-                                class="fas fa-plus fa-sm text-white-50"></i> Add Student Account</div>
+                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addAdmin"><i
+                                class="fas fa-plus fa-sm text-white-50"></i> Add Admin Account</div>
                     </div>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Student Lists</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Admin Lists</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -361,12 +358,12 @@
 
     <form method="POST" action=''>
         @csrf
-        <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="addAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Student Account</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Add Admin Account</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -393,14 +390,14 @@
 
 
 
-    <div class="modal fade" id="editStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form id="editForm" method="POST">
                     @csrf
                     @method('PATCH')
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Update Student Account</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Update Admin Account</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -420,7 +417,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="delStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="delAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -443,37 +440,39 @@
         </div>
     </div>
 
-    @vite('resources/js/jquery-3.6.0.min.js')
+    <!-- Logout Modal-->
+    <x-logoutmodal></x-logoutmodal>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             $(document).ready(function () {
-                // Handle Edit Student Modal
+                // Handle Edit Admin Modal
                 $(document).on('click', '.edit_data', function () {
-                    var studentId = $(this).data('id');
+                    var adminId = $(this).data('id');
                     var email = $(this).data('email');
                     var password = $(this).data('password');
 
                     // Open the modal
-                    $('#editStudent').modal('show');
+                    $('#editAdmin').modal('show');
 
                     // Set form field values
                     $('#edit_email').val(email);
                     $('#edit_password').val(password);
 
                     // Dynamically set the form action URL
-                    $('#editForm').attr('action', '/student/update/' + studentId);
+                    $('#editForm').attr('action', '/admin/update/' + adminId);
                 });
 
-                // Handle Delete Student Modal
+                // Handle Delete Admin Modal
                 $(document).on('click', '.delete_data', function () {
-                    var studentId = $(this).data('id');
-                    var actionUrl = "/student/delete/" + studentId;
+                    var adminId = $(this).data('id');
+                    var actionUrl = "/admin/delete/" + adminId;
                     
                     // Set the form action dynamically
                     $('#deleteForm').attr('action', actionUrl);
 
                     // Open the modal
-                    $('#delStudent').modal('show');
+                    $('#delAdmin').modal('show');
                 });
             });
         });
