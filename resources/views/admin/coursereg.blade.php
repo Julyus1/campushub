@@ -247,7 +247,9 @@
                                         <tr>
                                             <td>{{ $course->id }}</td>
                                             <td>{{ \Carbon\Carbon::parse($course->created_at)->format('m/d/Y') }}</td>
-                                            <td data-deptid="{{ $course->department_id }}">{{ optional($course->department)->title ?? 'N/A' }}</td>
+                                            <td data-deptid="{{ $course->department_id }}">
+                                                {{$course->department->title ?? 'N/A' }}
+                                            </td>
                                             <td>{{ $course->title }}</td>
                                             <td>{{ $course->description }}</td>
                                             <td>

@@ -17,4 +17,9 @@ class Course extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function students()
+    {
+        return $this->hasManyThrough(Student::class, Section::class);
+    }
 }

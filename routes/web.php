@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SectionController;
@@ -28,11 +29,12 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware(['auth', 'usertype:superadmin'])->group(function () {
+Route::middleware(['auth', 'userrole:1'])->group(function () {
     Route::get('/superadmin/dashboard', [SuperAdminController::class, 'index']);
+    Route::get('admin/list', [SuperadminController::class, 'admin_list']);
 });
 
-Route::middleware(['auth', 'usertype:admin'])->group(function () {
+Route::middleware(['auth', 'userrole:2'])->group(function () {
 
     Route::get('/admin/dashboard', [AdminController::class, 'index']);
     Route::get('/admin', [AdminController::class, 'index']);
@@ -59,10 +61,10 @@ Route::middleware(['auth', 'usertype:admin'])->group(function () {
     Route::patch('section/update/{section}', [SectionController::class, 'update']);
     Route::delete('section/delete/{department}', [SectionController::class, 'destroy']);
 });
-Route::middleware(['auth', 'usertype:faculty'])->group(function () {
+Route::middleware(['auth', 'userrole:3'])->group(function () {
     Route::get('/faculty/dashboard', [FacultyController::class, 'index']);
 });
-Route::middleware(['auth', 'usertype:student'])->group(function () {
+Route::middleware(['auth', 'userrole:4'])->group(function () {
     Route::get('/student/dashboard', [StudentController::class, 'index']);
 });
 

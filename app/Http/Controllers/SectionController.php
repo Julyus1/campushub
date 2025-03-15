@@ -11,7 +11,7 @@ class SectionController extends Controller
     //
     public function show()
     {
-        $sections = Section::all();
+        $sections = Section::with('course')->get();
         $courses = Course::all();
         return view('admin.section', compact('sections', 'courses'));
     }

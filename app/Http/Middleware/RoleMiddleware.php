@@ -15,10 +15,10 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, string $usertype): Response
+    public function handle(Request $request, Closure $next, string $userrole): Response //1 Useradmin, 2Admin, 3 Faculty, 4 student
     {
 
-        if (!Auth::check() || Auth::user()->usertype !== $usertype) {
+        if (!Auth::check() || Auth::user()->role_id !== (int)$userrole) {
             abort(403, 'Unauthorized action.');
         }
 

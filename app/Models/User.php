@@ -45,4 +45,29 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function superadmin()
+    {
+        return $this->hasOne(Superadmin::class, 'id', 'role_data_id');
+    }
+
+    public function admin()
+    {
+        return $this->hasOne(Admin::class, 'id', 'role_data_id');
+    }
+
+    public function faculty()
+    {
+        return $this->hasOne(Faculty::class, 'id', 'role_data_id');
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'id', 'role_data_id');
+    }
 }

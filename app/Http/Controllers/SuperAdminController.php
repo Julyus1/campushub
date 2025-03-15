@@ -10,4 +10,8 @@ class SuperAdminController extends Controller
     {
         return view('superadmin.dashboard');
     }
+    public function admin_list()
+    {
+        return view('superadmin.admin-user');
+    }
 }

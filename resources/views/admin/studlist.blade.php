@@ -246,15 +246,7 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr class="bg-gradient-dark text-light">
-                                            <th>ID</th>
-                                            <th>Date Created</th>
-                                            <th>Section</th>
-                                            <th>Name</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
+
                                     <tbody>
                                         @foreach ($students as $student)
                                         <tr>

@@ -19,9 +19,7 @@ class AuthenticatedSessionController extends Controller
         return view('auth.login');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
+
     public function store(LoginRequest $request)
     {
         $request->authenticate();
@@ -31,16 +29,18 @@ class AuthenticatedSessionController extends Controller
 
 
 
-        if ($user->usertype === 'superadmin') {
-            return redirect('/superadmin/dashboard');
-        } elseif ($user->usertype === 'admin') {
-            return redirect('/admin/dashboard');
-        } elseif ($user->usertype === 'student') {
-            return redirect('/student/dashboard');
-        } elseif ($user->usertype === 'faculty') {
-            return redirect('/faculty/dashboard');
-        } else {
-            dd('not allowed');
+        switch ($user->role_id) {
+            case 1:
+                return redirect('/superadmin/dashboard');
+            case 2:
+                return redirect('/admin/dashboard');
+            case 3:
+                return redirect('/faculty/dashboard');
+            case 4:
+                return redirect('/student/dashboard');
+            default:
+                Auth::logout();
+                return redirect()->route('login')->with('error', 'Unauthorized role.');
         }
     }
 

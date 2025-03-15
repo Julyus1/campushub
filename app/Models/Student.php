@@ -10,6 +10,10 @@ class Student extends Model
 {
     /** @use HasFactory<\Database\Factories\StudentFactory> */
     use HasFactory;
+    public function user()
+    {
+        return $this->hasOne(User::class, 'role_data_id');
+    }
 
     protected $guarded = [];
 

@@ -35,7 +35,7 @@ class AdminController extends Controller
 
         Student::create([
             'section_id' => request('section_id'),
-            'stud_id' => request('stud_id'),
+
             'year_level' => request('year_level'),
             'stud_class' => request('studclass'),
             'department' => request('department'),
@@ -123,7 +123,7 @@ class AdminController extends Controller
 
     public function show_course()
     {
-        $courses = Course::all();
+        $courses = Course::with('department')->get();
         $departments = Department::all();
 
         //validate
