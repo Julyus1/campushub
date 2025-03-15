@@ -8,21 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{ asset('img/ch-logo.png') }}" type="image/png" />
-    @vite('public/icons/font/bootstrap-icons.css')
+    <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
+    <link rel="stylesheet" href="../icons/font/bootstrap-icons.css">
     @vite('resources/css/bootstrap.min.css')
     <!-- Custom fonts for this template-->
-    @vite('public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"')
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <title>CampusHub - Student Profile</title>
+    <title>CampusHub - Departments</title>
 
 
     <!-- Custom styles for this template-->
     @vite('resources/css/sb-admin-2.min.css')
-
-    <style>
-        
-    </style>
 
 </head>
 
@@ -32,43 +28,52 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-light sidebar sidebar-light accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-light sidebar sidebar-light accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/student/dashboard') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="{{ asset('img/ch-logo.png') }}" style="height: 40px; width: 40px;">
-                </div>
-                <div class="sidebar-brand-text mx-3">CampusHub</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/student/dashboard') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span class="text-dark">Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider dark">
-
-            <!-- Heading -->
-            <div class="sidebar-heading text-dark">
-                Student Information
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/superadmin') }}">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <img src="{{ asset('img/ch-logo.png') }}" style="height: 40px; width: 40px;">
             </div>
+            <div class="sidebar-brand-text mx-3">CampusHub</div>
+        </a>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('#') }}">
-                    <i class="fas fa-fw fa-list-alt"></i>
-                    <span class="text-dark">Student Profile</span></a>
-            </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
 
-            </ul>
-            <!-- End of Sidebar -->
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('/superadmin') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span class="text-dark">Dashboard</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider dark">
+
+        <!-- Heading -->
+        <div class="sidebar-heading text-dark">
+            User Management
+        </div>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStudent"
+                aria-expanded="true" aria-controls="collapseStudent">
+                <i class="fas fa-fw fa-list-alt"></i>
+                <span class="text-dark">Manage Users</span></a>
+            <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">User Lists:</h6>
+                    <a class="collapse-item" href="{{ url('admin/list') }}">Admin</a>
+                    <a class="collapse-item" href="{{ url('faculty/list') }}">Faculty</a>
+                    <a class="collapse-item" href="{{ url('student/list') }}">Student</a>
+                </div>
+            </div>
+        </li>
+
+        </ul>
+        <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -242,7 +247,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Derek Joy</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Karl Barroa</span>
                                 <img class="img-profile rounded-circle"
                                     src="../img/undraw_profile.svg">
                             </a>
@@ -279,119 +284,49 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-2 text-gray-800">Welcome Derek Joy!</h1>
+                        <h1 class="h3 mb-2 text-gray-800">User Management</h1>
+                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addAdmin"><i
+                                class="fas fa-plus fa-sm text-white-50"></i> Add Admin Account</div>
                     </div>
 
+                    <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                    <div class="card-header d-flex align-items-center justify-content-between py-4">
-    <!-- Left Section: Profile Image and Title -->
-    <div class="d-flex align-items-center">
-        <img class="img-profile rounded-circle img-fluid me-3" src="../img/undraw_profile.svg" alt="Profile Image" style="max-width: 100px;">
-        <h6 class="m-3 font-weight-bold text-primary">Student Profile</h6>
-    </div>
-
-    <!-- Right Section: Button -->
-    <div class="card-tools">
-        <button class="btn btn-sm btn-success bg-success btn-flat" type="button" id="print">
-            <i class="fa fa-print"></i> Print
-        </button>
-    </div>
-</div>
-
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Admin Lists</h6>
+                        </div>
                         <div class="card-body">
-                        <div class="container-fluid" id="outprint">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label text-muted">Student ID</label>
-                            <div class="pl-4">0122301119</div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label text-muted">Status</label>
-                            <div class="pl-4">
-                                <span class="rounded-pill badge badge-primary bg-gradient-primary px-3">Active</span>
-                                           
+                            <div class="table-responsive">
+                                <!-- Table -->
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr class="bg-gradient-dark text-light">
+                                            <th>ID</th>
+                                            <th>Date Created</th>
+                                            <th>Name</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>2025/20/20</td>
+                                            <td>Karl Bartolome</td>
+                                            <td>
+                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                                    Action
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu" role="menu">
+                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <fieldset class="border-bottom">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Name</label>
-                                <div class="pl-4">Pallasigue, Derek Joy C.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Gender</label>
-                                <div class="pl-4">Male</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Date of Birth</label>
-                                <div class="pl-4">February 13, 2003</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Contact #</label>
-                                <div class="pl-4">09474835441</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Complete Address</label>
-                                <div class="pl-4">Blk. 19 Lot 22, Sameera Subd. Brgy Sapalibutad, Angeles City Pampanga, 2009</div>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-                <!--<fieldset>
-                    <legend class="text-muted">Academic History</legend>
-                    <table class="table table-stripped table-bordered" id="academic-history">
-                        <thead>
-                            <tr class="bg-gradient-dark text-light">
-                                <th class="py-1 text-center">ID</th>
-                                <th class="py-1 text-center">Department/Course</th>
-                                <th class="py-1 text-center">Semester/School Yr.</th>
-                                <th class="py-1 text-center">Year</th>
-                                <th class="py-1 text-center">Beg. of Sem. Status</th>
-                                <th class="py-1 text-center">End of Sem. Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="px-2 py-1 align-middle text-center">1</td>
-                                <td class="px-2 py-1 align-middle">
-                                    <small><span class="">CCIS</span></small><br>
-                                    <small><span class="">BSIT-MOBDEV</span></small>
-                                </td>
-                                <td class="px-2 py-1 align-middle">
-                                    <small><span class="">First Semester</span></small><br>
-                                    <small><span class="">2022-2023</span></small>
-                                </td>
-                                <td class="px-2 py-1 align-middle">1st Year</td>
-                                <td class="px-2 py-1 align-middle text-center">
-                                    <span class="rounded-pill badge badge-success px-3">Regular</span>
-                                </td>
-                                <td class="px-2 py-1 align-middle text-center">
-                                    <span class="rounded-pill badge badge-success px-3">Completed</span>
-                                </td>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-                </fieldset> -->
-            </div>
                         </div>
                     </div>
 
@@ -423,41 +358,136 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+
+    <form method="POST" action=''>
+        @csrf
+        <div class="modal fade" id="addAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Admin Account</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <label for="deptname" class="control-label">Email</label>
+                        <input type="text" name="title" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
+                    </div>
+                    <div class="modal-body">
+                        <label for="deptdescription" class="control-label">Password</label>
+                        <textarea rows="3" name="description" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+    <x-logoutmodal></x-logoutmodal>
+
+
+
+    <div class="modal fade" id="editAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="editForm" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Admin Account</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="edit_email" class="control-label">Email</label>
+                        <input type="text" name="email" id="edit_email" class="form-control form-control-border" placeholder="Enter Email" required>
+
+                        <label for="edit_password" class="control-label">Password</label>
+                        <textarea rows="3" name="password" id="edit_password" class="form-control form-control-sm rounded-0" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="delAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
-                </div>
+                <form method="POST" id="deleteForm">
+                    @csrf
+                    @method('DELETE');
+                    <div class="modal-body">Are you sure you want to delete this account?</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
+    @vite('resources/js/jquery-3.6.0.min.js')
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            $(document).ready(function () {
+                // Handle Edit Admin Modal
+                $(document).on('click', '.edit_data', function () {
+                    var adminId = $(this).data('id');
+                    var email = $(this).data('email');
+                    var password = $(this).data('password');
+
+                    // Open the modal
+                    $('#editAdmin').modal('show');
+
+                    // Set form field values
+                    $('#edit_email').val(email);
+                    $('#edit_password').val(password);
+
+                    // Dynamically set the form action URL
+                    $('#editForm').attr('action', '/admin/update/' + adminId);
+                });
+
+                // Handle Delete Admin Modal
+                $(document).on('click', '.delete_data', function () {
+                    var adminId = $(this).data('id');
+                    var actionUrl = "/admin/delete/" + adminId;
+                    
+                    // Set the form action dynamically
+                    $('#deleteForm').attr('action', actionUrl);
+
+                    // Open the modal
+                    $('#delAdmin').modal('show');
+                });
+            });
+        });
+
+    </script>
+
     <!-- Bootstrap core JavaScript-->
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="../js/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../js/jquery.dataTables.min.js"></script>
-    <script src="../js/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../js/datatables-demo.js"></script>
+    @vite('resources/js/jquery.min.js')
+    @vite('resources/js/bootstrap.bundle.min.js')
+    @vite('resources/js/jquery.easing.min.js')
+    @vite('resources/js/sb-admin-2.min.js')
+    @vite('resources/js/jquery.dataTables.min.js')
+    @vite('resources/js/dataTables.bootstrap4.min.js')
+    @vite('resources/js/datatables-demo.js')
 
 </body>
 
