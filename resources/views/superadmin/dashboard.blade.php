@@ -61,11 +61,11 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStudent"
-                    aria-expanded="true" aria-controls="collapseStudent">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
+                    aria-expanded="true" aria-controls="collapseUser">
                     <i class="fas fa-fw fa-list-alt"></i>
                     <span class="text-dark">Manage Users</span></a>
-                <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">User Lists:</h6>
                         <a class="collapse-item" href="{{ url('superadmin/admin/list') }}">Admin</a>
@@ -73,6 +73,57 @@
                         <a class="collapse-item" href="{{ url('superadmin/student/list') }}">Student</a>
                     </div>
                 </div>
+            </li>
+
+            <!-- Divider -->
+                <hr class="sidebar-divider dark">
+
+            <!-- Heading -->
+            <div class="sidebar-heading text-dark">
+                Student Information
+            </div>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStudent"
+                    aria-expanded="true" aria-controls="collapseStudent">
+                    <i class="fas fa-fw fa-list-alt"></i>
+                    <span class="text-dark">Manage Students</span></a>
+                <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Students Module:</h6>
+                        <a class="collapse-item" href="{{ url('student/list') }}">Student Lists</a>
+                        <a class="collapse-item" href="{{ url('student/register') }}">Student Registration</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider dark">
+
+            <!-- Heading -->
+            <div class="sidebar-heading text-dark">
+                Course Module
+            </div>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('department/register') }}">
+                    <i class="bi bi-building-fill"></i>
+                    <span class="text-dark">Department Registration</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('course/register') }}">
+                    <i class="bi bi-book-fill"></i>
+                    <span class="text-dark">Course Registration</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('section/list') }}">
+                    <i class="fas fa-fw fa-id-card"></i>
+                    <span class="text-dark">Section Registration</span></a>
             </li>
 
         </ul>
