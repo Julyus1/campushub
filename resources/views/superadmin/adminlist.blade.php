@@ -329,6 +329,14 @@
                         <label for="edit_middleinitial" class="control-label">Middle Initial</label>
                         <input type="text" name="middleinitial" id="middleinitial" class="form-control form-control-border" placeholder="Enter Admin Middle Initial" required>
                     </div>
+                    <div class="modal-body">
+                        <label for="deptname" class="control-label">Department</label>
+                        <select name="department_id" id="deptname" class="form-control form-control-sm form-control-border" required>
+                            @foreach ($departments as $department )
+                            <option value="{{ $department->id }}">{{ $department->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button class="btn btn-primary" type="submit">Save</button>
