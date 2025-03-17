@@ -53,10 +53,10 @@ Route::middleware(['auth', 'userrole:1'])->group(function () {
     Route::patch('superadmin/department/update/{department}', [SuperAdminController::class, 'update_department']);
     Route::delete('superadmin/department/delete/{department}', [SuperAdminController::class, 'destroy_department']);
 
-    Route::get('superadmin/section/list', [AdminController::class, 'show_section']);
-    Route::post('superadmin/section/add', [AdminController::class, 'store_section']);
-    Route::patch('superadmin/section/update/{section}', [AdminController::class, 'update_section']);
-    Route::delete('superadmin/section/delete/{department}', [AdminController::class, 'destroy_section']);
+    Route::get('superadmin/section/list', [SuperAdminController::class, 'show_section']);
+    Route::post('superadmin/section/add', [SuperAdminController::class, 'store_section']);
+    Route::patch('superadmin/section/update/{section}', [SuperAdminController::class, 'update_section']);
+    Route::delete('superadmin/section/delete/{department}', [SuperAdminController::class, 'destroy_section']);
 });
 
 Route::middleware(['auth', 'userrole:2'])->group(function () {
@@ -78,10 +78,10 @@ Route::middleware(['auth', 'userrole:2'])->group(function () {
 
 
 
-    Route::get('section/list', [AdminController::class, 'show_section']);
-    Route::post('section/add', [AdminController::class, 'store_section']);
-    Route::patch('section/update/{section}', [AdminController::class, 'update_section']);
-    Route::delete('section/delete/{department}', [AdminController::class, 'destroy_section']);
+    // Route::get('section/list', [AdminController::class, 'show_section']);
+    // Route::post('section/add', [AdminController::class, 'store_section']);
+    // Route::patch('section/update/{section}', [AdminController::class, 'update_section']);
+    // Route::delete('section/delete/{department}', [AdminController::class, 'destroy_section']);
 });
 Route::middleware(['auth', 'userrole:3'])->group(function () {
     Route::get('/faculty/dashboard', [FacultyController::class, 'index']);
