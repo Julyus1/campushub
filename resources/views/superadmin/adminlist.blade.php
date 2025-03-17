@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
-    <link rel="stylesheet" href="../icons/font/bootstrap-icons.css">
+    <link rel="icon" href="{{ asset('img/ch-logo.png') }}" type="image/png" />
+    @vite('public/icons/font/bootstrap-icons.css')
     @vite('resources/css/bootstrap.min.css')
     <!-- Custom fonts for this template-->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    @vite('public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"')
 
     <title>CampusHub - Admin Lists</title>
 
@@ -130,8 +130,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg"
-                                            alt="...">
+                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -142,8 +141,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg"
-                                            alt="...">
+                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -154,8 +152,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg"
-                                            alt="...">
+                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -187,8 +184,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Karl Barroa</span>
-                                <img class="img-profile rounded-circle"
-                                    src="../img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}" alt="Profile Image">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -223,10 +219,9 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-2 text-gray-800">List of Admins</h1>
-                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" id="editBtn">
-                            <i class="fas fa-plus fa-sm text-white-50"></i><a href="{{ url('admin/register') }}" style="text-decoration: none; color:  white;"> Add New Admin</a>
-                        </div>
+                        <h1 class="h3 mb-2 text-gray-800">Admin Lists</h1>
+                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addAdmin"><i
+                                class="fas fa-plus fa-sm text-white-50"></i> Add New Admin</div>
                     </div>
 
                     <!-- DataTales Example -->
@@ -236,6 +231,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                                <!-- Table -->
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr class="bg-gradient-dark text-light">
@@ -245,21 +241,36 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
-                                        @foreach ($admins as $admin)
+                                        @foreach($admins as $admin)
                                         <tr>
                                             <td>{{ $admin->id }}</td>
-                                            <td>{{ $admin->created_at->format('Y/m/d') }}</td>
-                                            <td>{{ $admin->lastname }}, {{ $admin->firstname }} {{ $admin->middlename }}</td>
-                                            <td items-align="center">
-                                                <a href="{{url('admin/profile/' . $admin->id) }}" class="btn btn-flat btn-default btn-sm border">
-                                                    <i class="fa fa-eye"></i> View
+                                            <td>{{ \Carbon\Carbon::parse($admin->created_at)->format('m/d/Y') }}</td>
+                                            <td>{{ $admin->title }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                                    Action
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu" role="menu">
+                                                    <a class="dropdown-item edit_data"
+                                                        data-id="{{ $admin->id }}"
+                                                        data-title="{{ $admin->title }}"
+                                                        data-toggle="modal"
+                                                        data-target="#editAdmin">
+                                                        <span class="fa fa-edit text-primary"></span> Edit
+                                                    </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item delete_data" data-id="{{ $admin->id }}" data-toggle="modal" data-target="#delAdmin">
+                                                        <span class="fa fa-trash text-danger"></span> Delete
+                                                    </a>
+                                                </div>
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
@@ -293,6 +304,122 @@
 
     <!-- Logout Modal-->
     <x-logoutmodal></x-logoutmodal>
+
+    <form method="POST" action='{{ url('admin/register') }}'>
+        @csrf
+        <div class="modal fade" id="addAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Admin</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <label for="deptname" class="control-label">Admin</label>
+                        <input type="text" name="title" id="deptname" class="form-control form-control-border" placeholder="Enter Admin Name" value="" required>
+                    </div>
+                    <div class="modal-body">
+                        <label for="deptdescription" class="control-label">Description</label>
+                        <textarea rows="3" name="description" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+    <x-logoutmodal></x-logoutmodal>
+
+
+
+    <div class="modal fade" id="editAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="editForm" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Admin Details</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="edit_deptname" class="control-label">Admin</label>
+                        <input type="text" name="title" id="edit_deptname" class="form-control form-control-border" placeholder="Enter Admin Name" required>
+
+                        <label for="edit_deptdescription" class="control-label">Description</label>
+                        <textarea rows="3" name="description" id="edit_deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="delAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form method="POST" id="deleteForm">
+                    @csrf
+                    @method('DELETE');
+                    <div class="modal-body">Are you sure you want to delete this Admin permanently?</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @vite('resources/js/jquery-3.6.0.min.js')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            $(document).ready(function() {
+                $('.edit_data').on('click', function() {
+                    var id = $(this).data('id');
+                    var title = $(this).data('title');
+                    var description = $(this).data('description');
+
+                    // Open the modal
+                    $('#editAdmin').modal('show');
+
+                    // Set form field values
+                    $('#edit_deptname').val(title);
+                    $('#edit_deptdescription').val(description);
+
+                    // Dynamically set the form action URL
+                    $('#editForm').attr('action', '/admin/update/' + id);
+                });
+            });
+
+
+            $('.delete_data').on('click', function() {
+                let adminId = $(this).data('id');
+                let actionUrl = "/admin/delete/" + adminId;
+                $('#deleteForm').attr('action', actionUrl);
+            });
+
+
+        });
+    </script>
 
 
     @vite('resources/js/jquery.min.js')

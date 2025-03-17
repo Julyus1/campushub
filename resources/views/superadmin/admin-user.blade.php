@@ -272,8 +272,6 @@
                                                     <a class="dropdown-item add-btn" data-toggle="modal" data-target="#addAdmin"><span
                                                     class="fas fa-plus fa-sm text-success"></span> Add Account</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
                                                 </div>
                                             </td>

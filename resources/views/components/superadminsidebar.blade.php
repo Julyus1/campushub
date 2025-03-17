@@ -48,47 +48,21 @@
 
 <!-- Heading -->
 <div class="sidebar-heading text-dark">
-    Admin Information
+    User Information Management
 </div>
 
-<!-- Nav Item - Tables -->
 <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin"
-        aria-expanded="true" aria-controls="collapseAdmin">
-        <i class="fas fa-fw fa-list-alt"></i>
-        <span class="text-dark">Manage Admin</span></a>
-    <div id="collapseAdmin" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Admin Management:</h6>
-            <a class="collapse-item" href="{{ url('/superadmin/admin/list') }}">Admin Lists</a>
-            <a class="collapse-item" href="{{ url('/superadmin/admins/register') }}">Admin Registration</a>
-        </div>
-    </div>
+    <a class="nav-link" href="{{ url('/superadmin/admin/list') }}">
+        <i class="fas fa-fw fa-id-card"></i>
+        <span class="text-dark">Admin Registration</span></a>
 </li>
 
-<!-- Heading -->
-<div class="sidebar-heading text-dark">
-    Faculty Information
-</div>
-
-<!-- Nav Item - Tables -->
 <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFaculty"
-        aria-expanded="true" aria-controls="collapseFaculty">
-        <i class="fas fa-fw fa-list-alt"></i>
-        <span class="text-dark">Manage Faculty</span></a>
-    <div id="collapseFaculty" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Faculty Management:</h6>
-            <a class="collapse-item" href="{{ url('/superadmin/faculty/list') }}">Faculty Lists</a>
-            <a class="collapse-item" href="{{ url('/superadmin/faculty/register') }}">Faculty Registration</a>
-        </div>
-    </div>
+    <a class="nav-link" href="{{ url('/superadmin/faculty/list') }}">
+        <i class="fas fa-fw fa-id-card"></i>
+        <span class="text-dark">Faculty Registration</span></a>
 </li>
 
-<div class="sidebar-heading text-dark">
-    Student Information
-</div>
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">

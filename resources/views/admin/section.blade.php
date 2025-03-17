@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
-    <link rel="stylesheet" href="../icons/font/bootstrap-icons.css">
+    <link rel="icon" href="{{ asset('img/ch-logo.png') }}" type="image/png" />
+	@vite('public/icons/font/bootstrap-icons.css')
     @vite('resources/css/bootstrap.min.css')
     <!-- Custom fonts for this template-->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    @vite('public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"')
 
     <title>CampusHub - Sections</title>
 
