@@ -14,7 +14,7 @@
     <!-- Custom fonts for this template-->
     @vite('public/vendor/fontawesome-free/css/all.min.css')
 
-    <title>CampusHub - Departments</title>
+    <title>CampusHub - Faculty User Management</title>
 
 
     <!-- Custom styles for this template-->
@@ -29,7 +29,7 @@
 
         <!-- Sidebar -->
         <x-superadminsidebar>
-        </x-superadminsidebar>s
+        </x-superadminsidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

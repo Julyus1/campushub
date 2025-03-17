@@ -15,7 +15,7 @@
     <!-- Custom fonts for this template-->
     @vite('public/vendor/fontawesome-free/css/all.min.css')
 
-    <title>CampusHub - Manage Users</title>
+    <title>CampusHub - Admin User Management</title>
 
 
     <!-- Custom styles for this template-->

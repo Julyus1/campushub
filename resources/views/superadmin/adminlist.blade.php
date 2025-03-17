@@ -14,7 +14,7 @@
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <title>CampusHub - Student Lists</title>
+    <title>CampusHub - Admin Lists</title>
 
 
     <!-- Custom styles for this template-->
@@ -223,16 +223,16 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-2 text-gray-800">List of Students</h1>
+                        <h1 class="h3 mb-2 text-gray-800">List of Admins</h1>
                         <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" id="editBtn">
-                            <i class="fas fa-plus fa-sm text-white-50"></i><a href="{{ url('student/register') }}" style="text-decoration: none; color:  white;"> Add New Student</a>
+                            <i class="fas fa-plus fa-sm text-white-50"></i><a href="{{ url('admin/register') }}" style="text-decoration: none; color:  white;"> Add New Admin</a>
                         </div>
                     </div>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Student Lists</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Admin Lists</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -241,21 +241,19 @@
                                         <tr class="bg-gradient-dark text-light">
                                             <th>ID</th>
                                             <th>Date Created</th>
-                                            <th>Section</th>
                                             <th>Name</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($students as $student)
+                                        @foreach ($admins as $admin)
                                         <tr>
-                                            <td>{{ $student->id }}</td>
-                                            <td>{{ $student->created_at->format('Y/m/d') }}</td>
-                                            <td>{{ $student->section ? $student->section->title : 'No Section' }}</td>
-                                            <td>{{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }}</td>
+                                            <td>{{ $admin->id }}</td>
+                                            <td>{{ $admin->created_at->format('Y/m/d') }}</td>
+                                            <td>{{ $admin->lastname }}, {{ $admin->firstname }} {{ $admin->middlename }}</td>
                                             <td items-align="center">
-                                                <a href="{{url('student/profile/' . $student->id) }}" class="btn btn-flat btn-default btn-sm border">
+                                                <a href="{{url('admin/profile/' . $admin->id) }}" class="btn btn-flat btn-default btn-sm border">
                                                     <i class="fa fa-eye"></i> View
                                             </td>
                                         </tr>
