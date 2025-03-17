@@ -327,7 +327,7 @@
                         <input type="text" name="firstname" id="firstname" class="form-control form-control-border" placeholder="Enter Admin First Name" required>
                     </div>
                     <div class="modal-body">
-                        <label for="edit_middleinitial" class="control-label">First Name</label>
+                        <label for="edit_middleinitial" class="control-label">Middle Initial</label>
                         <input type="text" name="middleinitial" id="middleinitial" class="form-control form-control-border" placeholder="Enter Admin Middle Initial" required>
                     </div>
                     <div class="modal-body">
@@ -362,7 +362,7 @@
                         <input type="text" name="firstname" id="firstname" class="form-control form-control-border" placeholder="Enter Admin First Name" required>
                     </div>
                     <div class="modal-body">
-                        <label for="edit_middleinitial" class="control-label">First Name</label>
+                        <label for="edit_middleinitial" class="control-label">Middle Initial</label>
                         <input type="text" name="middleinitial" id="middleinitial" class="form-control form-control-border" placeholder="Enter Admin Middle Initial" required>
                     </div>
                     <div class="modal-body">
