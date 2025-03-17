@@ -319,12 +319,12 @@
                     </div>
 
                     <div class="modal-body">
-                        <label for="deptname" class="control-label">Faculty</label>
-                        <input type="text" name="title" id="deptname" class="form-control form-control-border" placeholder="Enter Faculty Name" value="" required>
+                        <label for="facultyname" class="control-label">Faculty</label>
+                        <input type="text" name="title" id="facultyname" class="form-control form-control-border" placeholder="Enter Faculty Name" value="" required>
                     </div>
                     <div class="modal-body">
-                        <label for="deptdescription" class="control-label">Description</label>
-                        <textarea rows="3" name="description" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                        <label for="facultydescription" class="control-label">Description</label>
+                        <textarea rows="3" name="description" id="facultydescription" class="form-control form-control-sm rounded-0" required></textarea>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -352,11 +352,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <label for="edit_deptname" class="control-label">Faculty</label>
-                        <input type="text" name="title" id="edit_deptname" class="form-control form-control-border" placeholder="Enter Faculty Name" required>
+                        <label for="edit_facultyname" class="control-label">Faculty</label>
+                        <input type="text" name="title" id="edit_facultyname" class="form-control form-control-border" placeholder="Enter Faculty Name" required>
 
-                        <label for="edit_deptdescription" class="control-label">Description</label>
-                        <textarea rows="3" name="description" id="edit_deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                        <label for="edit_facultydescription" class="control-label">Description</label>
+                        <textarea rows="3" name="description" id="edit_facultydescription" class="form-control form-control-sm rounded-0" required></textarea>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -402,8 +402,8 @@
                     $('#editFaculty').modal('show');
 
                     // Set form field values
-                    $('#edit_deptname').val(title);
-                    $('#edit_deptdescription').val(description);
+                    $('#edit_facultyname').val(title);
+                    $('#edit_facultydescription').val(description);
 
                     // Dynamically set the form action URL
                     $('#editForm').attr('action', '/faculty/update/' + id);

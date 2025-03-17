@@ -28,7 +28,7 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('/superadmin/faculty/list') }}">
+        <a class="nav-link" href="{{ url('/admin/faculty/list') }}">
             <i class="fas fa-fw fa-id-card"></i>
             <span class="text-dark">Faculty Registration</span></a>
     </li>
