@@ -317,14 +317,17 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-
                     <div class="modal-body">
-                        <label for="deptname" class="control-label">Admin</label>
-                        <input type="text" name="title" id="deptname" class="form-control form-control-border" placeholder="Enter Admin Name" value="" required>
+                        <label for="adminlastname" class="control-label">Last Name</label>
+                        <input type="text" name="lastname" id="lastname" class="form-control form-control-border" placeholder="Enter Admin Last Name" required>
                     </div>
                     <div class="modal-body">
-                        <label for="deptdescription" class="control-label">Description</label>
-                        <textarea rows="3" name="description" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                        <label for="edit_firstname" class="control-label">First Name</label>
+                        <input type="text" name="firstname" id="firstname" class="form-control form-control-border" placeholder="Enter Admin First Name" required>
+                    </div>
+                    <div class="modal-body">
+                        <label for="edit_middleinitial" class="control-label">First Name</label>
+                        <input type="text" name="middleinitial" id="middleinitial" class="form-control form-control-border" placeholder="Enter Admin Middle Initial" required>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -352,11 +355,24 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <label for="edit_deptname" class="control-label">Admin</label>
-                        <input type="text" name="title" id="edit_deptname" class="form-control form-control-border" placeholder="Enter Admin Name" required>
-
-                        <label for="edit_deptdescription" class="control-label">Description</label>
-                        <textarea rows="3" name="description" id="edit_deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                        <label for="edit_lastname" class="control-label">Last Name</label>
+                        <input type="text" name="lastname" id="edit_lastname" class="form-control form-control-border" placeholder="Enter Admin Last Name" required>
+                    </div>
+                    <div class="modal-body">
+                        <label for="edit_firstname" class="control-label">First Name</label>
+                        <input type="text" name="firstname" id="edit_firstname" class="form-control form-control-border" placeholder="Enter Admin First Name" required>
+                    </div>
+                    <div class="modal-body">
+                        <label for="edit_middleinitial" class="control-label">First Name</label>
+                        <input type="text" name="middleinitial" id="edit_middleinitial" class="form-control form-control-border" placeholder="Enter Admin Middle Initial" required>
+                    </div>
+                    <div class="modal-body">
+                        <label for="deptname" class="control-label">Department</label>
+                        <select name="department_id" id="editdept" class="form-control form-control-sm form-control-border" required>
+                            @foreach ($departments as $department )
+                            <option value="{{ $department->id }}">{{ $department->title }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -395,15 +411,17 @@
             $(document).ready(function() {
                 $('.edit_data').on('click', function() {
                     var id = $(this).data('id');
-                    var title = $(this).data('title');
-                    var description = $(this).data('description');
+                    var lastname = $(this).data('lastname');
+                    var firstname = $(this).data('firstname');
+                    var middleinitial = $(this).data('middleinitial');
 
                     // Open the modal
                     $('#editAdmin').modal('show');
 
                     // Set form field values
-                    $('#edit_deptname').val(title);
-                    $('#edit_deptdescription').val(description);
+                    $('#edit_lastname').val(lastname);
+                    $('#edit_firstname').val(firstname);
+                    $('#edit_middleinitial').val(middleinitial);
 
                     // Dynamically set the form action URL
                     $('#editForm').attr('action', '/admin/update/' + id);
