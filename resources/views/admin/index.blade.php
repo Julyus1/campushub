@@ -30,8 +30,8 @@
     <div id="wrapper">
 
         <!--Side Bar-->
-        <x-sidebar>
-        </x-sidebar>
+        <x-adminsidebar>
+        </x-adminsidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

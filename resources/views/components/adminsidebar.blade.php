@@ -52,13 +52,6 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="{{url('department/register') }}">
-            <i class="bi bi-building-fill"></i>
-            <span class="text-dark">Department Registration</span></a>
-    </li>
-
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
         <a class="nav-link" href="{{ url('course/register') }}">
             <i class="bi bi-book-fill"></i>
             <span class="text-dark">Course Registration</span></a>

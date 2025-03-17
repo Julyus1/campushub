@@ -28,7 +28,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <x-sidebar></x-sidebar>
+        <x-adminsidebar></x-adminsidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -262,10 +262,6 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-
-
-
-
                                     <tbody>
                                         @foreach ($sections as $section)
                                         <tr>
@@ -423,7 +419,7 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @vite('resources/js/jquery-3.6.0.min.js')
     <script>
         $(document).ready(function() {
             $('.edit_data').on('click', function() {
@@ -439,10 +435,7 @@
                 $('#edit_section').val(title);
             });
         });
-    </script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+        
         $(document).ready(function() {
             $('.delete_data').on('click', function() {
                 var id = $(this).data('id');

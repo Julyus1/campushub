@@ -8,17 +8,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{ asset('img/ch-logo.png') }}" type="image/png" />
-    @vite('public/icons/font/bootstrap-icons.css')
+    <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
+    <link rel="stylesheet" href="../icons/font/bootstrap-icons.css">
     @vite('resources/css/bootstrap.min.css')
-    <!-- Custom fonts for this template-->
-    @vite('public/vendor/fontawesome-free/css/all.min.css')
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <title>CampusHub - Departments</title>
+    <title>CampusHub - Faculty Registration</title>
 
 
-    <!-- Custom styles for this template-->
     @vite('resources/css/sb-admin-2.min.css')
+
+    <!-- Custom Styles -->
+    <style>
+        .section-title,
+        .section-title:hover {
+            text-decoration: none;
+            color: gold;
+        }
+
+        .img-thumb-path {
+            width: 100px;
+            height: 80px;
+            object-fit: scale-down;
+            object-position: center center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
 
 </head>
 
@@ -28,8 +46,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <x-superadminsidebar>
-        </x-superadminsidebar>
+        <x-superadminsidebar></x-superadminsidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -57,29 +74,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
+
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -124,7 +119,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                      <div class="small text-gray-500">December 2, 2019</div>
+                                        <div class="small text-gray-500">December 2, 2019</div>
                                         Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
                                 </a>
@@ -148,7 +143,8 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -159,7 +155,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg"
+                                            alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -170,7 +167,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -202,7 +200,8 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Karl Barroa</span>
-                                <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}" alt="Profile Image">
+                                <img class="img-profile rounded-circle"
+                                    src="../img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -237,54 +236,82 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-2 text-gray-800">User Management</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Faculty Information Management</h1>
                     </div>
 
-                    <!-- DataTales Example -->
+                    <!-- faculty Information Form -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Student Lists</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Faculty Registration</h6>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <!-- Table -->
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr class="bg-gradient-dark text-light">
-                                            <th>ID</th>
-                                            <th>Date Created</th>
-                                            <th>Name</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>2025/20/20</td>
-                                            <td>Karl Bartolome</td>
-                                            <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    Action
-                                                    <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item add-btn" data-toggle="modal" data-target="#addAdmin"><span
-                                                    class="fas fa-plus fa-sm text-success"></span> Add Account</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
+                        <form method="POST" action="{{ url('faculty/register') }}">
+                            @csrf
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <form action="" id="faculty_form">
+                                        <input type="hidden" name="id">
+                                        <fieldset class="border-bottom">
+                                            <label>
+                                                <h3>Faculty Profile</h3>
+                                            </label>
+                                            <div class="row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="firstname" class="control-label">First Name: </label>
+                                                    <input type="text" name="firstname" id="firstname" class="form-control form-control-sm rounded-0" required>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                <div class="form-group col-md-4">
+                                                    <label for="middlename" class="control-label">Middle Name: </label>
+                                                    <input type="text" name="middlename" id="middlename" class="form-control form-control-sm rounded-0" placeholder="optional">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="lastname" class="control-label">Last Name: </label>
+                                                    <input type="text" name="lastname" id="lastname" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                <label class="form-check-label" for="inlineCheckbox1">CCIS1A</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                                <label class="form-check-label" for="inlineCheckbox2">CCIS1B</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                                <label class="form-check-label" for="inlineCheckbox2">CCIS1C</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                <label class="form-check-label" for="inlineCheckbox1">CCIS1D</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                                <label class="form-check-label" for="inlineCheckbox2">CCIS1E</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                                <label class="form-check-label" for="inlineCheckbox2">CCIS1F</label>
+                                                </div>
+                                            </div>
+                                </div>
+
+
+                                </fieldset>
 
                             </div>
-                        </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-flat btn-primary btn-sm" type="submit">Save Faculty Details</button>
+                                <a href="./?page=faculty" class="btn btn-flat btn-default border btn-sm">Cancel</a>
+                            </div>
+                        </form>
                     </div>
 
+
                 </div>
+
                 <!-- /.container-fluid -->
 
             </div>
@@ -312,127 +339,10 @@
     </a>
 
     <!-- Logout Modal-->
-
-    <form method="POST" action=''>
-        @csrf
-        <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Student Account</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <label for="deptname" class="control-label">Email</label>
-                        <input type="text" name="title" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
-                    </div>
-                    <div class="modal-body">
-                        <label for="deptdescription" class="control-label">Password</label>
-                        <textarea rows="3" name="description" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </form>
     <x-logoutmodal></x-logoutmodal>
 
 
 
-    <div class="modal fade" id="editStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form id="editForm" method="POST">
-                    @csrf
-                    @method('PATCH')
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Update Student Account</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <label for="edit_email" class="control-label">Email</label>
-                        <input type="text" name="email" id="edit_email" class="form-control form-control-border" placeholder="Enter Email" required>
-
-                        <label for="edit_password" class="control-label">Password</label>
-                        <textarea rows="3" name="password" id="edit_password" class="form-control form-control-sm rounded-0" required></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="delStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <form method="POST" id="deleteForm">
-                    @csrf
-                    @method('DELETE');
-                    <div class="modal-body">Are you sure you want to delete this account?</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    @vite('resources/js/jquery-3.6.0.min.js')
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            $(document).ready(function () {
-                // Handle Edit Student Modal
-                $(document).on('click', '.edit_data', function () {
-                    var studentId = $(this).data('id');
-                    var email = $(this).data('email');
-                    var password = $(this).data('password');
-
-                    // Open the modal
-                    $('#editStudent').modal('show');
-
-                    // Set form field values
-                    $('#edit_email').val(email);
-                    $('#edit_password').val(password);
-
-                    // Dynamically set the form action URL
-                    $('#editForm').attr('action', '/student/update/' + studentId);
-                });
-
-                // Handle Delete Student Modal
-                $(document).on('click', '.delete_data', function () {
-                    var studentId = $(this).data('id');
-                    var actionUrl = "/student/delete/" + studentId;
-                    
-                    // Set the form action dynamically
-                    $('#deleteForm').attr('action', actionUrl);
-
-                    // Open the modal
-                    $('#delStudent').modal('show');
-                });
-            });
-        });
-
-    </script>
 
     <!-- Bootstrap core JavaScript-->
     @vite('resources/js/jquery.min.js')

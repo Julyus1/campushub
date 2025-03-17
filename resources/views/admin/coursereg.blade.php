@@ -28,7 +28,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <x-sidebar></x-sidebar>
+        <x-adminsidebar></x-adminsidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

@@ -29,102 +29,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-light sidebar sidebar-light accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/superadmin/dashboard') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="{{ asset('img/ch-logo.png') }}" style="height: 40px; width: 40px;">
-                </div>
-                <div class="sidebar-brand-text mx-3">CampusHub</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/superadmin/dashboard') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span class="text-dark">Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider dark">
-
-            <!-- Heading -->
-            <div class="sidebar-heading text-dark">
-                User Management
-            </div>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStudent"
-                    aria-expanded="true" aria-controls="collapseStudent">
-                    <i class="fas fa-fw fa-list-alt"></i>
-                    <span class="text-dark">Manage Users</span></a>
-                <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">User Lists:</h6>
-                        <a class="collapse-item" href="{{ url('/superadmin/admin/list') }}">Admin</a>
-                        <a class="collapse-item" href="{{ url('/superadmin/faculty/list') }}">Faculty</a>
-                        <a class="collapse-item" href="{{ url('/superadmin/student/list') }}">Student</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider dark">
-
-            <!-- Heading -->
-            <div class="sidebar-heading text-dark">
-                Student Information
-            </div>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
-                    aria-expanded="true" aria-controls="collapseUser">
-                    <i class="fas fa-fw fa-list-alt"></i>
-                    <span class="text-dark">Manage Students</span></a>
-                <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Students Module:</h6>
-                        <a class="collapse-item" href="{{ url('student/list') }}">Student Lists</a>
-                        <a class="collapse-item" href="{{ url('student/register') }}">Student Registration</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider dark">
-
-            <!-- Heading -->
-            <div class="sidebar-heading text-dark">
-                Course Module
-            </div>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('department/register') }}">
-                    <i class="bi bi-building-fill"></i>
-                    <span class="text-dark">Department Registration</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('course/register') }}">
-                    <i class="bi bi-book-fill"></i>
-                    <span class="text-dark">Course Registration</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('section/list') }}">
-                    <i class="fas fa-fw fa-id-card"></i>
-                    <span class="text-dark">Section Registration</span></a>
-            </li>
-
-        </ul>
+        <x-superadminsidebar>
+        </x-superadminsidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -333,8 +239,6 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-2 text-gray-800">User Management</h1>
-                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addAdmin"><i
-                                class="fas fa-plus fa-sm text-white-50"></i> Add Admin Account</div>
                     </div>
 
                     <!-- DataTales Example -->
@@ -365,6 +269,9 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
+                                                    <a class="dropdown-item add-btn" data-toggle="modal" data-target="#addAdmin"><span
+                                                    class="fas fa-plus fa-sm text-success"></span> Add Account</a>
+                                                    <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item edit_data"><span class="fa fa-edit text-primary"></span> Edit</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>

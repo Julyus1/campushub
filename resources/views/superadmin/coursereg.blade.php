@@ -14,7 +14,7 @@
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <title>CampusHub - Departments</title>
+    <title>CampusHub - Course Registration</title>
 
 
     <!-- Custom styles for this template-->
@@ -28,7 +28,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <x-sidebar></x-sidebar>
+        <x-superadminsidebar></x-superadminsidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -56,29 +56,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
+
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -240,52 +218,51 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-2 text-gray-800">Department Lists</h1>
-                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addDepartment"><i
-                                class="fas fa-plus fa-sm text-white-50"></i> Add New Department</div>
+                        <h1 class="h3 mb-2 text-gray-800">Course Registration</h1>
+                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addCourse"><i
+                                class="fas fa-plus fa-sm text-white-50"></i> Add New Course</div>
                     </div>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Department Lists</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Course Lists</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <!-- Table -->
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr class="bg-gradient-dark text-light">
                                             <th>ID</th>
                                             <th>Date Created</th>
-                                            <th>Name</th>
+                                            <th>Department</th>
+                                            <th>Course</th>
                                             <th>Description</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
-                                        @foreach($departments as $department)
+                                        @foreach($courses as $course)
                                         <tr>
-                                            <td>{{ $department->id }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($department->created_at)->format('m/d/Y') }}</td>
-                                            <td>{{ $department->title }}</td>
-                                            <td>{{ $department->description }}</td>
+                                            <td>{{ $course->id }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($course->created_at)->format('m/d/Y') }}</td>
+                                            <td data-deptid="{{ $course->department_id }}">
+                                                {{$course->department->title ?? 'N/A' }}
+                                            </td>
+                                            <td>{{ $course->title }}</td>
+                                            <td>{{ $course->description }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                     Action
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data"
-                                                        data-id="{{ $department->id }}"
-                                                        data-title="{{ $department->title }}"
-                                                        data-description="{{ $department->description }}"
-                                                        data-toggle="modal"
-                                                        data-target="#editDepartment">
+                                                    <a class="dropdown-item edit_data" data-toggle="modal" data-target="#editCourse" data-id="{{ $course->id }}">
                                                         <span class="fa fa-edit text-primary"></span> Edit
                                                     </a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data" data-id="{{ $department->id }}" data-toggle="modal" data-target="#delDepartment">
+                                                    <a class="dropdown-item delete_data" data-toggle="modal" data-target="#delCourse" data-id="{{ $course->id }}">
                                                         <span class="fa fa-trash text-danger"></span> Delete
                                                     </a>
                                                 </div>
@@ -294,7 +271,6 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
@@ -327,59 +303,33 @@
     </a>
 
     <!-- Logout Modal-->
-
-    <form method="POST" action='{{ url('department/register') }}'>
-        @csrf
-        <div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add New Department</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <label for="deptname" class="control-label">Department</label>
-                        <input type="text" name="title" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
-                    </div>
-                    <div class="modal-body">
-                        <label for="deptdescription" class="control-label">Description</label>
-                        <textarea rows="3" name="description" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </form>
     <x-logoutmodal></x-logoutmodal>
 
 
-
-    <div class="modal fade" id="editDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form id="editForm" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Course</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="{{ url('course/add') }}" method="POST">
                     @csrf
-                    @method('PATCH')
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Update Department Details</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
                     <div class="modal-body">
-                        <label for="edit_deptname" class="control-label">Department</label>
-                        <input type="text" name="title" id="edit_deptname" class="form-control form-control-border" placeholder="Enter Department Name" required>
+                        <label for="deptname" class="control-label">Department</label>
+                        <select name="department_id" id="deptname" class="form-control form-control-sm form-control-border" required>
+                            @foreach ($departments as $department )
+                            <option value="{{ $department->id }}">{{ $department->title }}</option>
+                            @endforeach
+                        </select>
+                        <label for="coursename" class="control-label">Course</label>
+                        <input type="text" name="title" id="coursename" class="form-control form-control-border" placeholder="Enter Course Name" value="" required>
+                        <label for="coursedescription" class="control-label">Description</label>
+                        <textarea rows="3" name="description" id="coursedescription" class="form-control form-control-sm rounded-0" required></textarea>
 
-                        <label for="edit_deptdescription" class="control-label">Description</label>
-                        <textarea rows="3" name="description" id="edit_deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -389,7 +339,45 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="delDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+
+    <!-- Modal -->
+    <div class="modal fade" id="editCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Course Details</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form id="editForm" method="POST">
+
+
+                    @csrf
+                    @method('PATCH')
+                    <div class="modal-body">
+                        <label for="deptname" class="control-label">Department</label>
+                        <select name="department_id" id="editdept" class="form-control form-control-sm form-control-border" required>
+                            @foreach ($departments as $department )
+                            <option value="{{ $department->id }}">{{ $department->title }}</option>
+                            @endforeach
+                        </select>
+                        <label for="coursename" class="control-label">Course</label>
+                        <input type="text" name="title" id="editcoursename" class="form-control form-control-border" placeholder="Enter Course Name" required>
+                        <label for="description" class="control-label">Description</label>
+                        <textarea rows="3" name="description" id="editdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="delCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -399,60 +387,43 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form method="POST" id="deleteForm">
-                    @csrf
-                    @method('DELETE');
-                    <div class="modal-body">Are you sure you want to delete this Department permanently?</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <div class="modal-body">
+                    Are you sure you want to delete this course permanently??
+                </div>
+                <div class="modal-footer">
+                    <form id="deleteForm" method="POST" action="">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-danger">Delete</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-
     @vite('resources/js/jquery-3.6.0.min.js')
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            $(document).ready(function() {
-                $('.edit_data').on('click', function() {
-                    var id = $(this).data('id');
-                    var title = $(this).data('title');
-                    var description = $(this).data('description');
+            $(document).on("click", ".edit_data", function() {
+                let courseId = $(this).data("id");
+                let courseTitle = $(this).closest("tr").find("td:nth-child(4)").text();
+                let courseDescription = $(this).closest("tr").find("td:nth-child(5)").text();
+                let departmentId = $(this).closest("tr").find("td:nth-child(3)").data("deptid");
+                console.log("Course ID:", courseId);
 
-                    // Open the modal
-                    $('#editDepartment').modal('show');
-
-                    // Set form field values
-                    $('#edit_deptname').val(title);
-                    $('#edit_deptdescription').val(description);
-
-                    // Dynamically set the form action URL
-                    $('#editForm').attr('action', '/department/update/' + id);
-                });
+                $("#editForm").attr("action", "/course/update/" + courseId);
+                $("#editcoursename").val(courseTitle);
+                $("#editdescription").val(courseDescription);
+                $("#editdept").val(departmentId);
             });
-
 
             $('.delete_data').on('click', function() {
-                let departmentId = $(this).data('id');
-                let actionUrl = "/department/delete/" + departmentId;
+                let courseId = $(this).data('id');
+                let actionUrl = "/course/delete/" + courseId;
                 $('#deleteForm').attr('action', actionUrl);
             });
-
-
         });
     </script>
-
-
-
-
-
-
-
-
-
-
     <!-- Bootstrap core JavaScript-->
     @vite('resources/js/jquery.min.js')
     @vite('resources/js/bootstrap.bundle.min.js')
