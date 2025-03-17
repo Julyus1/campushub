@@ -320,15 +320,15 @@
 
                     <div class="modal-body">
                         <label for="adminlastname" class="control-label">Last Name</label>
-                        <input type="text" name="lastname" id="lastname" class="form-control form-control-border" placeholder="Enter Admin Last Name" required>
+                        <input type="text" name="lastname" id="lastname" class="form-control form-control-border" placeholder="Enter Faculty Last Name" required>
                     </div>
                     <div class="modal-body">
                         <label for="edit_firstname" class="control-label">First Name</label>
-                        <input type="text" name="firstname" id="firstname" class="form-control form-control-border" placeholder="Enter Admin First Name" required>
+                        <input type="text" name="firstname" id="firstname" class="form-control form-control-border" placeholder="Enter Faculty First Name" required>
                     </div>
                     <div class="modal-body">
                         <label for="edit_middleinitial" class="control-label">Middle Initial</label>
-                        <input type="text" name="middleinitial" id="middleinitial" class="form-control form-control-border" placeholder="Enter Admin Middle Initial" required>
+                        <input type="text" name="middleinitial" id="middleinitial" class="form-control form-control-border" placeholder="Enter Faculty Middle Initial" required>
                     </div>
                     <div class="modal-body">
                         <label for="deptname" class="control-label">Department</label>
@@ -359,15 +359,15 @@
                     @method('PATCH')
                     <div class="modal-body">
                         <label for="adminlastname" class="control-label">Last Name</label>
-                        <input type="text" name="lastname" id="lastname" class="form-control form-control-border" placeholder="Enter Admin Last Name" required>
+                        <input type="text" name="lastname" id="lastname" class="form-control form-control-border" placeholder="Enter Faculty Last Name" required>
                     </div>
                     <div class="modal-body">
                         <label for="edit_firstname" class="control-label">First Name</label>
-                        <input type="text" name="firstname" id="firstname" class="form-control form-control-border" placeholder="Enter Admin First Name" required>
+                        <input type="text" name="firstname" id="firstname" class="form-control form-control-border" placeholder="Enter Faculty First Name" required>
                     </div>
                     <div class="modal-body">
                         <label for="edit_middleinitial" class="control-label">Middle Initial</label>
-                        <input type="text" name="middleinitial" id="middleinitial" class="form-control form-control-border" placeholder="Enter Admin Middle Initial" required>
+                        <input type="text" name="middleinitial" id="middleinitial" class="form-control form-control-border" placeholder="Enter Faculty Middle Initial" required>
                     </div>
                     <div class="modal-body">
                         <label for="deptname" class="control-label">Department</label>
