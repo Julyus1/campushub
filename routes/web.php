@@ -57,6 +57,9 @@ Route::middleware(['auth', 'userrole:1'])->group(function () {
     Route::post('superadmin/section/add', [SuperAdminController::class, 'store_section']);
     Route::patch('superadmin/section/update/{section}', [SuperAdminController::class, 'update_section']);
     Route::delete('superadmin/section/delete/{department}', [SuperAdminController::class, 'destroy_section']);
+
+    Route::get('superadmin/admin/register', [SuperadminController::class, 'show_admin']);
+    Route::get('superadmin/faculty/register', [SuperadminController::class, 'show_faculty']);
 });
 
 Route::middleware(['auth', 'userrole:2'])->group(function () {
