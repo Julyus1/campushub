@@ -337,6 +337,7 @@
                             @endforeach
                         </select>
                     </div>
+                    
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button class="btn btn-primary" type="submit">Save</button>
