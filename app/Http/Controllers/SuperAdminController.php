@@ -6,6 +6,7 @@ use App\AdminsTrait;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Faculty;
+use App\Models\Section;
 
 class SuperAdminController extends Controller
 {
@@ -40,8 +41,8 @@ class SuperAdminController extends Controller
     }
     public function show_faculty()
     {
-        $departments = Admin::all();
+        $sections = Section::all();
         $faculties = Faculty::all();
-        return view('superadmin.facultylist', compact('faculties', 'departments'));
+        return view('superadmin.facultylist', compact('faculties', 'sections'));
     }
 }
