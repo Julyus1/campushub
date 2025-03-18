@@ -14,16 +14,11 @@
     <!-- Custom fonts for this template-->
     @vite('public/vendor/fontawesome-free/css/all.min.css')
 
-    <title>CampusHub - Faculty Lists</title>
+    <title>CampusHub - Subjects</title>
 
 
     <!-- Custom styles for this template-->
     @vite('resources/css/sb-admin-2.min.css')
-
-
-    <style>
-
-    </style>
 
 </head>
 
@@ -33,7 +28,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <x-superadminsidebar></x-supersadminsidebar>
+        <x-superadminsidebar></x-superadminsidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -61,7 +56,29 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -219,15 +236,15 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-2 text-gray-800">Faculty Lists</h1>
-                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addFaculty"><i
-                                class="fas fa-plus fa-sm text-white-50"></i> Add New Faculty</div>
+                        <h1 class="h3 mb-2 text-gray-800">Subject Registration</h1>
+                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addSubject"><i
+                                class="fas fa-plus fa-sm text-white-50"></i> Add New Subject</div>
                     </div>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Faculty Lists</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Subject Lists</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -238,15 +255,17 @@
                                             <th>ID</th>
                                             <th>Date Created</th>
                                             <th>Name</th>
+                                            <th>Description</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($faculties as $faculty)
+                                        @foreach($subjects as $subject)
                                         <tr>
-                                            <td>{{ $faculty->id }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($faculty->created_at)->format('m/d/Y') }}</td>
-                                            <td>{{ $faculty->title }}</td>
+                                            <td>{{ $subject->id }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($subject->created_at)->format('m/d/Y') }}</td>
+                                            <td>{{ $subject->title }}</td>
+                                            <td>{{ $subject->description }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                     Action
@@ -254,14 +273,15 @@
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
                                                     <a class="dropdown-item edit_data"
-                                                        data-id="{{ $faculty->id }}"
-                                                        data-title="{{ $faculty->title }}"
+                                                        data-id="{{ $subject->id }}"
+                                                        data-title="{{ $subject->title }}"
+                                                        data-description="{{ $subject->description }}"
                                                         data-toggle="modal"
-                                                        data-target="#editFaculty">
+                                                        data-target="#editSubject">
                                                         <span class="fa fa-edit text-primary"></span> Edit
                                                     </a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data" data-id="{{ $faculty->id }}" data-toggle="modal" data-target="#delFaculty">
+                                                    <a class="dropdown-item delete_data" data-id="{{ $subject->id }}" data-toggle="modal" data-target="#delSubject">
                                                         <span class="fa fa-trash text-danger"></span> Delete
                                                     </a>
                                                 </div>
@@ -303,63 +323,27 @@
     </a>
 
     <!-- Logout Modal-->
-    <x-logoutmodal></x-logoutmodal>
 
-    <form method="POST" action='{{ url('faculty/register') }}'>
+    <form method="POST" action='{{ url('subject/register') }}'>
         @csrf
-        <div class="modal fade" id="addFaculty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="addSubject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add New Faculty</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Subject</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
 
                     <div class="modal-body">
-                        <label for="adminlastname" class="control-label">Last Name</label>
-                        <input type="text" name="lastname" id="lastname" class="form-control form-control-border" placeholder="Enter Faculty Last Name" required>
+                        <label for="deptname" class="control-label">Subject</label>
+                        <input type="text" name="title" id="deptname" class="form-control form-control-border" placeholder="Enter Subject Name" value="" required>
                     </div>
                     <div class="modal-body">
-                        <label for="edit_firstname" class="control-label">First Name</label>
-                        <input type="text" name="firstname" id="firstname" class="form-control form-control-border" placeholder="Enter Faculty First Name" required>
-                    </div>
-                    <div class="modal-body">
-                        <label for="edit_middleinitial" class="control-label">Middle Initial</label>
-                        <input type="text" name="middleinitial" id="middleinitial" class="form-control form-control-border" placeholder="Enter Faculty Middle Initial" required>
-                    </div>
-                    <div class="modal-body">
-                        <label for="deptname" class="control-label">Department</label>
-                        <select name="department_id" id="deptname" class="form-control form-control-sm form-control-border" required>
-                            @foreach ($departments as $department )
-                            <option value="{{ $department->id }}">{{ $department->title }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="modal-body">
-                        <label for="sections" class="control-label">Section(s)</label><br>
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1">CCIS1A</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                            <label class="form-check-label" for="inlineCheckbox2">CCIS1B</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                            <label class="form-check-label" for="inlineCheckbox3">CCIS1C</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                            <label class="form-check-label" for="inlineCheckbox3">CCIS1D</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                            <label class="form-check-label" for="inlineCheckbox3">CCIS1E</label>
-                            </div>
+                        <label for="deptdescription" class="control-label">Description</label>
+                        <textarea rows="3" name="description" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -374,54 +358,24 @@
 
 
 
-    <div class="modal fade" id="editFaculty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editSubject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form id="editForm" method="POST">
                     @csrf
                     @method('PATCH')
-                    <div class="modal-body">
-                        <label for="adminlastname" class="control-label">Last Name</label>
-                        <input type="text" name="lastname" id="lastname" class="form-control form-control-border" placeholder="Enter Faculty Last Name" required>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Subject Details</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
                     </div>
                     <div class="modal-body">
-                        <label for="edit_firstname" class="control-label">First Name</label>
-                        <input type="text" name="firstname" id="firstname" class="form-control form-control-border" placeholder="Enter Faculty First Name" required>
-                    </div>
-                    <div class="modal-body">
-                        <label for="edit_middleinitial" class="control-label">Middle Initial</label>
-                        <input type="text" name="middleinitial" id="middleinitial" class="form-control form-control-border" placeholder="Enter Faculty Middle Initial" required>
-                    </div>
-                    <div class="modal-body">
-                        <label for="deptname" class="control-label">Department</label>
-                        <select name="department_id" id="deptname" class="form-control form-control-sm form-control-border" required>
-                            @foreach ($departments as $department )
-                            <option value="{{ $department->id }}">{{ $department->title }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="modal-body">
-                        <label for="sections" class="control-label">Section(s)</label><br>
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1">CCIS1A</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                            <label class="form-check-label" for="inlineCheckbox2">CCIS1B</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                            <label class="form-check-label" for="inlineCheckbox3">CCIS1C</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                            <label class="form-check-label" for="inlineCheckbox3">CCIS1D</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                            <label class="form-check-label" for="inlineCheckbox3">CCIS1E</label>
-                            </div>
+                        <label for="edit_deptname" class="control-label">Subject</label>
+                        <input type="text" name="title" id="edit_deptname" class="form-control form-control-border" placeholder="Enter Subject Name" required>
+
+                        <label for="edit_deptdescription" class="control-label">Description</label>
+                        <textarea rows="3" name="description" id="edit_deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -431,7 +385,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="delFaculty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="delSubject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -444,7 +398,7 @@
                 <form method="POST" id="deleteForm">
                     @csrf
                     @method('DELETE')
-                    <div class="modal-body">Are you sure you want to delete this Faculty permanently?</div>
+                    <div class="modal-body">Are you sure you want to delete this Subject permanently?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -460,27 +414,25 @@
             $(document).ready(function() {
                 $('.edit_data').on('click', function() {
                     var id = $(this).data('id');
-                    var lastname = $(this).data('lastname');
-                    var firstname = $(this).data('firstname');
-                    var middleinitial = $(this).data('middleinitial');
+                    var title = $(this).data('title');
+                    var description = $(this).data('description');
 
                     // Open the modal
-                    $('#editFaculty').modal('show');
+                    $('#editSubject').modal('show');
 
                     // Set form field values
-                    $('#edit_lastname').val(lastname);
-                    $('#edit_firstname').val(firstname);
-                    $('#edit_middleinitial').val(middleinitial);
+                    $('#edit_deptname').val(title);
+                    $('#edit_deptdescription').val(description);
 
                     // Dynamically set the form action URL
-                    $('#editForm').attr('action', '/admin/update/' + id);
+                    $('#editForm').attr('action', '/subject/update/' + id);
                 });
             });
 
 
             $('.delete_data').on('click', function() {
-                let adminId = $(this).data('id');
-                let actionUrl = "/admin/delete/" + adminId;
+                let subjectId = $(this).data('id');
+                let actionUrl = "/subject/delete/" + subjectId;
                 $('#deleteForm').attr('action', actionUrl);
             });
 
@@ -488,6 +440,16 @@
         });
     </script>
 
+
+
+
+
+
+
+
+
+
+    <!-- Bootstrap core JavaScript-->
     @vite('resources/js/jquery.min.js')
     @vite('resources/js/bootstrap.bundle.min.js')
     @vite('resources/js/jquery.easing.min.js')
