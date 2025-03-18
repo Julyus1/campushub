@@ -12,7 +12,7 @@
     @vite('public/icons/font/bootstrap-icons.css')
     @vite('resources/css/bootstrap.min.css')
     <!-- Custom fonts for this template-->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    @vite('public/vendor/fontawesome-free/css/all.min.css')
 
     <title>CampusHub - Course Registration</title>
 

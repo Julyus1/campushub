@@ -11,7 +11,7 @@
     <link rel="icon" href="{{ asset('img/ch-logo.png') }}" type="image/png" />
     @vite('public/icons/font/bootstrap-icons.css')
     @vite('resources/css/bootstrap.min.css')
-    @vite('public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"')
+    @vite('public/vendor/fontawesome-free/css/all.min.css')
 
     <title>CampusHub - Student Registration</title>
 

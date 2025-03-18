@@ -12,7 +12,7 @@
     <title>CampusHub - Sign In</title>
 
     <!-- Custom fonts for this template-->
-    @vite('public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"')
+    @vite('public/vendor/fontawesome-free/css/all.min.css')
 
     <!-- Custom styles for this template-->
     @vite('resources/css/sb-admin-2.min.css')
