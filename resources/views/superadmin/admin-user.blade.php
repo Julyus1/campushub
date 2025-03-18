@@ -385,7 +385,7 @@
                 </div>
                 <form method="POST" id="deleteForm">
                     @csrf
-                    @method('DELETE');
+                    @method('DELETE')
                     <div class="modal-body">Are you sure you want to delete this account?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
