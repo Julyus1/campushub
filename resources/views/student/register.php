@@ -12,11 +12,11 @@
     <title>CampusHub - Sign In</title>
 
     <!-- Custom fonts for this template-->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    @vite('public/vendor/fontawesome-free/css/all.min.css')
 
     <!-- Custom styles for this template-->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
+    @vite('resources/css/sb-admin-2.min.css')
+    <link rel="icon" href="{{ asset('img/ch-logo.png') }}" type="image/png" />
 
 </head>
 
@@ -58,14 +58,10 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="../js/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+    @vite('resources/js/jquery.min.js')
+    @vite('resources/js/bootstrap.bundle.min.js')
+    @vite('resources/js/jquery.easing.min.js')
+    @vite('resources/js/sb-admin-2.min.js')
 
 </body>
 

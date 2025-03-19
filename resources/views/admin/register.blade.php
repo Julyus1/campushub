@@ -12,11 +12,11 @@
     <title>CampusHub - Sign In</title>
 
     <!-- Custom fonts for this template-->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    @vite('public/vendor/fontawesome-free/css/all.min.css')
 
     <!-- Custom styles for this template-->
     @vite('resources/css/sb-admin-2.min.css')
-    <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
+    <link rel="icon" href="{{ asset('img/ch-logo.png') }}" type="image/png" />
 
 </head>
 

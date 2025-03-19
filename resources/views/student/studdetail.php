@@ -12,7 +12,7 @@
     @vite('public/icons/font/bootstrap-icons.css')
     @vite('resources/css/bootstrap.min.css')
     <!-- Custom fonts for this template-->
-    @vite('public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"')
+    @vite('public/vendor/fontawesome-free/css/all.min.css')
 
     <title>CampusHub - Student Profile</title>
 
@@ -32,43 +32,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-light sidebar sidebar-light accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/student/dashboard') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="{{ asset('img/ch-logo.png') }}" style="height: 40px; width: 40px;">
-                </div>
-                <div class="sidebar-brand-text mx-3">CampusHub</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/student/dashboard') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span class="text-dark">Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider dark">
-
-            <!-- Heading -->
-            <div class="sidebar-heading text-dark">
-                Student Information
-            </div>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('#') }}">
-                    <i class="fas fa-fw fa-list-alt"></i>
-                    <span class="text-dark">Student Profile</span></a>
-            </li>
-
-            </ul>
-            <!-- End of Sidebar -->
+        <x-studentsidebar></x-studentsidebar>
+        <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -186,8 +151,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg"
-                                            alt="...">
+                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -198,8 +162,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg"
-                                            alt="...">
+                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -210,8 +173,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg"
-                                            alt="...">
+                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -243,8 +205,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Derek Joy</span>
-                                <img class="img-profile rounded-circle"
-                                    src="../img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}" alt="Profile Image">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

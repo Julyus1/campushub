@@ -107,5 +107,11 @@
             <span class="text-dark">Section Registration</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/superadmin/subject/list') }}">
+            <i class="fas fa-fw fa-id-card"></i>
+            <span class="text-dark">Subject Registration</span></a>
+    </li>
+
 </ul>
 <!-- End of Sidebar -->

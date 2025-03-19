@@ -268,7 +268,7 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item add-btn" data-toggle="modal" data-target="#addAdmin"><span
+                                                    <a class="dropdown-item add-btn" data-toggle="modal" data-target="#addStudent"><span
                                                     class="fas fa-plus fa-sm text-success"></span> Add Account</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
@@ -384,7 +384,7 @@
                 </div>
                 <form method="POST" id="deleteForm">
                     @csrf
-                    @method('DELETE');
+                    @method('DELETE')
                     <div class="modal-body">Are you sure you want to delete this account?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>

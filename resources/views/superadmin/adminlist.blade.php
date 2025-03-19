@@ -12,7 +12,7 @@
     @vite('public/icons/font/bootstrap-icons.css')
     @vite('resources/css/bootstrap.min.css')
     <!-- Custom fonts for this template-->
-    @vite('public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"')
+    @vite('public/vendor/fontawesome-free/css/all.min.css')
 
     <title>CampusHub - Admin Lists</title>
 
@@ -403,7 +403,7 @@
                 </div>
                 <form method="POST" id="deleteForm">
                     @csrf
-                    @method('DELETE');
+                    @method('DELETE')
                     <div class="modal-body">Are you sure you want to delete this Admin permanently?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>

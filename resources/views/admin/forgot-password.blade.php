@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Forgot Password - CyberHub</title>
-  <link rel="icon" href="../img/ch-logo.png" type="image/gif" />
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <link rel="stylesheet" href="../icons/font/bootstrap-icons.css">
+  <link rel="icon" href="{{ asset('img/ch-logo.png') }}" type="image/png" />
+    @vite('public/icons/font/bootstrap-icons.css')
+    @vite('resources/css/bootstrap.min.css')
   <style>
     body {
       background: url('../img/bg3.png') no-repeat center center fixed;
@@ -57,6 +57,6 @@
     </form>
     <a href="login.php" class="back-button">Back to Login</a>
   </div>
-  <script src="../js/bootstrap.bundle.min.js"></script>
+  @vite('resources/js/bootstrap.bundle.min.js')
 </body>
 </html>
