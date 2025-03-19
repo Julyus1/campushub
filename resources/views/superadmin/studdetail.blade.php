@@ -221,7 +221,7 @@
                         <div class="card-header d-flex justify-content-between align-items-center py-4">
                             <h6 class="m-0 font-weight-bold text-primary">Student Details</h6>
                             <div class="card-tools d-flex gap-2">
-                                <a class="btn btn-sm btn-primary btn-flat" href="{{ url('student/update/' . $student->id) }}"><i class="fa fa-edit"></i> Edit</a>
+                                <a class="btn btn-sm btn-primary btn-flat" href="{{ url('superadmin/student/update/' . $student->id) }}"><i class="fa fa-edit"></i> Edit</a>
                                 <button class="btn btn-sm btn-danger btn-flat delete-btn" data-id="{{ $student->id }}" data-toggle="modal" data-target="#delStudent">
                                     <i class="fa fa-trash"></i> Delete
                                 </button>
@@ -565,7 +565,7 @@
                     let deleteForm = document.getElementById('deleteForm');
 
                     // Set the correct action URL dynamically
-                    deleteForm.setAttribute('action', `{{ url('student/delete') }}/${studentId}`);
+                    deleteForm.setAttribute('action', `{{ url('superadmin/student/delete') }}/${studentId}`);
                 });
             });
         });

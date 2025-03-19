@@ -38,7 +38,7 @@
                 <h6 class="collapse-header">User Lists:</h6>
                 <a class="collapse-item" href="{{ url('/superadmin/admin/list') }}">Admin</a>
                 <a class="collapse-item" href="{{ url('/superadmin/faculty/list') }}">Faculty</a>
-                <a class="collapse-item" href="{{ url('/superadmin/student/list') }}">Student</a>
+                <a class="collapse-item" href="{{ url('/superadmin/student/user/list') }}">Student</a>
             </div>
         </div>
     </li>

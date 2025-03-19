@@ -31,9 +31,14 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'userrole:1'])->group(function () {
     Route::get('/superadmin/dashboard', [SuperAdminController::class, 'index']);
-    Route::get('superadmin/admin/list', [SuperadminController::class, 'admin_list']);
-    Route::get('superadmin/faculty/list', [SuperadminController::class, 'faculty_list']);
-    Route::get('superadmin/student/list', [SuperadminController::class, 'student_list']);
+
+    //admin user management
+    Route::get('superadmin/admin/list', [SuperadminController::class, 'admin_user']);
+    Route::post('superadmin/admin/create-user/{admin}', [SuperadminController::class, 'admin_store_user']);
+
+
+    Route::get('superadmin/faculty/list', [SuperadminController::class, 'faculty_user']);
+    Route::get('superadmin/student/user/list', [SuperadminController::class, 'student_user']);
 
     Route::get('superadmin/student/list', [SuperAdminController::class, 'show_stud']);
     Route::get('superadmin/student/profile/{student}', [SuperAdminController::class, 'stud_profile']);
@@ -59,6 +64,10 @@ Route::middleware(['auth', 'userrole:1'])->group(function () {
     Route::delete('superadmin/section/delete/{department}', [SuperAdminController::class, 'destroy_section']);
 
     Route::get('superadmin/admin/register', [SuperadminController::class, 'show_admin']);
+    Route::post('superadmin/admin/register', [SuperadminController::class, 'store_admin']);
+    Route::patch('superadmin/admin/update/{admin}', [SuperAdminController::class, 'update_admin']);
+    Route::delete('superadmin/admin/delete/{admin}', [SuperadminController::class, 'destroy_admin']);
+
     Route::get('superadmin/faculty/register', [SuperadminController::class, 'show_faculty']);
 });
 

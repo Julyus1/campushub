@@ -17,7 +17,10 @@ return new class extends Migration
 
             $table->string('first_name');
             $table->string('last_name');
-            $table->boolean('isRegistered')->default(false);
+            $table->string('middle_name');
+            $table->unsignedBigInteger('dept_id');
+
+            $table->boolean('isregistered')->default(false);
         });
     }
 

@@ -125,7 +125,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -136,7 +136,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -147,7 +147,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -312,7 +312,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="{{ url('course/add') }}" method="POST">
+                <form action="{{ url('superadmin/course/add') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <label for="deptname" class="control-label">Department</label>
@@ -407,7 +407,7 @@
                 let departmentId = $(this).closest("tr").find("td:nth-child(3)").data("deptid");
                 console.log("Course ID:", courseId);
 
-                $("#editForm").attr("action", "/course/update/" + courseId);
+                $("#editForm").attr("action", "{{ url('superadmin/course/update') }}/" + courseId);
                 $("#editcoursename").val(courseTitle);
                 $("#editdescription").val(courseDescription);
                 $("#editdept").val(departmentId);
@@ -415,7 +415,7 @@
 
             $('.delete_data').on('click', function() {
                 let courseId = $(this).data('id');
-                let actionUrl = "/course/delete/" + courseId;
+                let actionUrl = "{{ url('superadmin/course/delete') }}/" + courseId;
                 $('#deleteForm').attr('action', actionUrl);
             });
         });

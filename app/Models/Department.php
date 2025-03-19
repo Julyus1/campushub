@@ -11,7 +11,10 @@ class Department extends Model
     use HasFactory;
 
     protected $guarded = [];
-
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'dept_id');
+    }
     public function course()
     {
         return $this->hasMany(Course::class);

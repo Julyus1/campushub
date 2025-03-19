@@ -17,7 +17,6 @@ return new class extends Migration
 
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
             $table->string('year_level');
-            $table->string('stud_class');
             $table->string('department');
             $table->string('course');
             $table->string('firstname');
@@ -42,6 +41,7 @@ return new class extends Migration
             $table->string('emergencyperson');
             $table->string('relationship');
             $table->string('emergencycontact');
+            $table->boolean('isregistered')->default(false);
             $table->timestamps();
         });
     }

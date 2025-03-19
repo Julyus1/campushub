@@ -147,7 +147,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -158,7 +158,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -169,7 +169,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -324,7 +324,7 @@
 
     <!-- Logout Modal-->
 
-    <form method="POST" action='{{ url('department/register') }}'>
+    <form method="POST" action='{{ url('superadmin/department/register') }}'>
         @csrf
         <div class="modal fade" id="addDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -425,14 +425,14 @@
                     $('#edit_deptdescription').val(description);
 
                     // Dynamically set the form action URL
-                    $('#editForm').attr('action', '/department/update/' + id);
+                    $('#editForm').attr('action', "{{ url('superadmin/department/update') }}/" + id);
                 });
             });
 
 
             $('.delete_data').on('click', function() {
                 let departmentId = $(this).data('id');
-                let actionUrl = "/department/delete/" + departmentId;
+                let actionUrl = "{{ url('superadmin/department/delete') }}/" + departmentId;
                 $('#deleteForm').attr('action', actionUrl);
             });
 

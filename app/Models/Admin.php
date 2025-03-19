@@ -12,8 +12,12 @@ class Admin extends Model
 
     protected $guarded = [];
 
+    public function department()
+    {
+        return $this->hasOne(Department::class);
+    }
     public function user()
     {
-        return $this->hasOne(User::class, 'role_data_id');
+        return $this->hasOne(User::class, 'role_data_id')->where('role_id', 2);
     }
 }

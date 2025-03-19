@@ -16,6 +16,10 @@ trait AdminsTrait
     {
         return 'admin.';
     }
+    public function redirectprefix()
+    {
+        return 'admin/';
+    }
     public function show_stud()
     {
         $students = Student::latest()->get();
@@ -35,7 +39,7 @@ trait AdminsTrait
             'section_id' => request('section_id'),
 
             'year_level' => request('year_level'),
-            'stud_class' => request('studclass'),
+
             'department' => request('department'),
             'course' => request('course'),
             'email' => request('email'),
@@ -62,7 +66,7 @@ trait AdminsTrait
             'emergencycontact' => request('emergencycontact'),
 
         ]);
-        return redirect('student/register');
+        return redirect($this->redirectprefix() . 'student/register');
     }
 
     public function stud_profile(Student $student)
@@ -111,12 +115,12 @@ trait AdminsTrait
 
         ]);
 
-        return redirect(url('student/list'));
+        return redirect(url($this->redirectprefix() . 'student/list'));
     }
     public function stud_destroy(Student $student)
     {
         $student->delete();
-        return redirect(url('student/list'));
+        return redirect(url($this->redirectprefix() . 'student/list'));
     }
 
     public function show_course()
@@ -137,7 +141,7 @@ trait AdminsTrait
             'description' => request('description')
         ]);
 
-        return redirect('course/register');
+        return redirect($this->redirectprefix() . 'course/register');
     }
 
     public function update_course(Request $request, Course $course)
@@ -154,13 +158,13 @@ trait AdminsTrait
         $course->update($validated);
 
 
-        return redirect(url('course/register'));
+        return redirect(url($this->redirectprefix() . 'course/register'));
     }
 
     public function destroy_course(Course $course)
     {
         $course->delete();
-        return redirect(url('course/register'));
+        return redirect(url($this->redirectprefix() . 'course/register'));
     }
 
     public function show_department()
@@ -178,7 +182,7 @@ trait AdminsTrait
             'description' => request('description')
         ]);
 
-        return  redirect('department/register');
+        return  redirect($this->redirectprefix() . 'department/register');
     }
 
     public function update_department(Request $request, Department $department)
@@ -195,13 +199,13 @@ trait AdminsTrait
         $department->update($validated);
 
 
-        return redirect(url('department/register'));
+        return redirect(url($this->redirectprefix() . 'department/register'));
     }
 
     public function destroy_department(Department $department)
     {
         $department->delete();
-        return redirect(url('department/register'));
+        return redirect(url($this->redirectprefix() . 'department/register'));
     }
 
 

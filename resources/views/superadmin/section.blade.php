@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('img/ch-logo.png') }}" type="image/png" />
-	@vite('public/icons/font/bootstrap-icons.css')
+    @vite('public/icons/font/bootstrap-icons.css')
     @vite('resources/css/bootstrap.min.css')
     <!-- Custom fonts for this template-->
     @vite('public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"')
@@ -147,7 +147,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -158,7 +158,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -169,7 +169,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -370,7 +370,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="{{ url('section/add') }}" method="POST">
+                <form action="{{ url('superadmin/section/add') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <label for="coursename" class="control-label">Select Course</label>
@@ -417,27 +417,29 @@
 
     @vite('resources/js/jquery-3.6.0.min.js')
     <script>
-        $(document).ready(function() {
-            $('.edit_data').on('click', function() {
-                var id = $(this).data('id');
-                var courseId = $(this).data('courseid');
-                var title = $(this).data('title');
+        document.addEventListener("DOMContentLoaded", function() {
+            $(document).ready(function() {
+                $('.edit_data').on('click', function() {
+                    var id = $(this).data('id');
+                    var courseId = $(this).data('courseid');
+                    var title = $(this).data('title');
 
-                // Update form action dynamically
-                $('#editForm').attr('action', '/section/update/' + id);
+                    // Update form action dynamically
+                    $('#editForm').attr('action', "{{ url('superadmin/section/update') }}/" + id);
 
-                // Set the field values
-                $('#edit_coursename').val(courseId);
-                $('#edit_section').val(title);
+                    // Set the field values
+                    $('#edit_coursename').val(courseId);
+                    $('#edit_section').val(title);
+                });
             });
-        });
-        
-        $(document).ready(function() {
-            $('.delete_data').on('click', function() {
-                var id = $(this).data('id');
 
-                // Set form action dynamically
-                $('#deleteForm').attr('action', '/section/delete/' + id);
+            $(document).ready(function() {
+                $('.delete_data').on('click', function() {
+                    var id = $(this).data('id');
+
+                    // Set form action dynamically
+                    $('#deleteForm').attr('action', "{{ url('superadmin/section/delete') }}/" + id);
+                });
             });
         });
     </script>
