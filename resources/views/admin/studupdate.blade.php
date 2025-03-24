@@ -271,8 +271,10 @@
                                     <form action="" id="student_form">
                                         <input type="hidden" name="id">
                                         <fieldset class="border-bottom">
+                                            <label>
+                                                <h3>Student Profile</h3>
+                                            </label>
                                             <div class="row">
-
                                                 <div class="form-group col-md-4">
                                                     <label for="yearlevel" class="control-label">Year Level</label>
                                                     <select name="year_level" id="yearlevel" class="form-control form-control-sm rounded-0" required>
@@ -281,12 +283,15 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="studclass" class="control-label">Student Class: </label>
-                                                    <select name="stud_class" id="studclass" class="form-control form-control-sm rounded-0" required>
-                                                        <option>New Student</option>
-                                                        <option>Old Student</option>
-
-
+                                                    <label for="email" class="control-label">Email: </label>
+                                                    <input type="text" name="email" id="email" autofocus class="form-control form-control-sm rounded-0" required>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="section" class="control-label">Section: </label>
+                                                    <select name="section_id" id="section" class="form-control form-control-sm rounded-0" required>
+                                                        @foreach($sections as $section)
+                                                        <option value="{{ $section->id }}">{{ $section->title }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -311,12 +316,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="section" class="control-label">Section: </label>
-                                                    <select name="section_id" id="section" class="form-control form-control-sm rounded-0" required>
-                                                        @foreach($sections as $section)
-                                                        <option value="{{ $section->id }}">{{ $section->title }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                    <label for="contact" class="control-label">Contact #</label>
+                                                    <input type="text" name="contact" id="contact" class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -326,11 +327,11 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="middlename" class="control-label">Middle Name: </label>
-                                                    <input type="text" name="middlename" id="middlename" class="form-control form-control-sm rounded-0" placeholder="optional">
+                                                    <input type="text" name="middlename" id="middlename" class="form-control form-control-sm rounded-0" value="{{ old('firstname', $student->middlename) }}">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="lastname" class="control-label">Last Name: </label>
-                                                    <input type="text" name="lastname" id="lastname" autofocus class="form-control form-control-sm rounded-0" required>
+                                                    <input type="text" name="lastname" id="lastname" autofocus class="form-control form-control-sm rounded-0" value="{{ old('firstname', $student->lastname) }}" required>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -346,8 +347,11 @@
                                                     <input type="date" name="dob" id="dob" class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="contact" class="control-label">Contact #</label>
-                                                    <input type="text" name="contact" id="contact" class="form-control form-control-sm rounded-0" required>
+                                                    <label for="nationality" class="control-label">Nationality: </label>
+                                                    <select name="nationality" id="nationality" class="form-control form-control-sm rounded-0" required>
+                                                        <option>Filipino</option>
+                                                        <option>Foreign</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -360,11 +364,8 @@
                                                     <input type="text" name="origin" id="origin" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="nationality" class="control-label">Nationality: </label>
-                                                    <select name="nationality" id="nationality" class="form-control form-control-sm rounded-0" required>
-                                                        <option>Filipino</option>
-                                                        <option>Foreign</option>
-                                                    </select>
+                                                    <label for="birthplace" class="control-label">Place of Birth: </label>
+                                                    <input type="text" name="birthplace" id="birthplace" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -376,16 +377,16 @@
                                                         <option>Widdowed</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="birthplace" class="control-label">Place of Birth: </label>
-                                                    <input type="text" name="birthplace" id="birthplace" autofocus class="form-control form-control-sm rounded-0" required>
-                                                </div>
+                                                
+                                            </div>
+                                            <label>
+                                                <h3>Complete Address</h3>
+                                            </label>
+                                            <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="stname" class="control-label">Number & Street Name: </label>
                                                     <input type="text" name="stname" id="stname" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
-                                            </div>
-                                            <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="brgy" class="control-label">Brgy, Bario, Village, Subdivision: </label>
                                                     <input type="text" name="brgy" id="brgy" autofocus class="form-control form-control-sm rounded-0" required>
@@ -394,12 +395,12 @@
                                                     <label for="city" class="control-label">Municipality, City: </label>
                                                     <input type="text" name="city" id="city" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="province" class="control-label">Province: </label>
                                                     <input type="text" name="province" id="province" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
-                                            </div>
-                                            <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="postalcode" class="control-label">Postal Code: </label>
                                                     <input type="text" name="postalcode" id="postalcode" autofocus class="form-control form-control-sm rounded-0" required>
@@ -408,11 +409,17 @@
                                                     <label for="homenumber" class="control-label">Home Phone No.: </label>
                                                     <input type="text" name="homenumber" id="homenumber" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
+                                                
+                                            </div>
+                                            <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="mobilenumber" class="control-label">Mobile Phone No.: </label>
                                                     <input type="text" name="mobilenumber" id="mobilenumber" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                             </div>
+                                            <label>
+                                                <h3>In Case of Emergency</h3>
+                                            </label>
                                             <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="emergencyperson" class="control-label">Emergency Contact Person: </label>

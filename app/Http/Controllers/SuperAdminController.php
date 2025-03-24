@@ -137,7 +137,7 @@ class SuperAdminController extends Controller
 
         Admin::create($validated);
 
-        return redirect()->back()->with('sucess', 'Admin entity successfully created!');
+        return redirect()->back()->with('success', 'Admin entity successfully created!');
     }
 
     public function update_admin(Request $request, $id)
@@ -150,7 +150,7 @@ class SuperAdminController extends Controller
         ]);
         $admin = Admin::findOrFail($id);
         $admin->update($validated);
-        return redirect()->back()->with('sucess', 'Admin entity successfully created!');
+        return redirect()->back()->with('success', 'Admin entity successfully created!');
     }
 
     public function destroy_admin($id)
@@ -183,7 +183,7 @@ class SuperAdminController extends Controller
 
         Faculty::create($validated);
 
-        return redirect()->back()->with('sucess', 'Faculty entity successfully created!');
+        return redirect()->back()->with('success', 'Faculty entity successfully created!');
     }
     public function update_faculty(Request $request, $id)
     {
@@ -196,14 +196,14 @@ class SuperAdminController extends Controller
         $faculty = Faculty::find($id);
 
         $faculty->update($validated);
-        return redirect()->back()->with('sucess', 'Faculty entity successfully updated!');
+        return redirect()->back()->with('success', 'Faculty entity successfully updated!');
     }
     public function destroy_faculty($id)
     {
         $faculty = Faculty::findOrFail($id);
 
         $faculty->delete();
-        return redirect()->back()->with('sucess', 'Faculty entity successfully deleted!');
+        return redirect()->back()->with('success', 'Faculty entity successfully deleted!');
     }
 
     public function show_subject()
@@ -222,6 +222,6 @@ class SuperAdminController extends Controller
 
         Subject::create($validated);
 
-        return redirect()->back()->with('sucess', 'Subject entity successfully created!');
+        return redirect()->back()->with('success', 'Subject entity successfully created!');
     }
 }

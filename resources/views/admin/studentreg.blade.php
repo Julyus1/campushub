@@ -263,6 +263,15 @@
                                                     <label for="email" class="control-label">Email: </label>
                                                     <input type="text" name="email" id="email" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="section" class="control-label">Section: </label>
+                                                    <select name="section_id" id="section_id" class="form-control form-control-sm rounded-0" required>
+                                                        <option value="">Select Section</option>
+                                                        @foreach($sections as $section)
+                                                        <option value="{{ $section->id }}">{{ $section->title }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-md-4">
@@ -285,13 +294,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="section" class="control-label">Section: </label>
-                                                    <select name="section_id" id="section_id" class="form-control form-control-sm rounded-0" required>
-                                                        <option value="">Select Section</option>
-                                                        @foreach($sections as $section)
-                                                        <option value="{{ $section->id }}">{{ $section->title }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                    <label for="contact" class="control-label">Contact #</label>
+                                                    <input type="text" name="contact" id="contact" class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -321,8 +325,11 @@
                                                     <input type="date" name="dob" id="dob" class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="contact" class="control-label">Contact #</label>
-                                                    <input type="text" name="contact" id="contact" class="form-control form-control-sm rounded-0" required>
+                                                    <label for="nationality" class="control-label">Nationality: </label>
+                                                    <select name="nationality" id="nationality" class="form-control form-control-sm rounded-0" required>
+                                                        <option>Filipino</option>
+                                                        <option>Foreign</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -335,11 +342,8 @@
                                                     <input type="text" name="origin" id="origin" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="nationality" class="control-label">Nationality: </label>
-                                                    <select name="nationality" id="nationality" class="form-control form-control-sm rounded-0" required>
-                                                        <option>Filipino</option>
-                                                        <option>Foreign</option>
-                                                    </select>
+                                                    <label for="birthplace" class="control-label">Place of Birth: </label>
+                                                    <input type="text" name="birthplace" id="birthplace" autofocus class="form-control form-control-sm rounded-0" required>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -351,10 +355,7 @@
                                                         <option>Widdowed</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="birthplace" class="control-label">Place of Birth: </label>
-                                                    <input type="text" name="birthplace" id="birthplace" autofocus class="form-control form-control-sm rounded-0" required>
-                                                </div>
+                                                
                                             </div>
                                             <label>
                                                 <h3>Complete Address</h3>
