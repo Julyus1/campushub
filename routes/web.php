@@ -43,7 +43,7 @@ Route::middleware(['auth', 'userrole:1'])->group(function () {
 
     Route::get('superadmin/student/user', [SuperadminController::class, 'student_user']);
     Route::post('superadmin/student/create-user/{student}', [SuperadminController::class, 'student_store_user']);
-
+    Route::delete('superadmin/student/delete-user', [SuperadminController::class, 'student_destroy_user']);
     Route::get('superadmin/student/list', [SuperAdminController::class, 'show_stud']);
     Route::get('superadmin/student/profile/{student}', [SuperAdminController::class, 'stud_profile']);
     Route::get('superadmin/student/register', [SuperAdminController::class, 'create_stud']);

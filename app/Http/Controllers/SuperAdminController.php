@@ -117,6 +117,17 @@ class SuperAdminController extends Controller
         return redirect()->back()->with('success', 'User account created successfully!');
     }
 
+    public function stud_destroy($id)
+    {
+        $student = Student::findOrFail($id);
+        if ($student->user) {
+            $student->user->delete();
+        }
+        $student->delete();
+
+        return redirect(url('superadmin/student/list'));
+    }
+
 
     public function show_admin()
     {
@@ -201,7 +212,9 @@ class SuperAdminController extends Controller
     public function destroy_faculty($id)
     {
         $faculty = Faculty::findOrFail($id);
-
+        if ($faculty->user) {
+            $faculty->user->delete();
+        }
         $faculty->delete();
         return redirect()->back()->with('success', 'Faculty entity successfully deleted!');
     }

@@ -396,8 +396,8 @@
 
         // Handle Delete Admin Modal
         $(document).on('click', '.delete_data', function() {
-            var adminId = $(this).data('id');
-            var actionUrl = "{{ url('superadmin/student/delete') }}/" + adminId;
+            var studentId = $(this).data('id');
+            var actionUrl = "{{ url('superadmin/student/delete-user') }}/" + studentId;
 
             // Set the form action dynamically
             $('#deleteForm').attr('action', actionUrl);
