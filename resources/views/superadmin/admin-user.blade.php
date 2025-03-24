@@ -261,9 +261,6 @@
                                     <tbody>
                                         @foreach ($unregisteredAdmins as $admin )
                                         <tr>
-
-
-
                                             <td>{{ $admin->id }}</td>
                                             <td>{{\Carbon\Carbon::parse($admin->created_at)->format('m/d/Y') }}</td>
                                             <td>{{$admin->first_name . " " . $admin->last_name}}</td>

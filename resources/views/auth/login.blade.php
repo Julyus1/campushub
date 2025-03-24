@@ -112,6 +112,11 @@
                 <!-- <span class="back-button" onclick="prevStep()"><i class="bi bi-arrow-left"></i></span> -->
                 <h2>Welcome to CampusHub!</h2>
                 <p>An institution delivering world-class education.</p>
+                @auth
+                <a href="{{ url()->previous() }}" class="btn btn-secondary w-100 mt-2">Go Back</a>
+                @endauth
+                @guest
+
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -126,7 +131,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Log in</button>
                 </form>
-
+                @endguest
             </div>
             <div class="progress-dots mt-3">
                 <span id="dot1" class="active"></span>

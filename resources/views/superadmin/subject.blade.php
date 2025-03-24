@@ -147,7 +147,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -158,7 +158,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -169,7 +169,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -264,7 +264,7 @@
                                         <tr>
                                             <td>{{ $subject->id }}</td>
                                             <td>{{ \Carbon\Carbon::parse($subject->created_at)->format('m/d/Y') }}</td>
-                                            <td>{{ $subject->title }}</td>
+                                            <td>{{ $subject->name }}</td>
                                             <td>{{ $subject->description }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
@@ -324,7 +324,7 @@
 
     <!-- Logout Modal-->
 
-    <form method="POST" action='{{ url('subject/register') }}'>
+    <form method="POST" action='{{ url('superadmin/subject/register') }}'>
         @csrf
         <div class="modal fade" id="addSubject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -339,7 +339,17 @@
 
                     <div class="modal-body">
                         <label for="deptname" class="control-label">Subject</label>
-                        <input type="text" name="title" id="deptname" class="form-control form-control-border" placeholder="Enter Subject Name" value="" required>
+                        <input type="text" name="name" id="subname" class="form-control form-control-border" placeholder="Enter Subject Name" value="" required>
+                    </div>
+                    <div class="modal-body">
+                        <label for="deptname" class="control-label">Assign Teacher</label>
+                        <select name="faculty" id="faculty" class="form-control form-control-border">
+                            <option value="">None</option>
+                            @foreach ($faculties as $faculty)
+
+                            <option value="{{ $faculty->id }}">{{ $faculty->last_name . " " . $faculty->first_name . " " . $faculty->middle_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="modal-body">
                         <label for="deptdescription" class="control-label">Description</label>

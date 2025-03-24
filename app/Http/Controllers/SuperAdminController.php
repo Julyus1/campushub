@@ -7,8 +7,10 @@ use App\AdminsTrait;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Faculty;
+use App\Models\Student;
 use App\Models\Section;
 use App\Models\User;
+use App\Models\Subject;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -58,7 +60,16 @@ class SuperAdminController extends Controller
         return redirect()->back()->with('success', 'Admin account created successfully!');
     }
 
-
+    public function faculty_user()
+    {
+        $unregisteredFaculty = Faculty::where('isregistered', false)->get();
+        return view('superadmin.faculty-user', compact('unregisteredFaculty'));
+    }
+    public function student_user()
+    {
+        $unregisteredStudent = Student::where('isregistered', false)->get();
+        return view('superadmin.student-user');
+    }
 
 
     public function show_admin()
@@ -107,19 +118,64 @@ class SuperAdminController extends Controller
         return redirect()->back()->with('success', 'admin deleted successfully!');
     }
 
-    public function faculty_user()
-    {
-        return view('superadmin.faculty-user');
-    }
-    public function student_user()
-    {
-        return view('superadmin.student-user');
-    }
+
 
     public function show_faculty()
     {
-        $sections = Section::all();
+
         $faculties = Faculty::all();
-        return view('superadmin.facultylist', compact('faculties', 'sections'));
+        return view('superadmin.facultylist', compact('faculties'));
+    }
+    public function store_faculty(Request $request)
+    {
+
+        $validated = $request->validate([
+            'first_name' => 'string|required',
+            'middle_name' => 'nullable|string',
+            'last_name' => 'string|required'
+        ]);
+
+        Faculty::create($validated);
+
+        return redirect()->back()->with('sucess', 'Faculty entity successfully created!');
+    }
+    public function update_faculty(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'first_name' => 'string|required',
+            'middle_name' => 'nullable|string',
+            'last_name' => 'string|required'
+
+        ]);
+        $faculty = Faculty::find($id);
+
+        $faculty->update($validated);
+        return redirect()->back()->with('sucess', 'Faculty entity successfully updated!');
+    }
+    public function destroy_faculty($id)
+    {
+        $faculty = Faculty::findOrFail($id);
+
+        $faculty->delete();
+        return redirect()->back()->with('sucess', 'Faculty entity successfully deleted!');
+    }
+
+    public function show_subject()
+    {
+        $subjects = Subject::all();
+        $faculties = Faculty::all();
+        return view('superadmin.subject', compact('subjects', 'faculties'));
+    }
+    public function store_subject(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'string|required',
+            'description' => 'string|required',
+            'faculty' => 'integer'
+        ]);
+
+        Subject::create($validated);
+
+        return redirect()->back()->with('sucess', 'Subject entity successfully created!');
     }
 }

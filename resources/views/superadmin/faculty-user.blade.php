@@ -148,7 +148,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -159,7 +159,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -170,7 +170,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -258,10 +258,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($unregisteredFaculty as $Faculty)
                                         <tr>
-                                            <td>1</td>
-                                            <td>2025/20/20</td>
-                                            <td>Karl Bartolome</td>
+                                            <td>{{ $Faculty->id }}</td>
+                                            <td>{{$Faculty->created_at}}</td>
+                                            <td>{{$Faculty->last_name . " " . $Faculty->first_name . " " . $Faculty->middle_name  }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                     Action
@@ -269,12 +270,13 @@
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
                                                     <a class="dropdown-item add-btn" data-toggle="modal" data-target="#addFaculty"><span
-                                                    class="fas fa-plus fa-sm text-success"></span> Add Account</a>
+                                                            class="fas fa-plus fa-sm text-success"></span> Add Account</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
                                                 </div>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
 
@@ -397,10 +399,10 @@
 
     @vite('resources/js/jquery-3.6.0.min.js')
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            $(document).ready(function () {
+        document.addEventListener("DOMContentLoaded", function() {
+            $(document).ready(function() {
                 // Handle Edit Faculty Modal
-                $(document).on('click', '.edit_data', function () {
+                $(document).on('click', '.edit_data', function() {
                     var facultyId = $(this).data('id');
                     var email = $(this).data('email');
                     var password = $(this).data('password');
@@ -417,10 +419,10 @@
                 });
 
                 // Handle Delete Faculty Modal
-                $(document).on('click', '.delete_data', function () {
+                $(document).on('click', '.delete_data', function() {
                     var facultyId = $(this).data('id');
                     var actionUrl = "/faculty/delete/" + facultyId;
-                    
+
                     // Set the form action dynamically
                     $('#deleteForm').attr('action', actionUrl);
 
@@ -429,7 +431,6 @@
                 });
             });
         });
-
     </script>
 
     <!-- Bootstrap core JavaScript-->

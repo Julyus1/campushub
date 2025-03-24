@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Superadmin;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -69,6 +70,12 @@ Route::middleware(['auth', 'userrole:1'])->group(function () {
     Route::delete('superadmin/admin/delete/{admin}', [SuperadminController::class, 'destroy_admin']);
 
     Route::get('superadmin/faculty/register', [SuperadminController::class, 'show_faculty']);
+    Route::post('superadmin/faculty/register', [SuperadminController::class, 'store_faculty']);
+    Route::patch('superadmin/faculty/update/{faculty}', [SuperadminController::class, 'update_faculty']);
+    Route::delete('superadmin/faculty/delete/{faculty}', [SuperadminController::class, 'destroy_faculty']);
+
+    Route::get('superadmin/subject/list', [SuperAdminController::class, 'show_subject']);
+    Route::post('superadmin/subject/register', [SuperadminController::class, 'store_subject']);
 });
 
 Route::middleware(['auth', 'userrole:2'])->group(function () {

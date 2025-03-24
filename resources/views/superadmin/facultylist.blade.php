@@ -246,7 +246,7 @@
                                             <tr>
                                                 <td>{{ $faculty->id }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($faculty->created_at)->format('m/d/Y') }}</td>
-                                                <td>{{ $faculty->title }}</td>
+                                                <td>{{ $faculty->last_name . " ". $faculty->first_name . " " . $faculty->middle_name }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                         Action
@@ -255,7 +255,7 @@
                                                     <div class="dropdown-menu" role="menu">
                                                         <a class="dropdown-item edit_data"
                                                             data-id="{{ $faculty->id }}"
-                                                            data-title="{{ $faculty->title }}"
+                                                            data-title="{{ $faculty->first_name }}"
                                                             data-toggle="modal"
                                                             data-target="#editFaculty">
                                                             <span class="fa fa-edit text-primary"></span> Edit
@@ -320,26 +320,18 @@
 
                     <div class="modal-body">
                         <label for="adminlastname" class="control-label">Last Name</label>
-                        <input type="text" name="lastname" id="lastname" class="form-control form-control-border" placeholder="Enter Faculty Last Name" required>
+                        <input type="text" name="last_name" id="lastname" class="form-control form-control-border" placeholder="Enter Faculty Last Name" required>
                     </div>
                     <div class="modal-body">
                         <label for="edit_firstname" class="control-label">First Name</label>
-                        <input type="text" name="firstname" id="firstname" class="form-control form-control-border" placeholder="Enter Faculty First Name" required>
+                        <input type="text" name="first_name" id="firstname" class="form-control form-control-border" placeholder="Enter Faculty First Name" required>
                     </div>
                     <div class="modal-body">
                         <label for="edit_middleinitial" class="control-label">Middle Initial</label>
-                        <input type="text" name="middleinitial" id="middleinitial" class="form-control form-control-border" placeholder="Enter Faculty Middle Initial" required>
+                        <input type="text" name="middle_name" id="middleinitial" class="form-control form-control-border" placeholder="Enter Faculty Middle Initial">
                     </div>
 
-                    <div class="modal-body">
-                        <label for="sections" class="control-label">Section(s)</label><br>
-                        @foreach($sections as $section)
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="section_{{ $section->id }}" name="sections[]" value="{{ $section->id }}">
-                            <label class="form-check-label" for="section_{{ $section->id }}">{{ $section->title }}</label>
-                        </div>
-                        @endforeach
-                    </div>
+
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button class="btn btn-primary" type="submit">Save</button>
@@ -369,32 +361,10 @@
                     </div>
                     <div class="modal-body">
                         <label for="edit_middle_name" class="control-label">Middle Initial</label>
-                        <input type="text" name="middle_name" id="middle_name" class="form-control form-control-border" placeholder="Enter Faculty Middle Initial" required>
+                        <input type="text" name="middle_name" id="middle_name" class="form-control form-control-border" placeholder="Enter Faculty Middle Initial">
                     </div>
 
-                    <div class="modal-body">
-                        <label for="edit_sections" class="control-label">Section(s)</label><br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1">CCIS1A</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                            <label class="form-check-label" for="inlineCheckbox2">CCIS1B</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                            <label class="form-check-label" for="inlineCheckbox3">CCIS1C</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                            <label class="form-check-label" for="inlineCheckbox3">CCIS1D</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                            <label class="form-check-label" for="inlineCheckbox3">CCIS1E</label>
-                        </div>
-                    </div>
+
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button class="btn btn-primary" type="submit">Save</button>
@@ -432,9 +402,9 @@
             $(document).ready(function() {
                 $('.edit_data').on('click', function() {
                     var id = $(this).data('id');
-                    var lastname = $(this).data('lastname');
-                    var firstname = $(this).data('firstname');
-                    var middleinitial = $(this).data('middleinitial');
+                    var lastname = $(this).data('last_name');
+                    var firstname = $(this).data('first_name');
+                    var middleinitial = $(this).data('middle_name');
 
                     // Open the modal
                     $('#editFaculty').modal('show');
@@ -445,14 +415,14 @@
                     $('#edit_middleinitial').val(middleinitial);
 
                     // Dynamically set the form action URL
-                    $('#editForm').attr('action', "{{ url('/admin/update') }}/" + id);
+                    $('#editForm').attr('action', "{{ url('/superadmin/faculty/update') }}/" + id);
                 });
             });
 
 
             $('.delete_data').on('click', function() {
-                let adminId = $(this).data('id');
-                let actionUrl = "{{ url('superadmin/admin/delete') }}/" + adminId;
+                let Id = $(this).data('id');
+                let actionUrl = "{{ url('superadmin/faculty/delete') }}/" + Id;
                 $('#deleteForm').attr('action', actionUrl);
             });
 
