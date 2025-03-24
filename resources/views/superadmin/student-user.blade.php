@@ -394,17 +394,17 @@
         });
 
 
-        // // Handle Delete Admin Modal
-        // $(document).on('click', '.delete_data', function() {
-        //     var adminId = $(this).data('id');
-        //     var actionUrl = "/admin/delete/" + adminId;
+        // Handle Delete Admin Modal
+        $(document).on('click', '.delete_data', function() {
+            var adminId = $(this).data('id');
+            var actionUrl = "{{ url('superadmin/student/delete') }}/" + adminId;
 
-        //     // Set the form action dynamically
-        //     $('#deleteForm').attr('action', actionUrl);
+            // Set the form action dynamically
+            $('#deleteForm').attr('action', actionUrl);
 
-        //     // Open the modal
-        //     $('#delAdmin').modal('show');
-        // });
+            // Open the modal
+            $('#delStudent').modal('show');
+        });
     </script>
 
     <!-- Bootstrap core JavaScript-->

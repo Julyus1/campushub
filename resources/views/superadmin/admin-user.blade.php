@@ -274,7 +274,7 @@
                                                         <span class="fas fa-plus fa-sm text-success"></span> Add Account
                                                     </a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data" data-id="" data-toggle="modal" data-target="#delAdmin">
+                                                    <a class="dropdown-item delete_data" data-id="{{ $admin->id }}" data-toggle="modal" data-target="#delAdmin">
                                                         <span class="fa fa-trash text-danger"></span> Delete
                                                     </a>
                                                 </div>
@@ -426,17 +426,17 @@
         });
 
 
-        // // Handle Delete Admin Modal
-        // $(document).on('click', '.delete_data', function() {
-        //     var adminId = $(this).data('id');
-        //     var actionUrl = "/admin/delete/" + adminId;
+        // Handle Delete Admin Modal
+        $(document).on('click', '.delete_data', function() {
+            var adminId = $(this).data('id');
+            var actionUrl = "{{ url('superadmin/admin/delete') }}/" + adminId;
 
-        //     // Set the form action dynamically
-        //     $('#deleteForm').attr('action', actionUrl);
+            // Set the form action dynamically
+            $('#deleteForm').attr('action', actionUrl);
 
-        //     // Open the modal
-        //     $('#delAdmin').modal('show');
-        // });
+            // Open the modal
+            $('#delAdmin').modal('show');
+        });
     </script>
 
     <!-- Bootstrap core JavaScript-->

@@ -273,7 +273,7 @@
                                                     <a class="dropdown-item add-btn" data-toggle="modal" data-target="#addFaculty" data-id="{{ $Faculty->id }}"><span
                                                             class="fas fa-plus fa-sm text-success"></span> Add Account</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data" data-id="" data-toggle="modal" data-target="#delFaculty">
+                                                    <a class="dropdown-item delete_data" data-id="{{ $Faculty->id }}" data-toggle="modal" data-target="#delFaculty">
                                                         <span class="fa fa-trash text-danger"></span> Delete
                                                     </a>
                                                 </div>
@@ -424,17 +424,16 @@
         });
 
 
-        // // Handle Delete Admin Modal
-        // $(document).on('click', '.delete_data', function() {
-        //     var adminId = $(this).data('id');
-        //     var actionUrl = "/admin/delete/" + adminId;
+        $(document).on('click', '.delete_data', function() {
+            var facultyId = $(this).data('id');
+            var actionUrl = "{{ url('superadmin/faculty/delete') }}/" + facultyId;
 
-        //     // Set the form action dynamically
-        //     $('#deleteForm').attr('action', actionUrl);
+            // Set the form action dynamically
+            $('#deleteForm').attr('action', actionUrl);
 
-        //     // Open the modal
-        //     $('#delAdmin').modal('show');
-        // });
+            // Open the modal
+            $('#delFaculty').modal('show');
+        });
     </script>
     <!-- Bootstrap core JavaScript-->
     @vite('resources/js/jquery.min.js')
