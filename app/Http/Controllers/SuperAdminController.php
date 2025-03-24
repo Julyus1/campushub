@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Hash;
 class SuperAdminController extends Controller
 {
     use AdminsTrait;
-
+    public function show_grades()
+    {
+        return view('superadmin.grade-system');
+    }
     public function viewprefix()
     {
         return 'superadmin.';

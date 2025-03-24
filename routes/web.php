@@ -79,6 +79,8 @@ Route::middleware(['auth', 'userrole:1'])->group(function () {
 
     Route::get('superadmin/subject/list', [SuperAdminController::class, 'show_subject']);
     Route::post('superadmin/subject/register', [SuperadminController::class, 'store_subject']);
+
+    Route::get('superadmin/grades', [SuperadminController::class, 'show_grades']);
 });
 
 Route::middleware(['auth', 'userrole:2'])->group(function () {
