@@ -268,8 +268,9 @@
                                                     Action
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
+
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item add-btn" data-toggle="modal" data-target="#addFaculty"><span
+                                                    <a class="dropdown-item add-btn" data-toggle="modal" data-target="#addFaculty" data-id="{{ $Faculty->id }}"><span
                                                             class="fas fa-plus fa-sm text-success"></span> Add Account</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
@@ -313,35 +314,37 @@
 
     <!-- Logout Modal-->
 
-    <form method="POST" action=''>
-        @csrf
-        <div class="modal fade" id="addFaculty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
+    <div class="modal fade" id="addFaculty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="addform" method="POST">
+                    @csrf
+                    <input type="hidden" name="faculty_id" id="faculty_id"> <!-- Hidden input for faculty ID -->
+
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Faculty Account</h5>
+                        <h5 class="modal-title">Add Admin Account</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
 
                     <div class="modal-body">
-                        <label for="deptname" class="control-label">Email</label>
-                        <input type="text" name="title" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
+                        <label for="email" class="control-label">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email" required>
                     </div>
                     <div class="modal-body">
-                        <label for="deptdescription" class="control-label">Password</label>
-                        <textarea rows="3" name="description" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
+                        <label for="password" class="control-label">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" required>
                     </div>
+
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button class="btn btn-primary" type="submit">Save</button>
                     </div>
-
-                </div>
+                </form>
             </div>
         </div>
+    </div>
     </form>
     <x-logoutmodal></x-logoutmodal>
 
@@ -397,42 +400,40 @@
         </div>
     </div>
 
-    @vite('resources/js/jquery-3.6.0.min.js')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             $(document).ready(function() {
-                // Handle Edit Faculty Modal
-                $(document).on('click', '.edit_data', function() {
+                $('.add-btn').on('click', function() {
                     var facultyId = $(this).data('id');
-                    var email = $(this).data('email');
-                    var password = $(this).data('password');
+                    var form = $('#addform');
 
-                    // Open the modal
-                    $('#editFaculty').modal('show');
-
-                    // Set form field values
-                    $('#edit_email').val(email);
-                    $('#edit_password').val(password);
-
-                    // Dynamically set the form action URL
-                    $('#editForm').attr('action', '/faculty/update/' + facultyId);
-                });
-
-                // Handle Delete Faculty Modal
-                $(document).on('click', '.delete_data', function() {
-                    var facultyId = $(this).data('id');
-                    var actionUrl = "/faculty/delete/" + facultyId;
+                    $('#addFaculty').modal('show');
 
                     // Set the form action dynamically
-                    $('#deleteForm').attr('action', actionUrl);
+                    var actionUrl = '/superadmin/faculty/create-user/' + facultyId;
+                    form.attr('action', actionUrl);
+                    console.log('Form action set to:', actionUrl); // Debugging line
 
-                    // Open the modal
-                    $('#delFaculty').modal('show');
+                    // Set hidden input value for faculty ID
+                    $('#faculty_id').val(facultyId);
                 });
             });
         });
-    </script>
 
+
+        // // Handle Delete Admin Modal
+        // $(document).on('click', '.delete_data', function() {
+        //     var adminId = $(this).data('id');
+        //     var actionUrl = "/admin/delete/" + adminId;
+
+        //     // Set the form action dynamically
+        //     $('#deleteForm').attr('action', actionUrl);
+
+        //     // Open the modal
+        //     $('#delAdmin').modal('show');
+        // });
+    </script>
     <!-- Bootstrap core JavaScript-->
     @vite('resources/js/jquery.min.js')
     @vite('resources/js/bootstrap.bundle.min.js')

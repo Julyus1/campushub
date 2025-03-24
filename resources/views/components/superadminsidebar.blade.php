@@ -36,9 +36,9 @@
         <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">User Lists:</h6>
-                <a class="collapse-item" href="{{ url('/superadmin/admin/list') }}">Admin</a>
-                <a class="collapse-item" href="{{ url('/superadmin/faculty/list') }}">Faculty</a>
-                <a class="collapse-item" href="{{ url('/superadmin/student/user/list') }}">Student</a>
+                <a class="collapse-item" href="{{ url('/superadmin/admin/user') }}">Admin</a>
+                <a class="collapse-item" href="{{ url('/superadmin/faculty/user') }}">Faculty</a>
+                <a class="collapse-item" href="{{ url('/superadmin/student/user') }}">Student</a>
             </div>
         </div>
     </li>

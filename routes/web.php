@@ -34,12 +34,14 @@ Route::middleware(['auth', 'userrole:1'])->group(function () {
     Route::get('/superadmin/dashboard', [SuperAdminController::class, 'index']);
 
     //admin user management
-    Route::get('superadmin/admin/list', [SuperadminController::class, 'admin_user']);
+    Route::get('superadmin/admin/user', [SuperadminController::class, 'admin_user']);
     Route::post('superadmin/admin/create-user/{admin}', [SuperadminController::class, 'admin_store_user']);
 
 
-    Route::get('superadmin/faculty/list', [SuperadminController::class, 'faculty_user']);
-    Route::get('superadmin/student/user/list', [SuperadminController::class, 'student_user']);
+    Route::get('superadmin/faculty/user', [SuperadminController::class, 'faculty_user']);
+    Route::post('superadmin/faculty/create-user/{faculty}', [SuperadminController::class, 'faculty_store_user']);
+
+    Route::get('superadmin/student/user', [SuperadminController::class, 'student_user']);
 
     Route::get('superadmin/student/list', [SuperAdminController::class, 'show_stud']);
     Route::get('superadmin/student/profile/{student}', [SuperAdminController::class, 'stud_profile']);
