@@ -274,7 +274,9 @@
                                                         <span class="fas fa-plus fa-sm text-success"></span> Add Account
                                                     </a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
+                                                    <a class="dropdown-item delete_data" data-id="" data-toggle="modal" data-target="#delAdmin">
+                                                        <span class="fa fa-trash text-danger"></span> Delete
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
