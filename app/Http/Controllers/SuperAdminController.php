@@ -86,12 +86,35 @@ class SuperAdminController extends Controller
 
         Faculty::where('id', $validated['faculty_id'])->update(['isregistered' => true]);
 
-        return redirect()->back()->with('success', 'Admin account created successfully!');
+        return redirect()->back()->with('success', 'Faculty account created successfully!');
     }
     public function student_user()
     {
         $unregisteredStudent = Student::where('isregistered', false)->get();
         return view('superadmin.student-user', compact('unregisteredStudent'));
+    }
+
+    public function student_store_user(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'student_id' => 'required|exists:students,id'
+        ]);
+
+
+
+        // Create the user with hashed password
+        User::create([
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role_id' => 4,
+            'role_data_id' => $validated['student_id'],
+        ]);
+
+        Student::where('id', $validated['student_id'])->update(['isregistered' => true]);
+
+        return redirect()->back()->with('success', 'User account created successfully!');
     }
 
 

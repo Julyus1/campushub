@@ -42,6 +42,7 @@ Route::middleware(['auth', 'userrole:1'])->group(function () {
     Route::post('superadmin/faculty/create-user/{faculty}', [SuperadminController::class, 'faculty_store_user']);
 
     Route::get('superadmin/student/user', [SuperadminController::class, 'student_user']);
+    Route::post('superadmin/student/create-user/{student}', [SuperadminController::class, 'student_store_user']);
 
     Route::get('superadmin/student/list', [SuperAdminController::class, 'show_stud']);
     Route::get('superadmin/student/profile/{student}', [SuperAdminController::class, 'stud_profile']);

@@ -269,10 +269,10 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item add-btn" data-toggle="modal" data-target="#addStudent"><span
+                                                    <a class="dropdown-item add-btn" data-toggle="modal" data-target="#addStudent" data-id="{{ $student->id }}"><span
                                                             class="fas fa-plus fa-sm text-success"></span> Add Account</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data"><span class="fa fa-trash text-danger"></span> Delete</a>
+                                                    <a class="dropdown-item delete_data" data-target="#delStudent" data-id="{{ $student->id }}"><span class="fa fa-trash text-danger"></span> Delete</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -313,59 +313,29 @@
 
     <!-- Logout Modal-->
 
-    <form method="POST" action=''>
-        @csrf
-        <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Student Account</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <label for="deptname" class="control-label">Email</label>
-                        <input type="text" name="title" id="deptname" class="form-control form-control-border" placeholder="Enter Department Name" value="" required>
-                    </div>
-                    <div class="modal-body">
-                        <label for="deptdescription" class="control-label">Password</label>
-                        <textarea rows="3" name="description" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </form>
-    <x-logoutmodal></x-logoutmodal>
-
-
-
-    <div class="modal fade" id="editStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form id="editForm" method="POST">
+                <form id="addform" method="POST">
                     @csrf
-                    @method('PATCH')
+                    <input type="hidden" name="student_id" id="student_id"> <!-- Hidden input for student ID -->
+
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Update Student Account</h5>
+                        <h5 class="modal-title">Add Admin Account</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <label for="edit_email" class="control-label">Email</label>
-                        <input type="text" name="email" id="edit_email" class="form-control form-control-border" placeholder="Enter Email" required>
 
-                        <label for="edit_password" class="control-label">Password</label>
-                        <textarea rows="3" name="password" id="edit_password" class="form-control form-control-sm rounded-0" required></textarea>
+                    <div class="modal-body">
+                        <label for="email" class="control-label">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email" required>
                     </div>
+                    <div class="modal-body">
+                        <label for="password" class="control-label">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" required>
+                    </div>
+
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button class="btn btn-primary" type="submit">Save</button>
@@ -374,6 +344,11 @@
             </div>
         </div>
     </div>
+    <x-logoutmodal></x-logoutmodal>
+
+
+
+
     <div class="modal fade" id="delStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -397,40 +372,39 @@
         </div>
     </div>
 
-    @vite('resources/js/jquery-3.6.0.min.js')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             $(document).ready(function() {
-                // Handle Edit Student Modal
-                $(document).on('click', '.edit_data', function() {
+                $('.add-btn').on('click', function() {
                     var studentId = $(this).data('id');
-                    var email = $(this).data('email');
-                    var password = $(this).data('password');
+                    var form = $('#addform');
 
-                    // Open the modal
-                    $('#editStudent').modal('show');
-
-                    // Set form field values
-                    $('#edit_email').val(email);
-                    $('#edit_password').val(password);
-
-                    // Dynamically set the form action URL
-                    $('#editForm').attr('action', '/student/update/' + studentId);
-                });
-
-                // Handle Delete Student Modal
-                $(document).on('click', '.delete_data', function() {
-                    var studentId = $(this).data('id');
-                    var actionUrl = "/student/delete/" + studentId;
+                    $('#addStudent').modal('show');
 
                     // Set the form action dynamically
-                    $('#deleteForm').attr('action', actionUrl);
+                    var actionUrl = "{{ url('superadmin/student/create-user') }}/" + studentId;
+                    form.attr('action', actionUrl);
+                    console.log('Form action set to:', actionUrl); // Debugging line
 
-                    // Open the modal
-                    $('#delStudent').modal('show');
+                    // Set hidden input value for student ID
+                    $('#student_id').val(studentId);
                 });
             });
         });
+
+
+        // // Handle Delete Admin Modal
+        // $(document).on('click', '.delete_data', function() {
+        //     var adminId = $(this).data('id');
+        //     var actionUrl = "/admin/delete/" + adminId;
+
+        //     // Set the form action dynamically
+        //     $('#deleteForm').attr('action', actionUrl);
+
+        //     // Open the modal
+        //     $('#delAdmin').modal('show');
+        // });
     </script>
 
     <!-- Bootstrap core JavaScript-->
