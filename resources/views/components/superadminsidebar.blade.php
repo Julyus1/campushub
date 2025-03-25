@@ -32,7 +32,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
             aria-expanded="true" aria-controls="collapseUser">
             <i class="fas fa-fw fa-list-alt"></i>
-            <span class="text-dark">Manage Users</span></a>
+            <span class="text-dark">Manage Users Accounts</span></a>
         <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">User Lists:</h6>
@@ -51,24 +51,26 @@
         User Information Management
     </div>
 
+    <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('/superadmin/admin/register') }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser2"
+            aria-expanded="true" aria-controls="collapseUser2">
             <i class="fas fa-fw fa-id-card"></i>
-            <span class="text-dark">Admin Registration</span></a>
+            <span class="text-dark">Manage Users</span></a>
+        <div id="collapseUser2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">User Registration</h6>
+                <a class="collapse-item" href="{{ url('/superadmin/admin/register') }}">Admin Registration</a>
+                <a class="collapse-item" href="{{ url('/superadmin/faculty/register') }}">Faculty Registration</a>
+            </div>
+        </div>
     </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('/superadmin/faculty/register') }}">
-            <i class="fas fa-fw fa-id-card"></i>
-            <span class="text-dark">Faculty Registration</span></a>
-    </li>
-
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStudent"
             aria-expanded="true" aria-controls="collapseStudent">
-            <i class="fas fa-fw fa-list-alt"></i>
+            <i class="fas fa-fw fa-user"></i>
             <span class="text-dark">Manage Students</span></a>
         <div id="collapseStudent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -84,33 +86,31 @@
 
     <!-- Heading -->
     <div class="sidebar-heading text-dark">
-        Course Module
+        Academic Unit Registration
     </div>
 
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{url('/superadmin/department/register') }}">
-            <i class="bi bi-building-fill"></i>
-            <span class="text-dark">Department Registration</span></a>
-    </li>
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('/superadmin/course/register') }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAcad"
+            aria-expanded="true" aria-controls="collapseAcad">
+            <i class="bi bi-building"></i>
+            <span class="text-dark">Academic Units</span></a>
+        <div id="collapseAcad" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Academic Structures:</h6>
+                <a class="collapse-item" href="{{ url('/superadmin/department/register') }}">Department Registration</a>
+                <a class="collapse-item" href="{{ url('/superadmin/course/register') }}">Course Registration</a>
+                <a class="collapse-item" href="{{ url('/superadmin/section/list') }}">Section Registration</a>
+                <a class="collapse-item" href="{{ url('/superadmin/subject/list') }}">Subject Registration</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/superadmin/subject/attach') }}">
             <i class="bi bi-book-fill"></i>
-            <span class="text-dark">Course Registration</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('/superadmin/section/list') }}">
-            <i class="fas fa-fw fa-id-card"></i>
-            <span class="text-dark">Section Registration</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('/superadmin/subject/list') }}">
-            <i class="fas fa-fw fa-id-card"></i>
-            <span class="text-dark">Subject Registration</span></a>
+            <span class="text-dark">Subjects & Sections</span></a>
     </li>
 
 </ul>

@@ -61,20 +61,22 @@
 
     <!-- Heading -->
     <div class="sidebar-heading text-dark">
-        Course Module
+        Academic Unit Registration
     </div>
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('course/register') }}">
-            <i class="bi bi-book-fill"></i>
-            <span class="text-dark">Course Registration</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('section/list') }}">
-            <i class="fas fa-fw fa-id-card"></i>
-            <span class="text-dark">Section Registration</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAcad"
+            aria-expanded="true" aria-controls="collapseAcad">
+            <i class="bi bi-building"></i>
+            <span class="text-dark">Academic Units</span></a>
+        <div id="collapseAcad" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Academic Structures:</h6>
+                <a class="collapse-item" href="{{ url('course/register') }}">Course Registration</a>
+                <a class="collapse-item" href="{{ url('section/list') }}">Section Registration</a>
+            </div>
+        </div>
     </li>
 
 </ul>

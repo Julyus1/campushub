@@ -83,6 +83,8 @@ Route::middleware(['auth', 'userrole:1'])->group(function () {
     Route::delete('superadmin/subject/delete/{subject}', [SuperadminController::class, 'destroy_subject']);
 
     Route::get('superadmin/grades', [SuperadminController::class, 'show_grades']);
+
+    Route::get('superadmin/subject/attach', [SuperadminController::class, 'attach_subject']);
 });
 
 Route::middleware(['auth', 'userrole:2'])->group(function () {

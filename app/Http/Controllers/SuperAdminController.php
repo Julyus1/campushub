@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Hash;
 class SuperAdminController extends Controller
 {
     use AdminsTrait;
+    public function attach_subject()
+    {
+        return view('superadmin.subject-attachment');
+    }
     public function show_grades()
     {
         return view('superadmin.grade-system');
