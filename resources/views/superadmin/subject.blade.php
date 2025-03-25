@@ -243,12 +243,12 @@
 
                     <!-- Success Message -->
                     @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     @endif
 
                     <!-- DataTales Example -->
@@ -284,6 +284,10 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
+                                                    <a class="dropdown-item delete_data" data-id="{{ $subject->id }}" data-toggle="modal" data-target="#attachSection">
+                                                        <span class="fa fa-paperclip text-danger"></span> Attach Sections
+                                                    </a>
+                                                    <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item edit_data"
                                                         data-id="{{ $subject->id }}"
                                                         data-title="{{ $subject->title }}"
@@ -296,6 +300,7 @@
                                                     <a class="dropdown-item delete_data" data-id="{{ $subject->id }}" data-toggle="modal" data-target="#delSubject">
                                                         <span class="fa fa-trash text-danger"></span> Delete
                                                     </a>
+
                                                 </div>
                                             </td>
                                         </tr>
@@ -378,6 +383,51 @@
     </form>
     <x-logoutmodal></x-logoutmodal>
 
+    <!-- Modal -->
+    <div class="modal fade" id="attachSection" tabindex="-1" role="dialog" aria-labelledby="attachSectionLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="attachSectionLabel">Attach Sections to Subject</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+
+                <form method="POST" action="{{ url('superadmin/subject/attach-sections') }}">
+                    @csrf
+                    <input type="hidden" name="subject_id" id="subject_id">
+
+                    <div class="modal-body">
+                        <label class="control-label">Select Sections</label>
+                        <div id="section-list">
+                            @foreach ($sections as $section)
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    name="sections[]"
+                                    value="{{ $section->id }}"
+                                    id="section_{{ $section->id }}"
+                                    {{ $subject->sections->contains($section->id) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="section_{{ $section->id }}">
+                                    {{ $section->title }}
+                                </label>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Attach</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
     <div class="modal fade" id="editSubject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

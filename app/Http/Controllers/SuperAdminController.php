@@ -226,7 +226,8 @@ class SuperAdminController extends Controller
     {
         $subjects = Subject::all();
         $faculties = Faculty::all();
-        return view('superadmin.subject', compact('subjects', 'faculties'));
+        $sections = Section::all();
+        return view('superadmin.subject', compact('subjects', 'faculties', 'sections'));
     }
     public function store_subject(Request $request)
     {
