@@ -295,7 +295,8 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="contact" class="control-label">Contact #</label>
-                                                    <input type="text" name="contact" id="contact" class="form-control form-control-sm rounded-0" required>
+                                                    <input type="text" name="contact" id="contact" class="form-control form-control-sm rounded-0" 
+                                                           placeholder="09XX-XXX-XXXX" required maxlength="13">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -381,17 +382,20 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="postalcode" class="control-label">Postal Code: </label>
-                                                    <input type="text" name="postalcode" id="postalcode" autofocus class="form-control form-control-sm rounded-0" required>
+                                                    <input type="text" name="postalcode" id="postalcode" autofocus class="form-control form-control-sm rounded-0" 
+                                                           placeholder="e.g., 1000" required maxlength="4">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="homenumber" class="control-label">Home Phone No.: </label>
-                                                    <input type="text" name="homenumber" id="homenumber" autofocus class="form-control form-control-sm rounded-0" required>
+                                                    <input type="text" name="homenumber" id="homenumber" autofocus class="form-control form-control-sm rounded-0" 
+                                                           placeholder="e.g., 045-1234 or 02-1234567" maxlength="9">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label for="mobilenumber" class="control-label">Mobile Phone No.: </label>
-                                                    <input type="text" name="mobilenumber" id="mobilenumber" autofocus class="form-control form-control-sm rounded-0" required>
+                                                    <input type="text" name="mobilenumber" id="mobilenumber" class="form-control form-control-sm rounded-0" 
+                                                           placeholder="09XX-XXX-XXXX" required maxlength="13">
                                                 </div>
                                             </div>
                                             <label>
@@ -413,7 +417,8 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="emergencycontact" class="control-label">Emergency Contact No.: </label>
-                                                    <input type="text" name="emergencycontact" id="emergencycontact" autofocus class="form-control form-control-sm rounded-0" required>
+                                                    <input type="text" name="emergencycontact" id="emergencycontact" autofocus class="form-control form-control-sm rounded-0" 
+                                                           placeholder="09XX-XXX-XXXX" maxlength="13">
                                                 </div>
                                             </div>
 
@@ -463,6 +468,66 @@
     <x-logoutmodal></x-logoutmodal>
 
 
+<!-- contact script-->
+    <script>
+        document.getElementById("contact").addEventListener("input", function (e) {
+            let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+            if (value.startsWith("9")) value = "0" + value; // Ensure 09XX format
+        
+            if (value.length > 11) value = value.substring(0, 11); // Max length for 09XX-XXX-XXXX
+            if (value.length >= 5) value = value.replace(/(\d{4})(\d{3})/, "$1-$2-");
+            if (value.length >= 9) value = value.replace(/(\d{4})-(\d{3})(\d{4})/, "$1-$2-$3");
+        
+            e.target.value = value;
+        });
+    </script>
+
+<!-- postal script-->
+<script>
+    document.getElementById("postalcode").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+        if (value.length > 4) value = value.substring(0, 4); // Limit to 4 digits
+        e.target.value = value;
+    });
+    </script>
+
+<!-- home no script-->
+<script>
+    document.getElementById("homenumber").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+        if (value.length >= 3 && value.length <= 7) value = value.replace(/(\d{3})(\d{1,4})/, "$1-$2");
+        if (value.length > 9) value = value.substring(0, 9); // Limit to 9 characters
+        e.target.value = value;
+    });
+    </script>
+
+<!-- mobile no script -->
+<script>
+    document.getElementById("mobilenumber").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+        if (value.startsWith("9")) value = "0" + value; // Ensure 09XX format
+    
+        if (value.length > 11) value = value.substring(0, 11); // Max length
+        if (value.length >= 5) value = value.replace(/(\d{4})(\d{3})/, "$1-$2-");
+        if (value.length >= 9) value = value.replace(/(\d{4})-(\d{3})(\d{4})/, "$1-$2-$3");
+    
+        e.target.value = value;
+    });
+    </script>
+
+<!-- emergency contact -->
+<script>
+    document.getElementById("emergencycontact").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+        if (value.startsWith("9")) value = "0" + value; // Ensure it starts with 09XX
+    
+        if (value.length > 11) value = value.substring(0, 11); // Limit to 11 digits
+        if (value.length >= 5) value = value.replace(/(\d{4})(\d{3})/, "$1-$2-");
+        if (value.length >= 9) value = value.replace(/(\d{4})-(\d{3})(\d{4})/, "$1-$2-$3");
+    
+        e.target.value = value;
+    });
+    </script>
 
 
     <!-- Bootstrap core JavaScript-->
