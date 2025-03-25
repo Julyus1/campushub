@@ -256,6 +256,7 @@
                                             <th>Date Created</th>
                                             <th>Name</th>
                                             <th>Description</th>
+                                            <th>Instructor</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -266,6 +267,7 @@
                                             <td>{{ \Carbon\Carbon::parse($subject->created_at)->format('m/d/Y') }}</td>
                                             <td>{{ $subject->name }}</td>
                                             <td>{{ $subject->description }}</td>
+                                            <td>{{ $subject->faculty->last_name ?? 'none' }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                     Action
@@ -338,12 +340,12 @@
                     </div>
 
                     <div class="modal-body">
-                        <label for="deptname" class="control-label">Subject</label>
+                        <label for="name" class="control-label">Subject</label>
                         <input type="text" name="name" id="subname" class="form-control form-control-border" placeholder="Enter Subject Name" value="" required>
                     </div>
                     <div class="modal-body">
-                        <label for="deptname" class="control-label">Assign Teacher</label>
-                        <select name="faculty" id="faculty" class="form-control form-control-border">
+                        <label for="faculty" class="control-label">Assign Teacher</label>
+                        <select name="faculty_id" id="faculty" class="form-control form-control-border">
                             <option value="">None</option>
                             @foreach ($faculties as $faculty)
 
@@ -382,7 +384,16 @@
                     </div>
                     <div class="modal-body">
                         <label for="edit_deptname" class="control-label">Subject</label>
-                        <input type="text" name="title" id="edit_deptname" class="form-control form-control-border" placeholder="Enter Subject Name" required>
+                        <input type="text" name="name" id="edit_deptname" class="form-control form-control-border" placeholder="Enter Subject Name" required>
+
+                        <label for="faculty" class="control-label">Assign Teacher</label>
+                        <select name="faculty_id" id="faculty" class="form-control form-control-border">
+                            <option value="">None</option>
+                            @foreach ($faculties as $faculty)
+
+                            <option value="{{ $faculty->id }}">{{ $faculty->last_name . " " . $faculty->first_name . " " . $faculty->middle_name }}</option>
+                            @endforeach
+                        </select>
 
                         <label for="edit_deptdescription" class="control-label">Description</label>
                         <textarea rows="3" name="description" id="edit_deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
@@ -426,6 +437,7 @@
                     var id = $(this).data('id');
                     var title = $(this).data('title');
                     var description = $(this).data('description');
+                    var faculty = $(this).data('faculty');
 
                     // Open the modal
                     $('#editSubject').modal('show');
@@ -433,16 +445,18 @@
                     // Set form field values
                     $('#edit_deptname').val(title);
                     $('#edit_deptdescription').val(description);
+                    $('#faculty').val(faculty);
+
 
                     // Dynamically set the form action URL
-                    $('#editForm').attr('action', '/subject/update/' + id);
+                    $('#editForm').attr('action', "{{ url('superadmin/subject/update') }}/" + id);
                 });
             });
 
 
             $('.delete_data').on('click', function() {
                 let subjectId = $(this).data('id');
-                let actionUrl = "/subject/delete/" + subjectId;
+                let actionUrl = "{{ url('superadmin/subject/delete') }}/" + subjectId;
                 $('#deleteForm').attr('action', actionUrl);
             });
 

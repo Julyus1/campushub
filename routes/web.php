@@ -79,6 +79,8 @@ Route::middleware(['auth', 'userrole:1'])->group(function () {
 
     Route::get('superadmin/subject/list', [SuperAdminController::class, 'show_subject']);
     Route::post('superadmin/subject/register', [SuperadminController::class, 'store_subject']);
+    Route::patch('superadmin/subject/update/{subject}', [SuperadminController::class, 'update_subject']);
+    Route::delete('superadmin/subject/delete/{subject}', [SuperadminController::class, 'destroy_subject']);
 
     Route::get('superadmin/grades', [SuperadminController::class, 'show_grades']);
 });

@@ -230,14 +230,41 @@ class SuperAdminController extends Controller
     }
     public function store_subject(Request $request)
     {
+
         $validated = $request->validate([
             'name' => 'string|required',
             'description' => 'string|required',
-            'faculty' => 'integer'
+            'faculty_id' => 'nullable|integer|exists:faculties,id'
         ]);
+
 
         Subject::create($validated);
 
         return redirect()->back()->with('success', 'Subject entity successfully created!');
+    }
+
+    public function update_subject(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'string|required',
+            'description' => 'string|required',
+            'faculty_id' => 'nullable|integer|exists:faculties,id'
+        ]);
+
+        $subject = Subject::findOrFail($id);
+
+        $subject->update($validated);
+
+        return redirect()->back()->with('success', 'Subject entity successfully updated!');
+    }
+
+    public function destroy_subject($id)
+    {
+
+        $subject = Subject::findOrFail($id);
+
+        $subject->delete();
+
+        return redirect()->back()->with('success', 'Subject entity successfully deleted!');
     }
 }
