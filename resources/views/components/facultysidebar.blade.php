@@ -28,9 +28,9 @@
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
-    <a class="nav-link" href="{{url('/student/list') }}">
+    <a class="nav-link" href="{{url('faculty/grades') }}">
         <i class="fas fa-fw fa-list-alt"></i>
-        <span class="text-dark">Manage Students</span></a>
+        <span class="text-dark">Compute Grades</span></a>
 </li>
 
 </ul>
