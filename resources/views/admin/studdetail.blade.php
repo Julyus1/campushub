@@ -217,6 +217,16 @@
                         <h1 class="h3 mb-2 text-gray-800">Student Information Management</h1>
                     </div>
 
+                    <!-- Success Message -->
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+
                     <div class="card shadow mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center py-4">
                             <h6 class="m-0 font-weight-bold text-primary">Student Details</h6>
