@@ -28,9 +28,16 @@
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
-    <a class="nav-link" href="{{url('/student/list') }}">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGrade"
+        aria-expanded="true" aria-controls="collapseGrade">
         <i class="fas fa-fw fa-list-alt"></i>
-        <span class="text-dark">Manage Students</span></a>
+        <span class="text-dark">Upload Grades</span></a>
+    <div id="collapseGrade" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">SUBJECTS & SECTIONS</h6>
+            <a class="collapse-item" href="{{ url('faculty/grades') }}">PML - CCIS1A</a>
+        </div>
+    </div>
 </li>
 
 </ul>

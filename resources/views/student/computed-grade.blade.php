@@ -14,16 +14,11 @@
     <!-- Custom fonts for this template-->
     @vite('public/vendor/fontawesome-free/css/all.min.css')
 
-    <title>CampusHub - Faculty Lists</title>
+    <title>CampusHub - Grade Display</title>
 
 
     <!-- Custom styles for this template-->
     @vite('resources/css/sb-admin-2.min.css')
-
-
-    <style>
-
-    </style>
 
 </head>
 
@@ -33,7 +28,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <x-superadminsidebar></x-supersadminsidebar>
+        <x-studentsidebar></x-studentsidebar>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -61,7 +56,29 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -130,7 +147,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -141,7 +158,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -152,7 +169,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -219,25 +236,13 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-2 text-gray-800">Faculty Lists</h1>
-                        <div class="d-inline-block btn btn-sm btn-primary shadow-sm add-btn" data-toggle="modal" data-target="#addFaculty"><i
-                                class="fas fa-plus fa-sm text-white-50"></i> Add New Faculty</div>
+                        <h1 class="h3 mb-2 text-gray-800">1st Semester Grades</h1>
                     </div>
-
-                    <!-- Success Message -->
-                    @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Faculty Lists</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Latest Grade Display</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -245,43 +250,41 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr class="bg-gradient-dark text-light">
-                                            <th>ID</th>
-                                            <th>Date Created</th>
-                                            <th>Name</th>
-                                            <th>Action</th>
+                                            <th>Subject</th>
+                                            <th>Description</th>
+                                            <th>Prelim</th>
+                                            <th>Midterm</th>
+                                            <th>Finals</th>
+                                            <th>AVE</th>
+                                            <th>GRADES</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($faculties as $faculty)
                                         <tr>
-                                            <td>{{ $faculty->id }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($faculty->created_at)->format('m/d/Y') }}</td>
-                                            <td>{{ $faculty->title }}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                    Action
-                                                    <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item edit_data"
-                                                        data-id="{{ $faculty->id }}"
-                                                        data-title="{{ $faculty->title }}"
-                                                        data-toggle="modal"
-                                                        data-target="#editFaculty">
-                                                        <span class="fa fa-edit text-primary"></span> Edit
-                                                    </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item delete_data" data-id="{{ $faculty->id }}" data-toggle="modal" data-target="#delFaculty">
-                                                        <span class="fa fa-trash text-danger"></span> Delete
-                                                    </a>
-                                                </div>
-                                            </td>
+                                            <td>CUS</td>
+                                            <td>Understanding the Self</td>
+                                            <td>98</td>
+                                            <td>99</td>
+                                            <td>100</td>
+                                            <td>99</td>
+                                            <td>1.00</td>
                                         </tr>
-                                        @endforeach
+                                        <tr>
+                                            <td>PROG1L</td>
+                                            <td>Fundamentals of Programming</td>
+                                            <td>98</td>
+                                            <td>99</td>
+                                            <td>100</td>
+                                            <td>99</td>
+                                            <td>1.00</td>
+                                        </tr>
                                     </tbody>
                                 </table>
 
                             </div>
+                        </div>
+                        <div class="card-footer text-right">
+                            <a href="#" class="btn btn-flat btn-default border btn-sm">Close</a>
                         </div>
                     </div>
 
@@ -315,122 +318,17 @@
     <!-- Logout Modal-->
     <x-logoutmodal></x-logoutmodal>
 
-    <form method="POST" action='{{ url('faculty/register') }}'>
-        @csrf
-        <div class="modal fade" id="addFaculty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add New Faculty</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <label for="deptname" class="control-label">Faculty</label>
-                        <input type="text" name="title" id="deptname" class="form-control form-control-border" placeholder="Enter Faculty Name" value="" required>
-                    </div>
-                    <div class="modal-body">
-                        <label for="deptdescription" class="control-label">Description</label>
-                        <textarea rows="3" name="description" id="deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </form>
-    <x-logoutmodal></x-logoutmodal>
 
 
 
-    <div class="modal fade" id="editFaculty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form id="editForm" method="POST">
-                    @csrf
-                    @method('PATCH')
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Update Faculty Details</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <label for="edit_deptname" class="control-label">Faculty</label>
-                        <input type="text" name="title" id="edit_deptname" class="form-control form-control-border" placeholder="Enter Faculty Name" required>
-
-                        <label for="edit_deptdescription" class="control-label">Description</label>
-                        <textarea rows="3" name="description" id="edit_deptdescription" class="form-control form-control-sm rounded-0" required></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="delFaculty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <form method="POST" id="deleteForm">
-                    @csrf
-                    @method('DELETE')
-                    <div class="modal-body">Are you sure you want to delete this Faculty permanently?</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    @vite('resources/js/jquery-3.6.0.min.js')
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            $(document).ready(function() {
-                $('.edit_data').on('click', function() {
-                    var id = $(this).data('id');
-                    var title = $(this).data('title');
-                    var description = $(this).data('description');
-
-                    // Open the modal
-                    $('#editFaculty').modal('show');
-
-                    // Set form field values
-                    $('#edit_deptname').val(title);
-                    $('#edit_deptdescription').val(description);
-
-                    // Dynamically set the form action URL
-                    $('#editForm').attr('action', '/faculty/update/' + id);
-                });
-            });
 
 
-            $('.delete_data').on('click', function() {
-                let facultyId = $(this).data('id');
-                let actionUrl = "/faculty/delete/" + facultyId;
-                $('#deleteForm').attr('action', actionUrl);
-            });
 
 
-        });
-    </script>
 
+
+
+    <!-- Bootstrap core JavaScript-->
     @vite('resources/js/jquery.min.js')
     @vite('resources/js/bootstrap.bundle.min.js')
     @vite('resources/js/jquery.easing.min.js')

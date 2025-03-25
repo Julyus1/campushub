@@ -33,4 +33,10 @@
         <span class="text-dark">Student Profile</span></a>
 </li>
 
+<li class="nav-item">
+    <a class="nav-link" href="{{url('#') }}">
+        <i class="fas fa-fw fa-list-alt"></i>
+        <span class="text-dark">Grade Display</span></a>
+</li>
+
 </ul>

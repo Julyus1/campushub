@@ -10,4 +10,9 @@ class FacultyController extends Controller
     {
         return view('faculty.dashboard');
     }
+    public function show_grades()
+{
+    return view('faculty.grade-system'); 
+}
+
 }

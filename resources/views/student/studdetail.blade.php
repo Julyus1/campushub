@@ -251,12 +251,12 @@
         <h6 class="m-3 font-weight-bold text-primary">Student Profile</h6>
     </div>
 
-    <!-- Right Section: Button -->
+    <!-- Right Section: Button
     <div class="card-tools">
         <button class="btn btn-sm btn-success bg-success btn-flat" type="button" id="print">
             <i class="fa fa-print"></i> Print
         </button>
-    </div>
+    </div>  -->
 </div>
 
                         <div class="card-body">

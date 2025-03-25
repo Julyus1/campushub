@@ -113,11 +113,5 @@
             <span class="text-dark">Subject Registration</span></a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('/superadmin/grades') }}">
-            <i class="fas fa-fw fa-id-card"></i>
-            <span class="text-dark">Grading System</span></a>
-    </li>
-
 </ul>
 <!-- End of Sidebar -->
