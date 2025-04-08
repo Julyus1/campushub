@@ -277,9 +277,11 @@ class SuperAdminController extends Controller
 
     public function show_sectionsub($id)
     {
+    $section = Section::with('subjects')->findOrFail($id);
+    $allSections = Section::all();
+    $subjects = Subject::all(); 
 
-        $section = Section::with('subjects')->findOrFail($id);
-
-        return view('superadmin.section-sublist', compact('section'));
+    return view('superadmin.section-sublist', compact('section', 'subjects'));
     }
+
 }

@@ -56,9 +56,8 @@
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
                             <h6 class="m-0 font-weight-bold text-primary">Subjects in {{ $section->title }}</h6>
                             <!-- Add Subject Button -->
-                            <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#addSubjectModal">
-                                <i class="bi bi-plus-circle"></i> Add Subject
-                            </button>
+                            <div class="d-inline-block btn btn-sm btn-success shadow-sm add-btn" data-toggle="modal" data-target="#addSubject"><i
+                                class="fas fa-plus fa-sm text-white-50"></i> Add Subject</div>
                         </div>
                         <div class="card-body">
                             <ul class="list-group">
@@ -98,31 +97,37 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    <!-- Add Subject Modal -->
-    <div class="modal fade" id="addSubjectModal" tabindex="-1" aria-labelledby="addSubjectModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addSubjectModalLabel">Add New Subject</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{{ url('subjects.store') }}" method="POST">
-                    @csrf
+    <form method="POST" action=''>
+        @csrf
+        <div class="modal fade" id="addSubject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Subject</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
                     <div class="modal-body">
                         <input type="hidden" name="section_id" value="{{ $section->id }}">
-                        <div class="mb-3">
-                            <label for="subjectName" class="form-label">Subject Name</label>
-                            <input type="text" name="name" class="form-control" id="subjectName" required>
-                        </div>
+                        <label for="subjectname" class="control-label">Subject</label>
+                        <select name="section_id" id="subjectname" class="form-control form-control-sm form-control-border" required>
+                            @foreach($subjects as $subject)
+                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save Subject</button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
                     </div>
-                </form>
+
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
