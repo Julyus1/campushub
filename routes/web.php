@@ -85,6 +85,8 @@ Route::middleware(['auth', 'userrole:1'])->group(function () {
     Route::get('superadmin/grades', [SuperadminController::class, 'show_grades']);
 
     Route::get('superadmin/subject/attach', [SuperadminController::class, 'attach_subject']);
+
+    Route::get('/superadmin/section/subjects/{id}', [SuperadminController::class, 'show_sectionsub'])->name('sections.show');
 });
 
 Route::middleware(['auth', 'userrole:2'])->group(function () {

@@ -18,8 +18,10 @@ class SuperAdminController extends Controller
 {
     use AdminsTrait;
     public function attach_subject()
+
     {
-        return view('superadmin.subject-attachment');
+        $departments = Department::all();
+        return view('superadmin.subject-attachment', compact('departments'));
     }
     public function show_grades()
     {
@@ -271,5 +273,13 @@ class SuperAdminController extends Controller
         $subject->delete();
 
         return redirect()->back()->with('success', 'Subject entity successfully deleted!');
+    }
+
+    public function show_sectionsub($id)
+    {
+
+        $section = Section::with('subjects')->findOrFail($id);
+
+        return view('superadmin.section-sublist', compact('section'));
     }
 }
