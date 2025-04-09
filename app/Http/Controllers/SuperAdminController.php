@@ -11,7 +11,7 @@ use App\Models\Student;
 use App\Models\Section;
 use App\Models\User;
 use App\Models\Subject;
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
@@ -277,11 +277,55 @@ class SuperAdminController extends Controller
 
     public function show_sectionsub($id)
     {
-    $section = Section::with('subjects')->findOrFail($id);
-    $allSections = Section::all();
-    $subjects = Subject::all(); 
+        $section = Section::with('subjects')->findOrFail($id);
+        $allSections = Section::all();
+        $subjects = Subject::all();
 
-    return view('superadmin.section-sublist', compact('section', 'subjects'));
+        return view('superadmin.section-sublist', compact('section', 'subjects'));
     }
 
+    public function attach_subject_to_section(Request $request)
+    {
+        // 1. Validate the incoming request data
+        $validated = $request->validate([
+            // Ensure section_id is present and exists in the 'sections' table
+            'section_id' => ['required', 'integer', 'exists:sections,id'],
+            // Ensure subject_id is present and exists in the 'subjects' table
+            'subject_id' => ['required', 'integer', 'exists:subjects,id'],
+        ]);
+
+        // 2. Find the specific section
+        // Using findOrFail will automatically throw a 404 error if the section isn't found
+        $section = Section::findOrFail($validated['section_id']);
+
+        // 3. Check if the subject is already attached to this section
+        // This prevents duplicate entries in the pivot table
+        $isAttached = $section->subjects()->where('subject_id', $validated['subject_id'])->exists();
+
+        if ($isAttached) {
+            // If already attached, redirect back with an informational message
+            return redirect()->back()
+                ->with('info', 'This subject is already assigned to the section.');
+            // Optionally use ->withInput() to repopulate the form if needed,
+            // but it might not be necessary for a simple select dropdown.
+        }
+
+        // 4. Attach the subject to the section
+        // The attach() method handles adding the record to the pivot table
+        // It accepts the ID of the related model (Subject in this case)
+        try {
+            $section->subjects()->attach($validated['subject_id']);
+
+            // 5. Redirect back to the previous page (section's subject list) with a success message
+            return redirect()->back()
+                ->with('success', 'Subject added successfully!');
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Error attaching subject to section: ' . $e->getMessage());
+
+            // Redirect back with a generic error message
+            return redirect()->back()
+                ->with('error', 'An error occurred while adding the subject. Please try again.');
+        }
+    }
 }

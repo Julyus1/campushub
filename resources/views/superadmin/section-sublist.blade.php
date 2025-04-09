@@ -26,47 +26,75 @@
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
         <x-superadminsidebar></x-superadminsidebar>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
             <div id="content">
 
-                <!-- Topbar -->
                 <x-superadmintopbar></x-superadmintopbar>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-2 text-gray-800">{{ $section->title }} - Subjects</h1>
                     </div>
 
-                    <!-- Subjects Listing -->
+                    @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
+                    @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
+                    @if (session('info'))
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        {{ session('info') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
+                    @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Please check the form below for errors.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
+
+
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
                             <h6 class="m-0 font-weight-bold text-primary">Subjects in {{ $section->title }}</h6>
-                            <!-- Add Subject Button -->
-                            <div class="d-inline-block btn btn-sm btn-success shadow-sm add-btn" data-toggle="modal" data-target="#addSubject"><i
-                                class="fas fa-plus fa-sm text-white-50"></i> Add Subject</div>
+                            <button class="d-inline-block btn btn-sm btn-success shadow-sm add-btn" data-toggle="modal" data-target="#addSubject"><i
+                                    class="fas fa-plus fa-sm text-white-50"></i> Add Subject</button>
                         </div>
                         <div class="card-body">
                             <ul class="list-group">
                                 @forelse ($section->subjects as $subject)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     {{ $subject->name }}
-                                    <a href="{{ route('subjects.show', $subject->id) }}" class="btn btn-sm btn-info">
-                                        View Details
-                                    </a>
+                                    {{-- Assuming you have a route named 'subjects.show' --}}
+                                    {{-- <a href="{{ route('subjects.show', $subject->id) }}" class="btn btn-sm btn-info">
+                                    View Details
+                                    </a> --}}
+                                    {{-- Add a detach button if needed --}}
+                                    {{-- <form method="POST" action="{{ route('superadmin.section.subjects.detach', [$section->id, $subject->id]) }}" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to remove this subject?')">Remove</button>
+                                    </form> --}}
                                 </li>
                                 @empty
                                 <li class="list-group-item text-muted">No subjects assigned to this section.</li>
@@ -76,12 +104,7 @@
                     </div>
 
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -89,39 +112,51 @@
                     </div>
                 </div>
             </footer>
-            <!-- End of Footer -->
-
         </div>
-        <!-- End of Content Wrapper -->
-
     </div>
-    <!-- End of Page Wrapper -->
-
-    <form method="POST" action=''>
+    {{-- Add Subject Modal Form --}}
+    {{-- Give your route a name in routes/web.php for easier referencing --}}
+    {{-- Example: Route::post(...)->name('superadmin.section.subjects.add'); --}}
+    <form method="POST" action="{{ route('superadmin.section.subjects.add') }}"> {{-- Use the route name --}}
         @csrf
-        <div class="modal fade" id="addSubject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="addSubject" tabindex="-1" role="dialog" aria-labelledby="addSubjectModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add New Subject</h5>
+                        <h5 class="modal-title" id="addSubjectModalLabel">Add Subject to {{ $section->title }}</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
 
                     <div class="modal-body">
+                        {{-- This hidden input sends the ID of the section we are currently viewing --}}
                         <input type="hidden" name="section_id" value="{{ $section->id }}">
-                        <label for="subjectname" class="control-label">Subject</label>
-                        <select name="section_id" id="subjectname" class="form-control form-control-sm form-control-border" required>
-                            @foreach($subjects as $subject)
-                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
-                            @endforeach
-                        </select>
+
+                        <div class="form-group"> {{-- Wrap in form-group for better styling and error display --}}
+                            <label for="subject_id" class="control-label">Subject</label>
+                            {{-- ****** IMPORTANT: Change name="section_id" to name="subject_id" ****** --}}
+                            <select name="subject_id" id="subject_id" class="form-control form-control-sm form-control-border @error('subject_id') is-invalid @enderror" required>
+                                <option value="" selected disabled>-- Select Subject --</option>
+                                {{-- $subjects should contain all available subjects passed from the controller that shows this page --}}
+                                @foreach($subjects as $subject)
+                                {{-- Optionally, disable subjects already in the section --}}
+                                <option value="{{ $subject->id }}" {{ $section->subjects->contains($subject->id) ? 'disabled' : '' }}>
+                                    {{ $subject->name }} {{ $section->subjects->contains($subject->id) ? '(Already Added)' : '' }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('subject_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-primary" type="submit">Add Subject</button>
                     </div>
 
                 </div>
@@ -129,23 +164,20 @@
         </div>
     </form>
 
-    <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
     <x-logoutmodal></x-logoutmodal>
-
-    <!-- Bootstrap core JavaScript-->
 
     @vite('resources/js/jquery.min.js')
     @vite('resources/js/bootstrap.bundle.min.js')
     @vite('resources/js/jquery.easing.min.js')
     @vite('resources/js/sb-admin-2.min.js')
-    @vite('resources/js/jquery.dataTables.min.js')
-    @vite('resources/js/dataTables.bootstrap4.min.js')
-    @vite('resources/js/datatables-demo.js')
+    {{-- Only include datatables if you are using them on this page --}}
+    {{-- @vite('resources/js/jquery.dataTables.min.js') --}}
+    {{-- @vite('resources/js/dataTables.bootstrap4.min.js') --}}
+    {{-- @vite('resources/js/datatables-demo.js') --}}
 
 </body>
 
