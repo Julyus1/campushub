@@ -77,7 +77,7 @@
                                             <td>2024-2025</td>
                                             <td>1st</td>
                                             <td items-align="center">
-                                                <a href="{{url('#' . ) }}" class="btn btn-flat btn-default btn-sm border">
+                                                <a href="{{url('#' .  }}" class="btn btn-flat btn-default btn-sm border">
                                                     <i class="fa fa-eye"></i> View Grades
                                             </td>
                                         </tr>

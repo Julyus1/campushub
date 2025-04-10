@@ -117,7 +117,7 @@ Route::middleware(['auth', 'userrole:2'])->group(function () {
 });
 Route::middleware(['auth', 'userrole:3'])->group(function () {
     Route::get('/faculty/dashboard', [FacultyController::class, 'index']);
-    Route::get('faculty/grades', [FacultyController::class, 'show_grades']);
+    Route::get('faculty/grades/{section}', [FacultyController::class, 'show_grades']);
 });
 Route::middleware(['auth', 'userrole:4'])->group(function () {
     Route::get('/student/dashboard', [StudentController::class, 'index']);

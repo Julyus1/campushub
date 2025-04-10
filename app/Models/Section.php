@@ -13,7 +13,7 @@ class Section extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function student()
+    public function students()
     {
 
         return $this->hasMany(Student::class);
@@ -27,5 +27,10 @@ class Section extends Model
     public function subjects()
     {
         return $this->belongsToMany(Subject::class);
+    }
+    public function getDepartmentTitleAttribute()
+    {
+        // null‑safe navigation in case any relation is missing
+        return optional($this->course)->department->title ?? '—';
     }
 }

@@ -28,7 +28,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <x-facultysidebar></x-facultysidebar>
+
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -52,18 +52,18 @@
 
                     <!-- Success Message -->
                     @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     @endif
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">CCIS - BSCS - CCIS1A - PML</h6>
+                            <h6 class="m-0 font-weight-bold text-primary"> {{ $section->department_title . "-" . $section->course->title . "-". $section->title . "-" . $subject->name }}</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -80,35 +80,48 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($students as $student)
                                         <tr>
-                                            <td>1</td>
-                                            <td>Pallasigue, Derek Joy C.</td>
-                                            <td>1st Year</td>
-                                            <td>2024-2026</td>
-                                            <td>1st</td>
+                                            <td>{{ $student->id }}</td>
+                                            <td>{{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }}</td>
+                                            <td>{{ $student->year_level }}</td>
+                                            <td>{{ $section->academicHistory->year ?? '—' }}</td>
+                                            <td>{{ $section->academicHistory->semester ?? '—' }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                                <button type="button"
+                                                    class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon"
+                                                    data-toggle="dropdown">
                                                     Action
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
-                                                    <a class="dropdown-item add-btn" data-toggle="modal" data-target="#addGrade" data-id="">
-                                                        <span class="fas fa-plus fa-sm text-success"></span> Upload Grades
+                                                    <a class="dropdown-item add-btn"
+                                                        data-toggle="modal"
+                                                        data-target="#addGrade"
+                                                        data-student-id="{{ $student->id }}"
+                                                        data-student-name="{{ $student->lastname }}, {{ $student->firstname }}">
+                                                        <span class="fas fa-plus fa-sm text-success"></span>
+                                                        Upload Grades
                                                     </a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item edit_data"
-                                                        data-id=""
-                                                        data-title=""
-                                                        data-description=""
                                                         data-toggle="modal"
-                                                        data-target="#editGrade">
-                                                        <span class="fa fa-edit text-primary"></span> Edit Grades
+                                                        data-target="#editGrade"
+                                                        data-grade-id="" {{-- you can load existing grade ID here --}}
+                                                        data-prelims="" {{-- existing prelims --}}
+                                                        data-midterm="" {{-- existing midterm --}}
+                                                        data-finals="" {{-- existing finals --}}
+                                                        data-student-id="{{ $student->id }}">
+                                                        <span class="fa fa-edit text-primary"></span>
+                                                        Edit Grades
                                                     </a>
                                                 </div>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
+
 
                             </div>
                         </div>

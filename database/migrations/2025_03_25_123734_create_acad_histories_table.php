@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('semester');
             $table->string('year');
             $table->foreignIdFor(App\Models\Student::class);
+            $table->foreignIdFor(App\Models\Section::class);
         });
     }
 

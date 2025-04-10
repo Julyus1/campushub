@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->decimal('prelims', 5, 2)->default(null);
-            $table->decimal('midterm', 5, 2)->default(null);
-            $table->decimal('finals', 5, 2)->default(null);
+            $table->decimal('prelims', 5, 2)->nullable();
+            $table->decimal('midterm', 5, 2)->nullable();
+            $table->decimal('finals', 5, 2)->nullable();
             $table->foreignIdFor(App\Models\AcadHistory::class);
+            $table->foreignIdFor(App\Models\Faculty::class);
             $table->foreignIdFor(App\Models\Student::class);
             $table->foreignIdFor(App\Models\Subject::class);
         });
