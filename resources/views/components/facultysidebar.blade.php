@@ -35,10 +35,12 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">SUBJECTS & SECTIONS</h6>
                 @foreach ($subjects as $subject)
-                <!-- Here you would list the sections related to each subject -->
-                <a class="collapse-item" href="{{ url('faculty/grades', ['subject' => $subject->id]) }}">
-                    {{ $subject->name }} - {{ $subject->section->title }} <!-- Assuming section is directly related to subject -->
+                @foreach ($subject->sections as $section)
+                <a class="collapse-item"
+                    href="{{ url('faculty/grades/'.$section->id) }}">
+                    {{ $subject->name }} – {{ $section->title }}
                 </a>
+                @endforeach
                 @endforeach
             </div>
         </div>
