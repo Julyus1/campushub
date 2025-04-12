@@ -38,6 +38,7 @@ class FacultyController extends Controller
         if (!$subject) {
             abort(404, 'No subject taught by you was found in this section.');
         }
+        $subjects = $faculty->subjects()->with('sections')->get();
         $acadHistories = $section->acadHistories()
             ->with('student')
             ->get();
@@ -46,7 +47,7 @@ class FacultyController extends Controller
             ->get()
             ->keyBy('acad_history_id');
 
-        return view('faculty.grade-system', compact('faculty', 'subject', 'section', 'acadHistories', 'grades'));
+        return view('faculty.grade-system', compact('faculty', 'subject', 'section', 'acadHistories', 'grades', 'subjects'));
     }
 
     public function store_grade(Request $request)

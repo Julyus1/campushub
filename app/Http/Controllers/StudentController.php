@@ -22,14 +22,13 @@ class StudentController extends Controller
 
     public function grade_display()
     {
-        return view('student.computed-grade');
+        $student = Auth::user()->student;
+
+        return view('student.computed-grade', compact('student'));
     }
 
     public function grade_list()
     {
-
-        $student = Auth::user()->student;
-
-        return view('student.grade-system', compact('student'));
+        return view('student.grade-system');
     }
 }

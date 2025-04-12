@@ -42,8 +42,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <x-studenttopbar>
-                </x-studenttopbar>
+                <x-studenttopbar :student="$student"/>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->

@@ -31,7 +31,6 @@
 
         <!--Side Bar-->
         <x-facultysidebar :subjects="$subjects" />
-
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -41,8 +40,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <x-facultytopbar>
-                </x-facultytopbar>
+                <x-facultytopbar :faculty="$faculty" />
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
