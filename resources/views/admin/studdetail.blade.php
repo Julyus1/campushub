@@ -53,26 +53,26 @@
 
                     <!-- Success Message -->
                     @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     @endif
 
                     <div class="card shadow mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center py-4">
                             <h6 class="m-0 font-weight-bold text-primary">Student Details</h6>
                             <div class="card-tools d-flex gap-2">
-                                <a class="btn btn-sm btn-primary btn-flat" href="{{ url('student/update/' . $student->id) }}"><i class="fa fa-edit"></i> Edit</a>
+                                <a class="btn btn-sm btn-primary btn-flat" href="{{ url('superadmin/student/update/' . $student->id) }}"><i class="fa fa-edit"></i> Edit</a>
                                 <button class="btn btn-sm btn-danger btn-flat delete-btn" data-id="{{ $student->id }}" data-toggle="modal" data-target="#delStudent">
                                     <i class="fa fa-trash"></i> Delete
                                 </button>
                                 <button class="btn btn-sm btn-success btn-flat" type="button" data-toggle="modal" data-target="#addAcad"><i class="fa fa-plus"></i> Add Academic</button>
-                                <!--<button class="btn btn-sm btn-info bg-info btn-flat" type="button" data-toggle="modal" data-target="#updateStatus">Update Status</button>
+                                <!-- <button class="btn btn-sm btn-info bg-info btn-flat" type="button" data-toggle="modal" data-target="#updateStatus">Update Status</button>
                                 <button class="btn btn-sm btn-success bg-success btn-flat" type="button" id="print"><i class="fa fa-print"></i> Print</button>-->
-                                <a href="{{url('student/list')}}" class="btn btn-default border btn-sm btn-flat"><i class="fa fa-angle-left"></i> Back to List</a>
+                                <a href="{{ url('/superadmin/student/list') }}" class="btn btn-default border btn-sm btn-flat"><i class="fa fa-angle-left"></i> Back to List</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -198,52 +198,57 @@
                                 </fieldset>
                                 <fieldset>
                                     <legend class="text-muted">Academic History</legend>
-                                    <table class="table table-stripped table-bordered" id="academic-history">
-                                        <thead>
-                                            <tr class="bg-gradient-dark text-light">
-                                                <th class="py-1 text-center">ID</th>
-                                                <th class="py-1 text-center">Semester</th>
-                                                <th class="py-1 text-center">Year Level</th>
-                                                {{-- Optional: Add Section if needed --}}
-                                                <th class="py-1 text-center">Section</th>
-                                                {{-- <th class="py-1 text-center">Section</th> --}}
-                                                <th class="py-1 text-center">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {{-- Loop through the academic histories associated with the student --}}
-                                            {{-- Use @forelse to handle cases where the collection might be empty --}}
-                                            @forelse ($student->acadHistories as $history)
-                                            <tr>
-                                                {{-- Display data from the current $history object in the loop --}}
-                                                <td class="px-2 py-1 align-middle text-center">{{ $history->id }}</td>
-                                                <td class="px-2 py-1 align-middle">{{ $history->semester }}</td> {{-- Removed text-center for potentially longer text --}}
-                                                <td class="px-2 py-1 align-middle">{{ $history->year }}</td> {{-- Removed text-center --}}
+                                    <div class="table-responsive"> {{-- Added for better handling on small screens --}}
+                                        <table class="table table-stripped table-bordered" id="academic-history">
+                                            <thead>
+                                                <tr class="bg-gradient-dark text-light">
+                                                    <th class="py-1 text-center" style="width: 5%;">ID</th>
+                                                    <th class="py-1 text-center" style="width: 30%;">Semester</th> {{-- Adjusted width --}}
+                                                    <th class="py-1 text-center" style="width: 30%;">Year Level</th> {{-- Adjusted width --}}
+                                                    <th class="py-1 text-center" style="width: 20%;">Section</th> {{-- Added Section Column Header --}}
+                                                    <th class="py-1 text-center" style="width: 15%;">Action</th> {{-- Adjusted width --}}
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{--
+                    Loop through the academic histories associated with the student.
+                    Assumes $student->acadHistories (and the related section for each history)
+                    is available and loaded from the controller.
+                    Using @forelse to handle the case where the collection might be empty.
+                --}}
+                                                @forelse ($student->acadHistories as $history)
+                                                <tr>
+                                                    {{-- History ID --}}
+                                                    <td class="px-2 py-1 align-middle text-center">{{ $history->id }}</td>
 
-                                                {{-- Optional: Display Section Title (Requires loading 'acadHistories.section' in controller) --}}
-                                                <td class="px-2 py-1 align-middle">{{ $history->section ? $history->section->title : 'N/A' }}</td>
+                                                    {{-- History Semester --}}
+                                                    <td class="px-2 py-1 align-middle">{{ $history->semester }}</td>
 
-                                                {{-- <td class="px-2 py-1 align-middle text-center">
-                                                    {{-- Action buttons. You might want to add data attributes like data-id --}}
-                                                    {{-- Or generate dynamic URLs using route() helper if you have named routes --}}
-                                                    {{-- <span class="rounded-pill badge badge-success px-3">Completed</span>
-                                                </td> --}} 
-                                                
-                                                <td class="px-2 py-1 align-middle text-center">
-                                                    <a class="btn btn-flat btn-default btn-sm border" data-target="#editAcad" data-toggle="modal"><i class="fa fa-edit text-primary"></i> Edit</a>
-                                                </td>
-                                            </tr>
-                                            @empty
-                                            {{-- This content will be shown if $student->acadHistories is empty --}}
-                                            <tr>
-                                                <td colspan="4" class="text-center">No academic history found for this student.</td>
-                                                {{-- Adjust colspan if you added the Section column --}}
-                                                {{-- <td colspan="5" class="text-center">No academic history found for this student.</td> --}}
-                                            </tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
+                                                    {{-- History Year Level --}}
+                                                    <td class="px-2 py-1 align-middle">{{ $history->year }}</td>
 
+                                                    {{-- History Section --}}
+                                                    {{-- Add this new TD to display the section title --}}
+                                                    {{-- Use null check: $history->section might be null if no section is assigned --}}
+                                                    <td class="px-2 py-1 align-middle">{{ $history->section ? $history->section->title : 'N/A' }}</td>
+
+                                                    {{-- Action Column with Dropdown --}}
+                                                    <td class="px-2 py-1 align-middle text-center">
+                                                        <a class="btn btn-flat btn-default btn-sm border" data-target="#editAcad" data-toggle="modal"><i class="fa fa-edit text-primary"></i> Edit</a>
+                                                    </td>
+                                                </tr>
+                                                @empty
+                                                {{-- This content will be shown if $student->acadHistories is empty --}}
+                                                <tr>
+                                                    {{-- Update colspan to match the new number of columns (5) --}}
+                                                    <td colspan="5" class="text-center py-3">
+                                                        No academic history found for this student.
+                                                    </td>
+                                                </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </fieldset>
                             </div>
                         </div>
@@ -305,92 +310,163 @@
         </div>
     </div>
 
-    <div class="modal fade" id="addAcad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="addAcad" tabindex="-1" role="dialog" aria-labelledby="addAcadLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addAcadLabel">
+                        Add Academic Record for {{ $student->lastname }}, {{ $student->firstname }}
+                        @if (!empty($student->middlename))
+                        {{ Str::substr($student->middlename, 0, 1) }}.
+                        @endif
+                    </h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="{{ route('students.acadhistories.store', $student->id) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="student_id" value="{{ $student->id }}">
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="semester" class="control-label">Semester</label>
+                                
+                                <select name="semester" id="semester" class="form-control form-control-sm form-control-border rounded-0" required>
+                                    <option value="1st Semester">1st Semester</option> 
+                                    <option value="2nd Semester">2nd Semester</option> 
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="year" class="control-label">Year Level</label>
+                                <select name="year" id="year" class="form-control form-control-sm form-control-border rounded-0" required>
+                                    <option value="1st Year">1st Year</option>
+                                    <option value="2nd Year">2nd Year</option>
+                                    <option value="3rd Year">3rd Year</option>
+                                    <option value="4th Year">4th Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="course" class="control-label">Course</label>
+                                <select name="course_id" id="course" class="form-control form-control-sm form-control-border rounded-0" required>
+                                    <option value="" disabled selected>-- Select Course --</option>                                 
+                                    @if(isset($courses) && $courses->count() > 0) 
+                                    @foreach($courses as $course)
+                                    
+                                    <option value="{{ $course->id }}">{{ $course->title }}</option> 
+                                    @endforeach
+                                    @else
+                                    <option value="" disabled>No courses available</option> 
+                                    @endif
+                                </select>  
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="section" class="control-label">Section: </label>
+                                <select name="section_id" id="section_id" class="form-control form-control-sm rounded-0" required>
+                                    <option value="">Select Section</option>
+                                    @foreach($sections as $section)
+                                    <option value="{{ $section->id }}" data-course="{{ $section->course_id }}">
+                                        {{ $section->title }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Save Record</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const courseSelect = document.getElementById('course');
+            const sectionSelect = document.getElementById('section_id');
+            const allSectionOptions = Array.from(sectionSelect.options).slice(1); // skip "Select Section"
+
+            courseSelect.addEventListener('change', function() {
+                const selectedCourseId = this.value;
+                sectionSelect.innerHTML = '<option value="">Select Section</option>';
+
+                const filtered = allSectionOptions.filter(option => option.dataset.course === selectedCourseId);
+                filtered.forEach(option => sectionSelect.appendChild(option));
+            });
+        });
+    </script>
+
+    <div class="modal fade" id="editAcad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        Add Academic Record for {{ $student['lastname'] }}, {{ $student['firstname'] }}
+                        Update Academic Record for {{ $student['lastname'] }}, {{ $student['firstname'] }}
                         @if (!empty($student['middlename']))
                         {{ Str::substr($student['middlename'], 0, 1) }}.
-                        @endif</h5>
+                        @endif
+                    </h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="" method="post">
+                <form action="" method="POST">
+                    @csrf
+                    <input type="hidden" name="student_id" value="{{ $student->id }}">
+
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label for="semester" class="control-label">Semester</label>
-                                <select name="semester" id="semester" class="form-control form-control-sm  form-control-border rounded-0" required>
-                                    <option>First Semester</option>
-                                    <option>Second Semester</option>
+                                
+                                <select name="semester" id="semester" class="form-control form-control-sm form-control-border rounded-0" required>
+                                    <option value="1st Semester">1st Semester</option> 
+                                    <option value="2nd Semester">2nd Semester</option> 
                                 </select>
                             </div>
                             <div class="col-md-6 form-group">
                                 <label for="year" class="control-label">Year Level</label>
-                                <select name="year" id="year" class="form-control form-control-sm  form-control-border rounded-0" required>
-                                    <option>1st Year</option>
-                                    <option>2nd Year</option>
-                                    <option>3rd Year</option>
-                                    <option>4th Year</option>
+                                <select name="year" id="year" class="form-control form-control-sm form-control-border rounded-0" required>
+                                    <option value="1st Year">1st Year</option>
+                                    <option value="2nd Year">2nd Year</option>
+                                    <option value="3rd Year">3rd Year</option>
+                                    <option value="4th Year">4th Year</option>
                                 </select>
                             </div>
-                            {{-- <div class="form-group col-md-6">
-                                <label for="schoolyear" class="control-label">School Year</label>
-                                <input type="text" id="schoolyear" name="schoolyear" value="" class="form-control form-control-border form-control-sm" required>
-                            </div> --}}
                         </div>
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label for="course" class="control-label">Course</label>
-                                <select name="course" id="course" class="form-control form-control-sm  form-control-border rounded-0" required>
-                                    <option>BSCS - ayusin mo na to</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label for="section" class="control-label">Section</label>
-                                <select name="section" id="section" class="form-control form-control-sm  form-control-border rounded-0" required>
-                                    <option>CCIS1A - ayusin mo na to</option>
-                                </select>
-                            </div>
-                        </div>
-                        {{-- <div class="row">
-                            <div class="col-md-6 form-group">
-                                <label for="course_id" class="control-label">Course</label>
-                                <select name="course_id" id="course_id" class="form-control form-control-sm form-control-border rounded-0 select2" required>
-                                    <option>BSCS-lagyan nalang ng php reference</option>
-                                </select>
+                                <select name="course_id" id="course" class="form-control form-control-sm form-control-border rounded-0" required>
+                                    <option value="" disabled selected>-- Select Course --</option>                                 
+                                    @if(isset($courses) && $courses->count() > 0) 
+                                    @foreach($courses as $course)
+                                    
+                                    <option value="{{ $course->id }}">{{ $course->title }}</option> 
+                                    @endforeach
+                                    @else
+                                    <option value="" disabled>No courses available</option> 
+                                    @endif
+                                </select>  
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="year" class="control-label">Year Level</label>
-                                <input type="text" id="year" name="year" value="" class="form-control form-control-border form-control-sm" required>
+                                <label for="section" class="control-label">Section: </label>
+                                <select name="section_id" id="section_id" class="form-control form-control-sm rounded-0" required>
+                                    <option value="">Select Section</option>
+                                    @foreach($sections as $section)
+                                    <option value="{{ $section->id }}" data-course="{{ $section->course_id }}">
+                                        {{ $section->title }}
+                                    </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                <label for="status" class="control-label">Beginning of Semester Status</label>
-                                <select name="status" class="form-control form-control-sm form-control-border rounded-0" required>
-                                    <option value="1">New</option>
-                                    <option value="2">Regular</option>
-                                    <option value="3">Returnee</option>
-                                    <option value="4">Transferee</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label for="end_status" class="control-label">End of Semester Status</label>
-                                <select name="end_status" class="form-control form-control-sm form-control-border rounded-0" required>
-                                    <option value="0">Pending</option>
-                                    <option value="1">Completed</option>
-                                    <option value="2">Dropout</option>
-                                    <option value="3">Failed</option>
-                                    <option value="4">Transferred Out</option>
-                                    <option value="5">Graduated</option>
-                                </select>
-                            </div>
-                        </div> --}}
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -400,129 +476,33 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const editCourseSelect = document.querySelector('#editAcad #course');
+            const editSectionSelect = document.querySelector('#editAcad #section_id');
+            const allEditSectionOptions = Array.from(editSectionSelect.options).slice(1); // Skip "Select Section"
+    
+            if (editCourseSelect && editSectionSelect) {
+                editCourseSelect.addEventListener('change', function () {
+                    const selectedCourseId = this.value;
+                    editSectionSelect.innerHTML = '<option value="">Select Section</option>';
+    
+                    const filtered = allEditSectionOptions.filter(option => option.dataset.course === selectedCourseId);
+                    filtered.forEach(option => editSectionSelect.appendChild(option));
+                });
+    
+                // When modal is shown, trigger course change to refresh section list
+                const editModal = document.getElementById('editAcad');
+                if (editModal) {
+                    editModal.addEventListener('shown.bs.modal', function () {
+                        editCourseSelect.dispatchEvent(new Event('change'));
+                    });
+                }
+            }
+        });
+    </script>
+    
 
-    <div class="modal fade" id="updateStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Status of 0122301119</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <form action="" method="post">
-                    <label for="status" class="control-label">Status</label>
-                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
-                        <option value="1">Active</option>
-                        <option value="0">Inactive</option>
-                    </select>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary" type="submit">Save</button>
-            </div>
-            </form>
-        </div>
-    </div>
-    </div>
-
-    <div class="modal fade" id="editAcad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                    Update Academic Record for {{ $student['lastname'] }}, {{ $student['firstname'] }}
-                    @if (!empty($student['middlename']))
-                    {{ Str::substr($student['middlename'], 0, 1) }}.
-                    @endif
-                </h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <form action="" method="post">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label for="semester" class="control-label">Semester</label>
-                            <select name="semester" id="semester" class="form-control form-control-sm  form-control-border rounded-0" required>
-                                <option>First Semester</option>
-                                <option>Second Semester</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label for="year" class="control-label">Year Level</label>
-                            <select name="year" id="year" class="form-control form-control-sm  form-control-border rounded-0" required>
-                                <option>1st Year</option>
-                                <option>2nd Year</option>
-                                <option>3rd Year</option>
-                                <option>4th Year</option>
-                            </select>
-                        </div>
-                        {{-- <div class="form-group col-md-6">
-                            <label for="schoolyear" class="control-label">School Year</label>
-                            <input type="text" id="schoolyear" name="schoolyear" value="" class="form-control form-control-border form-control-sm" required>
-                        </div> --}}
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label for="course" class="control-label">Course</label>
-                            <select name="course" id="course" class="form-control form-control-sm  form-control-border rounded-0" required>
-                                <option>BSCS - ayusin mo na to</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label for="section" class="control-label">Section</label>
-                            <select name="section" id="section" class="form-control form-control-sm  form-control-border rounded-0" required>
-                                <option>CCIS1A - ayusin mo na to</option>
-                            </select>
-                        </div>
-                    </div>
-                    {{-- <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label for="course_id" class="control-label">Course</label>
-                            <select name="course_id" id="course_id" class="form-control form-control-sm form-control-border rounded-0 select2" required>
-                                <option>BSCS-lagyan nalang ng php reference</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="year" class="control-label">Year Level</label>
-                            <input type="text" id="year" name="year" value="" class="form-control form-control-border form-control-sm" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label for="status" class="control-label">Beginning of Semester Status</label>
-                            <select name="status" class="form-control form-control-sm form-control-border rounded-0" required>
-                                <option value="1">New</option>
-                                <option value="2">Regular</option>
-                                <option value="3">Returnee</option>
-                                <option value="4">Transferee</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label for="end_status" class="control-label">End of Semester Status</label>
-                            <select name="end_status" class="form-control form-control-sm form-control-border rounded-0" required>
-                                <option value="0">Pending</option>
-                                <option value="1">Completed</option>
-                                <option value="2">Dropout</option>
-                                <option value="3">Failed</option>
-                                <option value="4">Transferred Out</option>
-                                <option value="5">Graduated</option>
-                            </select>
-                        </div>
-                    </div> --}}
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Save</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -533,7 +513,7 @@
                     let deleteForm = document.getElementById('deleteForm');
 
                     // Set the correct action URL dynamically
-                    deleteForm.setAttribute('action', `{{ url('student/delete') }}/${studentId}`);
+                    deleteForm.setAttribute('action', `{{ url('superadmin/student/delete') }}/${studentId}`);
                 });
             });
         });
