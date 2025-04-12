@@ -42,9 +42,9 @@ trait AdminsTrait
     {
         $validated = $request->validate([
             'section_id'        => 'required|exists:sections,id',
-
-            'year_level'        => 'required|string|max:255',
-            'course'            => 'required|string|max:255',
+            'year_level' => 'required|in:1st Year,2nd Year,3rd Year,4th Year',
+            'course' => 'required|exists:courses,id',
+            'semester' => 'required|in:1st Semester,2nd Semester',
             'email'             => 'required|email|unique:students,email',
             'firstname'         => 'required|string|max:255',
             'middlename'        => 'nullable|string|max:255',
@@ -70,7 +70,7 @@ trait AdminsTrait
         ]);
         DB::transaction(function () use ($validated) {
             // 1) Create the Student (exclude section_id and year_level)
-            $studentData = Arr::except($validated, ['section_id', 'year_level']);
+            $studentData = Arr::except($validated, ['section_id', 'year_level', 'semester']);
             $student = Student::create($studentData);
 
             // 2) Create Academic History
@@ -78,7 +78,7 @@ trait AdminsTrait
                 'student_id' => $student->id,
                 'section_id' => $validated['section_id'],
                 'year'       => $validated['year_level'], // Moved here
-                'semester'   => '1st Semester', // Change this as needed or make it dynamic
+                'semester'   => $validated['semester'], // Change this as needed or make it dynamic
             ]);
         });
 

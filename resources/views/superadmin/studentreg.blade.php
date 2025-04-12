@@ -105,15 +105,15 @@
                                             <div class="form-group col-md-4">
                                                 <label for="yearlevel" class="control-label">Year Level: </label>
                                                 <select name="year_level" id="yearlevel" class="form-control form-control-sm rounded-0" required>
-                                                    <option>1st Year</option>
-                                                    <option>2nd Year</option>
-                                                    <option>3rd Year</option>
-                                                    <option>4th Year</option>
+                                                    <option value="1st Year">1st Year</option>
+                                                    <option value="2nd Year">2nd Year</option>
+                                                    <option value="3rd Year">3rd Year</option>
+                                                    <option value="4th Year">4th Year</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="email" class="control-label">Email: </label>
-                                                <input type="text" name="email" id="email" autofocus class="form-control form-control-sm rounded-0" required>
+                                                <input type="email" name="email" id="email" autofocus class="form-control form-control-sm rounded-0" required>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="section" class="control-label">Section: </label>
@@ -141,14 +141,14 @@
                                                 <label for="semester" class="control-label">Semester: </label>
                                                 <select name="semester" id="semester" class="form-control form-control-sm rounded-0" required>
                                                     <option value="">Select Semester</option>
-                                                    <option>1st Semester</option>
-                                                    <option>2nd Semester</option>
+                                                    <option value="1st Semester">1st Semester</option>
+                                                    <option value="2nd Semester">2nd Semester</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="contact" class="control-label">Contact #</label>
                                                 <input type="text" name="contact" id="contact" class="form-control form-control-sm rounded-0"
-                                                    placeholder="09XX-XXX-XXXX" required maxlength="13">
+                                                    placeholder="09XX-XXX-XXXX" maxlength="13">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -206,7 +206,7 @@
                                                 <select name="civilstatus" id="civilstatus" class="form-control form-control-sm rounded-0" required>
                                                     <option>Single</option>
                                                     <option>Married</option>
-                                                    <option>Widdowed</option>
+                                                    <option>Widowed</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -216,7 +216,7 @@
                                         <div class="row">
                                             <div class="form-group col-md-4">
                                                 <label for="stname" class="control-label">Number & Street Name: </label>
-                                                <input type="text" name="stname" id="stname" autofocus class="form-control form-control-sm rounded-0" required>
+                                                <input type="text" name="stname" id="stname" autofocus class="form-control form-control-sm rounded-0">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="brgy" class="control-label">Brgy, Bario, Village, Subdivision: </label>
@@ -235,7 +235,7 @@
                                             <div class="form-group col-md-4">
                                                 <label for="postalcode" class="control-label">Postal Code: </label>
                                                 <input type="text" name="postalcode" id="postalcode" autofocus class="form-control form-control-sm rounded-0"
-                                                    placeholder="e.g., 1000" required maxlength="4">
+                                                    placeholder="e.g., 1000" maxlength="4">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="homenumber" class="control-label">Home Phone No.: </label>
