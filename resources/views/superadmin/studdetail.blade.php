@@ -221,27 +221,16 @@
                                                 <td class="px-2 py-1 align-middle">{{ $history->year }}</td> {{-- Removed text-center --}}
 
                                                 {{-- Optional: Display Section Title (Requires loading 'acadHistories.section' in controller) --}}
-                                                {{-- <td class="px-2 py-1 align-middle">{{ $history->section ? $history->section->title : 'N/A' }}</td> --}}
+                                                <td class="px-2 py-1 align-middle">{{ $history->section ? $history->section->title : 'N/A' }}</td>
 
-                                                <td class="px-2 py-1 align-middle text-center">
+                                                {{-- <td class="px-2 py-1 align-middle text-center">
                                                     {{-- Action buttons. You might want to add data attributes like data-id --}}
                                                     {{-- Or generate dynamic URLs using route() helper if you have named routes --}}
-                                                    <span class="rounded-pill badge badge-success px-3">Completed</span>
-                                                </td> --}}
-                                                <td class="px-2 py-1 align-middle text-center">1st Semester</td>
-                                                <td class="px-2 py-1 align-middle text-center">1st Year</td>
-                                                <td class="px-2 py-1 align-middle text-center">CCIS1A</td>
+                                                    {{-- <span class="rounded-pill badge badge-success px-3">Completed</span>
+                                                </td> --}} 
+                                                
                                                 <td class="px-2 py-1 align-middle text-center">
-                                                    <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        Action
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <div class="dropdown-menu" role="menu">
-                                                        {{-- Pass the history ID for JavaScript or use route() for links --}}
-                                                        <a class="dropdown-item edit_academic" href="#" data-id="{{ $history->id }}" data-url="{{-- route('academic.edit', $history->id) --}}"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item delete_academic" href="#" data-id="{{ $history->id }}" data-url="{{-- route('academic.destroy', $history->id) --}}"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                    </div>
+                                                        <a class="btn btn-flat btn-default btn-sm border" data-target="#editAcad" data-toggle="modal"><i class="fa fa-edit text-primary"></i> Edit</a>
                                                 </td>
                                             </tr>
                                             @empty
@@ -413,30 +402,101 @@
         </div>
     </div>
 
-    <div class="modal fade" id="updateStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="editAcad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Status of 0122301119</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Update Academic Record for {{ $student['lastname'] }}, {{ $student['firstname'] }}
+                        @if (!empty($student['middlename']))
+                        {{ Str::substr($student['middlename'], 0, 1) }}.
+                        @endif
+                    </h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <form action="" method="post">
-                    <label for="status" class="control-label">Status</label>
-                    <select name="status" id="status" class="form-control form-control-sm form-control-border" required>
-                        <option value="1">Active</option>
-                        <option value="0">Inactive</option>
-                    </select>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="semester" class="control-label">Semester</label>
+                                <select name="semester" id="semester" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                    <option>First Semester</option>
+                                    <option>Second Semester</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="year" class="control-label">Year Level</label>
+                                <select name="year" id="year" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                    <option>1st Year</option>
+                                    <option>2nd Year</option>
+                                    <option>3rd Year</option>
+                                    <option>4th Year</option>
+                                </select>
+                            </div>
+                            {{-- <div class="form-group col-md-6">
+                                <label for="schoolyear" class="control-label">School Year</label>
+                                <input type="text" id="schoolyear" name="schoolyear" value="" class="form-control form-control-border form-control-sm" required>
+                            </div> --}}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="course" class="control-label">Course</label>
+                                <select name="course" id="course" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                    <option>BSCS - ayusin mo na to</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="section" class="control-label">Section</label>
+                                <select name="section" id="section" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                    <option>CCIS1A - ayusin mo na to</option>
+                                </select>
+                            </div>
+                        </div>
+                        {{-- <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="course_id" class="control-label">Course</label>
+                                <select name="course_id" id="course_id" class="form-control form-control-sm form-control-border rounded-0 select2" required>
+                                    <option>BSCS-lagyan nalang ng php reference</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="year" class="control-label">Year Level</label>
+                                <input type="text" id="year" name="year" value="" class="form-control form-control-border form-control-sm" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="status" class="control-label">Beginning of Semester Status</label>
+                                <select name="status" class="form-control form-control-sm form-control-border rounded-0" required>
+                                    <option value="1">New</option>
+                                    <option value="2">Regular</option>
+                                    <option value="3">Returnee</option>
+                                    <option value="4">Transferee</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="end_status" class="control-label">End of Semester Status</label>
+                                <select name="end_status" class="form-control form-control-sm form-control-border rounded-0" required>
+                                    <option value="0">Pending</option>
+                                    <option value="1">Completed</option>
+                                    <option value="2">Dropout</option>
+                                    <option value="3">Failed</option>
+                                    <option value="4">Transferred Out</option>
+                                    <option value="5">Graduated</option>
+                                </select>
+                            </div>
+                        </div> --}}
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary" type="submit">Save</button>
-            </div>
-            </form>
         </div>
-    </div>
     </div>
 
     <script>
