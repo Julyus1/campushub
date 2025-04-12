@@ -202,50 +202,48 @@
                                         <thead>
                                             <tr class="bg-gradient-dark text-light">
                                                 <th class="py-1 text-center">ID</th>
-                                                {{-- <th class="py-1 text-center">Department/Course</th> --}}
                                                 <th class="py-1 text-center">Semester</th>
                                                 <th class="py-1 text-center">Year Level</th>
+                                                {{-- Optional: Add Section if needed --}}
                                                 <th class="py-1 text-center">Section</th>
-                                                {{-- <th class="py-1 text-center">Beg. of Sem. Status</th>
-                                                <th class="py-1 text-center">End of Sem. Status</th> --}}
+                                                {{-- <th class="py-1 text-center">Section</th> --}}
                                                 <th class="py-1 text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {{-- Loop through the academic histories associated with the student --}}
+                                            {{-- Use @forelse to handle cases where the collection might be empty --}}
+                                            @forelse ($student->acadHistories as $history)
                                             <tr>
-                                                <td class="px-2 py-1 align-middle text-center">1</td>
-                                                {{-- <td class="px-2 py-1 align-middle">
-                                                    <small><span class="">CCIS</span></small><br>
-                                                    <small><span class="">BSIT-MOBDEV</span></small>
-                                                </td> --}}
-                                                {{-- <td class="px-2 py-1 align-middle">
-                                                    <small><span class="">1st Semester</span></small><br>
-                                                    <small><span class="">1st Year</span></small>
-                                                </td> --}}
-                                                {{-- <td class="px-2 py-1 align-middle">1st Year</td> --}}
+                                                {{-- Display data from the current $history object in the loop --}}
+                                                <td class="px-2 py-1 align-middle text-center">{{ $history->id }}</td>
+                                                <td class="px-2 py-1 align-middle">{{ $history->semester }}</td> {{-- Removed text-center for potentially longer text --}}
+                                                <td class="px-2 py-1 align-middle">{{ $history->year }}</td> {{-- Removed text-center --}}
+
+                                                {{-- Optional: Display Section Title (Requires loading 'acadHistories.section' in controller) --}}
+                                                <td class="px-2 py-1 align-middle">{{ $history->section ? $history->section->title : 'N/A' }}</td>
+
                                                 {{-- <td class="px-2 py-1 align-middle text-center">
-                                                    <span class="rounded-pill badge badge-success px-3">Regular</span>
-                                                </td>
+                                                    {{-- Action buttons. You might want to add data attributes like data-id --}}
+                                                    {{-- Or generate dynamic URLs using route() helper if you have named routes --}}
+                                                    {{-- <span class="rounded-pill badge badge-success px-3">Completed</span>
+                                                </td> --}} 
+                                                
                                                 <td class="px-2 py-1 align-middle text-center">
-                                                    <span class="rounded-pill badge badge-success px-3">Completed</span>
-                                                </td> --}}
-                                                <td class="px-2 py-1 align-middle text-center">1st Semester</td>
-                                                <td class="px-2 py-1 align-middle text-center">1st Year</td>
-                                                <td class="px-2 py-1 align-middle text-center">CCIS1A</td>
-                                                <td class="px-2 py-1 align-middle text-center">
-                                                    <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        Action
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item edit_academic" href="#"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item delete_academic" href="#"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                    </div>
+                                                    <a class="btn btn-flat btn-default btn-sm border" data-target="#editAcad" data-toggle="modal"><i class="fa fa-edit text-primary"></i> Edit</a>
                                                 </td>
                                             </tr>
+                                            @empty
+                                            {{-- This content will be shown if $student->acadHistories is empty --}}
+                                            <tr>
+                                                <td colspan="4" class="text-center">No academic history found for this student.</td>
+                                                {{-- Adjust colspan if you added the Section column --}}
+                                                {{-- <td colspan="5" class="text-center">No academic history found for this student.</td> --}}
+                                            </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
+
                                 </fieldset>
                             </div>
                         </div>
@@ -428,6 +426,103 @@
         </div>
     </div>
     </div>
+
+    <div class="modal fade" id="editAcad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Update Academic Record for {{ $student['lastname'] }}, {{ $student['firstname'] }}
+                    @if (!empty($student['middlename']))
+                    {{ Str::substr($student['middlename'], 0, 1) }}.
+                    @endif
+                </h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form action="" method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="semester" class="control-label">Semester</label>
+                            <select name="semester" id="semester" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                <option>First Semester</option>
+                                <option>Second Semester</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="year" class="control-label">Year Level</label>
+                            <select name="year" id="year" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                <option>1st Year</option>
+                                <option>2nd Year</option>
+                                <option>3rd Year</option>
+                                <option>4th Year</option>
+                            </select>
+                        </div>
+                        {{-- <div class="form-group col-md-6">
+                            <label for="schoolyear" class="control-label">School Year</label>
+                            <input type="text" id="schoolyear" name="schoolyear" value="" class="form-control form-control-border form-control-sm" required>
+                        </div> --}}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="course" class="control-label">Course</label>
+                            <select name="course" id="course" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                <option>BSCS - ayusin mo na to</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="section" class="control-label">Section</label>
+                            <select name="section" id="section" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                <option>CCIS1A - ayusin mo na to</option>
+                            </select>
+                        </div>
+                    </div>
+                    {{-- <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="course_id" class="control-label">Course</label>
+                            <select name="course_id" id="course_id" class="form-control form-control-sm form-control-border rounded-0 select2" required>
+                                <option>BSCS-lagyan nalang ng php reference</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="year" class="control-label">Year Level</label>
+                            <input type="text" id="year" name="year" value="" class="form-control form-control-border form-control-sm" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="status" class="control-label">Beginning of Semester Status</label>
+                            <select name="status" class="form-control form-control-sm form-control-border rounded-0" required>
+                                <option value="1">New</option>
+                                <option value="2">Regular</option>
+                                <option value="3">Returnee</option>
+                                <option value="4">Transferee</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="end_status" class="control-label">End of Semester Status</label>
+                            <select name="end_status" class="form-control form-control-sm form-control-border rounded-0" required>
+                                <option value="0">Pending</option>
+                                <option value="1">Completed</option>
+                                <option value="2">Dropout</option>
+                                <option value="3">Failed</option>
+                                <option value="4">Transferred Out</option>
+                                <option value="5">Graduated</option>
+                            </select>
+                        </div>
+                    </div> --}}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
