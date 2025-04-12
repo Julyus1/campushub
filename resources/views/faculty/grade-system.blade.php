@@ -28,6 +28,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
+        <x-facultysidebar :subjects="$subjects" />
 
         <!-- End of Sidebar -->
 
