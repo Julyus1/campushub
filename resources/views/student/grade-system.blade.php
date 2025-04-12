@@ -38,7 +38,8 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <x-studenttopbar :student="$student" />
+                <x-studenttopbar>
+                </x-studenttopbar>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -72,7 +73,7 @@
                                         <tr>
                                             <td>{{ $student->id }}</td>
                                             <td>{{ $student->firstname . " " .  strtoupper(substr($student->middlename, 0, 1)) . "." . " " . $student->lastname  }}</td>
-                                            <td>1st Year</td>
+                                            <td></td>
                                             <td>2024-2025</td>
                                             <td>1st</td>
                                             <td items-align="center">

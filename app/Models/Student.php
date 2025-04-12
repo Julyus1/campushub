@@ -17,10 +17,7 @@ class Student extends Model
 
     protected $guarded = [];
 
-    public function section()
-    {
-        return $this->belongsTo(Section::class, 'section_id');
-    }
+
     public function acadHistories()
     {
         return $this->hasMany(AcadHistory::class);

@@ -202,48 +202,52 @@
                                         <thead>
                                             <tr class="bg-gradient-dark text-light">
                                                 <th class="py-1 text-center">ID</th>
-                                                {{-- <th class="py-1 text-center">Department/Course</th> --}}
                                                 <th class="py-1 text-center">Semester</th>
                                                 <th class="py-1 text-center">Year Level</th>
-                                                {{-- <th class="py-1 text-center">Beg. of Sem. Status</th>
-                                                <th class="py-1 text-center">End of Sem. Status</th> --}}
+                                                {{-- Optional: Add Section if needed --}}
+                                                {{-- <th class="py-1 text-center">Section</th> --}}
                                                 <th class="py-1 text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {{-- Loop through the academic histories associated with the student --}}
+                                            {{-- Use @forelse to handle cases where the collection might be empty --}}
+                                            @forelse ($student->acadHistories as $history)
                                             <tr>
-                                                <td class="px-2 py-1 align-middle text-center">1</td>
-                                                {{-- <td class="px-2 py-1 align-middle">
-                                                    <small><span class="">CCIS</span></small><br>
-                                                    <small><span class="">BSIT-MOBDEV</span></small>
-                                                </td> --}}
-                                                {{-- <td class="px-2 py-1 align-middle">
-                                                    <small><span class="">1st Semester</span></small><br>
-                                                    <small><span class="">1st Year</span></small>
-                                                </td> --}}
-                                                {{-- <td class="px-2 py-1 align-middle">1st Year</td> --}}
-                                                {{-- <td class="px-2 py-1 align-middle text-center">
-                                                    <span class="rounded-pill badge badge-success px-3">Regular</span>
-                                                </td>
+                                                {{-- Display data from the current $history object in the loop --}}
+                                                <td class="px-2 py-1 align-middle text-center">{{ $history->id }}</td>
+                                                <td class="px-2 py-1 align-middle">{{ $history->semester }}</td> {{-- Removed text-center for potentially longer text --}}
+                                                <td class="px-2 py-1 align-middle">{{ $history->year }}</td> {{-- Removed text-center --}}
+
+                                                {{-- Optional: Display Section Title (Requires loading 'acadHistories.section' in controller) --}}
+                                                {{-- <td class="px-2 py-1 align-middle">{{ $history->section ? $history->section->title : 'N/A' }}</td> --}}
+
                                                 <td class="px-2 py-1 align-middle text-center">
-                                                    <span class="rounded-pill badge badge-success px-3">Completed</span>
-                                                </td> --}}
-                                                <td class="px-2 py-1 align-middle text-center">1st Semester</td>
-                                                <td class="px-2 py-1 align-middle text-center">1st Year</td>
-                                                <td class="px-2 py-1 align-middle text-center">
+                                                    {{-- Action buttons. You might want to add data attributes like data-id --}}
+                                                    {{-- Or generate dynamic URLs using route() helper if you have named routes --}}
                                                     <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                         Action
                                                         <span class="sr-only">Toggle Dropdown</span>
                                                     </button>
                                                     <div class="dropdown-menu" role="menu">
-                                                        <a class="dropdown-item edit_academic" href="#"><span class="fa fa-edit text-primary"></span> Edit</a>
+                                                        {{-- Pass the history ID for JavaScript or use route() for links --}}
+                                                        <a class="dropdown-item edit_academic" href="#" data-id="{{ $history->id }}" data-url="{{-- route('academic.edit', $history->id) --}}"><span class="fa fa-edit text-primary"></span> Edit</a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item delete_academic" href="#"><span class="fa fa-trash text-danger"></span> Delete</a>
+                                                        <a class="dropdown-item delete_academic" href="#" data-id="{{ $history->id }}" data-url="{{-- route('academic.destroy', $history->id) --}}"><span class="fa fa-trash text-danger"></span> Delete</a>
                                                     </div>
                                                 </td>
                                             </tr>
+                                            @empty
+                                            {{-- This content will be shown if $student->acadHistories is empty --}}
+                                            <tr>
+                                                <td colspan="4" class="text-center">No academic history found for this student.</td>
+                                                {{-- Adjust colspan if you added the Section column --}}
+                                                {{-- <td colspan="5" class="text-center">No academic history found for this student.</td> --}}
+                                            </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
+
                                 </fieldset>
                             </div>
                         </div>
