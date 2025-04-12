@@ -202,32 +202,34 @@
                                         <thead>
                                             <tr class="bg-gradient-dark text-light">
                                                 <th class="py-1 text-center">ID</th>
-                                                <th class="py-1 text-center">Department/Course</th>
-                                                <th class="py-1 text-center">Semester/School Yr.</th>
-                                                <th class="py-1 text-center">Year</th>
-                                                <th class="py-1 text-center">Beg. of Sem. Status</th>
-                                                <th class="py-1 text-center">End of Sem. Status</th>
+                                                {{-- <th class="py-1 text-center">Department/Course</th> --}}
+                                                <th class="py-1 text-center">Semester</th>
+                                                <th class="py-1 text-center">Year Level</th>
+                                                {{-- <th class="py-1 text-center">Beg. of Sem. Status</th>
+                                                <th class="py-1 text-center">End of Sem. Status</th> --}}
                                                 <th class="py-1 text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td class="px-2 py-1 align-middle text-center">1</td>
-                                                <td class="px-2 py-1 align-middle">
+                                                {{-- <td class="px-2 py-1 align-middle">
                                                     <small><span class="">CCIS</span></small><br>
                                                     <small><span class="">BSIT-MOBDEV</span></small>
-                                                </td>
-                                                <td class="px-2 py-1 align-middle">
-                                                    <small><span class="">First Semester</span></small><br>
-                                                    <small><span class="">2022-2023</span></small>
-                                                </td>
-                                                <td class="px-2 py-1 align-middle">1st Year</td>
-                                                <td class="px-2 py-1 align-middle text-center">
+                                                </td> --}}
+                                                {{-- <td class="px-2 py-1 align-middle">
+                                                    <small><span class="">1st Semester</span></small><br>
+                                                    <small><span class="">1st Year</span></small>
+                                                </td> --}}
+                                                {{-- <td class="px-2 py-1 align-middle">1st Year</td> --}}
+                                                {{-- <td class="px-2 py-1 align-middle text-center">
                                                     <span class="rounded-pill badge badge-success px-3">Regular</span>
                                                 </td>
                                                 <td class="px-2 py-1 align-middle text-center">
                                                     <span class="rounded-pill badge badge-success px-3">Completed</span>
-                                                </td>
+                                                </td> --}}
+                                                <td class="px-2 py-1 align-middle text-center">1st Semester</td>
+                                                <td class="px-2 py-1 align-middle text-center">1st Year</td>
                                                 <td class="px-2 py-1 align-middle text-center">
                                                     <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                         Action
@@ -327,12 +329,21 @@
                                     <option>Second Semester</option>
                                 </select>
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="col-md-6 form-group">
+                                <label for="year" class="control-label">Year Level</label>
+                                <select name="year" id="year" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                    <option>1st Year</option>
+                                    <option>2nd Year</option>
+                                    <option>3rd Year</option>
+                                    <option>4th Year</option>
+                                </select>
+                            </div>
+                            {{-- <div class="form-group col-md-6">
                                 <label for="schoolyear" class="control-label">School Year</label>
                                 <input type="text" id="schoolyear" name="schoolyear" value="" class="form-control form-control-border form-control-sm" required>
-                            </div>
+                            </div> --}}
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-6 form-group">
                                 <label for="course_id" class="control-label">Course</label>
                                 <select name="course_id" id="course_id" class="form-control form-control-sm form-control-border rounded-0 select2" required>
@@ -365,7 +376,7 @@
                                     <option value="5">Graduated</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
