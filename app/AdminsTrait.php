@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 use App\Models\AcadHistory;
+use Illuminate\Validation\Rule;
 
 trait AdminsTrait
 {
@@ -87,10 +88,24 @@ trait AdminsTrait
 
     public function stud_profile(Student $student)
     {
-        $acad =  $student->load('acadHistories.section');
-        return view($this->viewprefix() . 'studdetail', ['student' => $student, 'acads' => $acad]);
-    }
+        // Keep fetching courses for the modal dropdown
+        $courses = Course::orderBy('title')->get();
 
+        // Keep loading academic histories onto $student and assigning the result to $acad
+        $acad =  $student->load('acadHistories.section');
+        $sections = Section::all();
+
+        // REMOVED: $sections = Section::all(); // This line is removed.
+
+        // Pass the necessary data to the view, excluding the unnecessary 'sections' variable
+        return view($this->viewprefix() . 'studdetail', [
+            'student' => $student,
+            'acads' => $acad,    // Keep passing $acad as you had it
+            'courses' => $courses,
+            'sections' => $sections // Keep passing $courses
+            // REMOVED: 'sections'=>$sections // The 'sections' key-value pair is removed from this array
+        ]);
+    }
     public function stud_showupdate(Student $student)
     {
         $courses = Course::all();
@@ -299,5 +314,48 @@ trait AdminsTrait
         $section->delete();
 
         return redirect()->back()->with('success', 'Section deleted successfully!');
+    }
+
+
+
+    public function store_acadhistory(Request $request, Student $student)
+    {
+        $validatedData = $request->validate([
+            'semester'   => 'required|string|max:100', // Adjust max length if needed
+            'year'       => 'required|string|max:100', // Adjust max length if needed
+            // 'course_id' => 'required|integer|exists:courses,id', // Validate course exists (uncomment if using course_id)
+            'section_id' => 'required|integer|exists:sections,id', // Validate section exists
+            'student_id' => [ // Explicitly validate student_id from hidden input
+                'required',
+                'integer',
+                Rule::exists('students', 'id')->where(function ($query) use ($student) {
+                    // Ensure the student_id submitted matches the student in the URL
+                    $query->where('id', $student->id);
+                }),
+            ],
+            // Add validation for other fields if you uncomment them (e.g., schoolyear)
+        ]);
+
+        try {
+            // 2. Create the Academic History record using the relationship
+            // This automatically sets the student_id
+            $student->acadHistories()->create([
+                'semester'   => $validatedData['semester'],
+                'year'       => $validatedData['year'],
+                'section_id' => $validatedData['section_id'],
+                // Add other fields here if needed
+            ]);
+
+            // 3. Redirect back to the student detail page with a success message
+            return redirect()->route('students.show', $student->id)
+                ->with('success', 'Academic record added successfully!');
+        } catch (\Exception $e) {
+            // Optional: Log the error for debugging
+
+
+            // Redirect back with an error message
+            return redirect()->back()
+                ->with('error', 'Failed to add academic record. Please try again.');
+        }
     }
 }

@@ -198,63 +198,71 @@
                                 </fieldset>
                                 <fieldset>
                                     <legend class="text-muted">Academic History</legend>
-                                    <table class="table table-stripped table-bordered" id="academic-history">
-                                        <thead>
-                                            <tr class="bg-gradient-dark text-light">
-                                                <th class="py-1 text-center">ID</th>
-                                                <th class="py-1 text-center">Semester</th>
-                                                <th class="py-1 text-center">Year Level</th>
-                                                {{-- Optional: Add Section if needed --}}
-                                                <th class="py-1 text-center">Section</th>
-                                                {{-- <th class="py-1 text-center">Section</th> --}}
-                                                <th class="py-1 text-center">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {{-- Loop through the academic histories associated with the student --}}
-                                            {{-- Use @forelse to handle cases where the collection might be empty --}}
-                                            @forelse ($student->acadHistories as $history)
-                                            <tr>
-                                                {{-- Display data from the current $history object in the loop --}}
-                                                <td class="px-2 py-1 align-middle text-center">{{ $history->id }}</td>
-                                                <td class="px-2 py-1 align-middle">{{ $history->semester }}</td> {{-- Removed text-center for potentially longer text --}}
-                                                <td class="px-2 py-1 align-middle">{{ $history->year }}</td> {{-- Removed text-center --}}
+                                    <div class="table-responsive"> {{-- Added for better handling on small screens --}}
+                                        <table class="table table-stripped table-bordered" id="academic-history">
+                                            <thead>
+                                                <tr class="bg-gradient-dark text-light">
+                                                    <th class="py-1 text-center" style="width: 5%;">ID</th>
+                                                    <th class="py-1 text-center" style="width: 30%;">Semester</th> {{-- Adjusted width --}}
+                                                    <th class="py-1 text-center" style="width: 30%;">Year Level</th> {{-- Adjusted width --}}
+                                                    <th class="py-1 text-center" style="width: 20%;">Section</th> {{-- Added Section Column Header --}}
+                                                    <th class="py-1 text-center" style="width: 15%;">Action</th> {{-- Adjusted width --}}
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{--
+                    Loop through the academic histories associated with the student.
+                    Assumes $student->acadHistories (and the related section for each history)
+                    is available and loaded from the controller.
+                    Using @forelse to handle the case where the collection might be empty.
+                --}}
+                                                @forelse ($student->acadHistories as $history)
+                                                <tr>
+                                                    {{-- History ID --}}
+                                                    <td class="px-2 py-1 align-middle text-center">{{ $history->id }}</td>
 
-                                                {{-- Optional: Display Section Title (Requires loading 'acadHistories.section' in controller) --}}
-                                                {{-- <td class="px-2 py-1 align-middle">{{ $history->section ? $history->section->title : 'N/A' }}</td> --}}
+                                                    {{-- History Semester --}}
+                                                    <td class="px-2 py-1 align-middle">{{ $history->semester }}</td>
 
-                                                <td class="px-2 py-1 align-middle text-center">
-                                                    {{-- Action buttons. You might want to add data attributes like data-id --}}
-                                                    {{-- Or generate dynamic URLs using route() helper if you have named routes --}}
-                                                    <span class="rounded-pill badge badge-success px-3">Completed</span>
-                                                </td> --}}
-                                                <td class="px-2 py-1 align-middle text-center">1st Semester</td>
-                                                <td class="px-2 py-1 align-middle text-center">1st Year</td>
-                                                <td class="px-2 py-1 align-middle text-center">CCIS1A</td>
-                                                <td class="px-2 py-1 align-middle text-center">
-                                                    <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        Action
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <div class="dropdown-menu" role="menu">
-                                                        {{-- Pass the history ID for JavaScript or use route() for links --}}
-                                                        <a class="dropdown-item edit_academic" href="#" data-id="{{ $history->id }}" data-url="{{-- route('academic.edit', $history->id) --}}"><span class="fa fa-edit text-primary"></span> Edit</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item delete_academic" href="#" data-id="{{ $history->id }}" data-url="{{-- route('academic.destroy', $history->id) --}}"><span class="fa fa-trash text-danger"></span> Delete</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            @empty
-                                            {{-- This content will be shown if $student->acadHistories is empty --}}
-                                            <tr>
-                                                <td colspan="4" class="text-center">No academic history found for this student.</td>
-                                                {{-- Adjust colspan if you added the Section column --}}
-                                                {{-- <td colspan="5" class="text-center">No academic history found for this student.</td> --}}
-                                            </tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
+                                                    {{-- History Year Level --}}
+                                                    <td class="px-2 py-1 align-middle">{{ $history->year }}</td>
 
+                                                    {{-- History Section --}}
+                                                    {{-- Add this new TD to display the section title --}}
+                                                    {{-- Use null check: $history->section might be null if no section is assigned --}}
+                                                    <td class="px-2 py-1 align-middle">{{ $history->section ? $history->section->title : 'N/A' }}</td>
+
+                                                    {{-- Action Column with Dropdown --}}
+                                                    <td class="px-2 py-1 align-middle text-center">
+                                                        {{-- Action dropdown button --}}
+                                                        <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            Action
+                                                            <span class="sr-only">Toggle Dropdown</span>
+                                                        </button>
+                                                        {{-- Dropdown menu --}}
+                                                        <div class="dropdown-menu" role="menu">
+                                                            <a class="dropdown-item edit_academic" href="#" data-id="{{ $history->id }}" data-url="{{-- route('academic.edit', $history->id) --}}">
+                                                                <span class="fa fa-edit text-primary"></span> Edit
+                                                            </a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <a class="dropdown-item delete_academic" href="#" data-id="{{ $history->id }}" data-url="{{-- route('academic.destroy', $history->id) --}}">
+                                                                <span class="fa fa-trash text-danger"></span> Delete
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                @empty
+                                                {{-- This content will be shown if $student->acadHistories is empty --}}
+                                                <tr>
+                                                    {{-- Update colspan to match the new number of columns (5) --}}
+                                                    <td colspan="5" class="text-center py-3">
+                                                        No academic history found for this student.
+                                                    </td>
+                                                </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </fieldset>
                             </div>
                         </div>
@@ -316,102 +324,152 @@
         </div>
     </div>
 
-    <div class="modal fade" id="addAcad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="addAcad" tabindex="-1" role="dialog" aria-labelledby="addAcadLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        Add Academic Record for {{ $student['lastname'] }}, {{ $student['firstname'] }}
-                        @if (!empty($student['middlename']))
-                        {{ Str::substr($student['middlename'], 0, 1) }}.
+                    <h5 class="modal-title" id="addAcadLabel">
+                        Add Academic Record for {{ $student->lastname }}, {{ $student->firstname }}
+                        @if (!empty($student->middlename))
+                        {{ Str::substr($student->middlename, 0, 1) }}.
                         @endif
                     </h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="" method="post">
+                {{--
+                Set the action to the route that will process the form.
+                We'll name this route 'students.acadhistories.store'.
+                Pass the student's ID to the route.
+            --}}
+                <form action="{{ route('students.acadhistories.store', $student->id) }}" method="POST">
+                    {{-- Add CSRF Token for security --}}
+                    @csrf
+
+                    {{-- Add a hidden field to explicitly send the student_id --}}
+                    {{-- Although we have it in the route, having it in the request body is also common --}}
+                    <input type="hidden" name="student_id" value="{{ $student->id }}">
+
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label for="semester" class="control-label">Semester</label>
-                                <select name="semester" id="semester" class="form-control form-control-sm  form-control-border rounded-0" required>
-                                    <option>First Semester</option>
-                                    <option>Second Semester</option>
+                                {{-- Ensure values match what you expect in the backend --}}
+                                <select name="semester" id="semester" class="form-control form-control-sm form-control-border rounded-0" required>
+                                    <option value="1st Semester">1st Semester</option> {{-- Use more specific value if needed --}}
+                                    <option value="2nd Semester">2nd Semester</option> {{-- Use more specific value if needed --}}
                                 </select>
                             </div>
                             <div class="col-md-6 form-group">
                                 <label for="year" class="control-label">Year Level</label>
-                                <select name="year" id="year" class="form-control form-control-sm  form-control-border rounded-0" required>
-                                    <option>1st Year</option>
-                                    <option>2nd Year</option>
-                                    <option>3rd Year</option>
-                                    <option>4th Year</option>
+                                {{-- Ensure values match what you expect in the backend --}}
+                                <select name="year" id="year" class="form-control form-control-sm form-control-border rounded-0" required>
+                                    <option value="1st Year">1st Year</option>
+                                    <option value="2nd Year">2nd Year</option>
+                                    <option value="3rd Year">3rd Year</option>
+                                    <option value="4th Year">4th Year</option>
+                                    <option value="Others">Others</option> {{-- Added based on previous examples --}}
                                 </select>
                             </div>
-                            {{-- <div class="form-group col-md-6">
-                                <label for="schoolyear" class="control-label">School Year</label>
-                                <input type="text" id="schoolyear" name="schoolyear" value="" class="form-control form-control-border form-control-sm" required>
-                            </div> --}}
                         </div>
                         <div class="row">
+                            {{-- IMPORTANT: Course and Section Dropdowns --}}
+                            {{-- These should ideally be populated dynamically. --}}
+                            {{-- The 'section' dropdown MUST submit the 'section_id' (value attribute). --}}
+                            {{-- You'll need to pass $courses and $sections data from the controller --}}
+                            {{-- that displays this page/modal. --}}
+
                             <div class="col-md-6 form-group">
                                 <label for="course" class="control-label">Course</label>
-                                <select name="course" id="course" class="form-control form-control-sm  form-control-border rounded-0" required>
-                                    <option>BSCS - ayusin mo na to</option>
+                                {{-- The name should likely be 'course_id' if your Course model uses 'id' as the primary key --}}
+                                <select name="course_id" id="course" class="form-control form-control-sm form-control-border rounded-0" required>
+                                    {{-- Default empty option --}}
+                                    <option value="" disabled selected>-- Select Course --</option>
+
+                                    {{-- *** Loop through the $courses passed from the controller *** --}}
+                                    @if(isset($courses) && $courses->count() > 0) {{-- Check if $courses exists and is not empty --}}
+                                    @foreach($courses as $course)
+                                    {{--
+                    Set the value to the course's ID.
+                    Display the course's name (or title, or code - adjust $course->name accordingly).
+                --}}
+                                    <option value="{{ $course->id }}">{{ $course->title }}</option> {{-- Adjust 'name' if your attribute is different --}}
+                                    @endforeach
+                                    @else
+                                    <option value="" disabled>No courses available</option> {{-- Optional: Message if no courses found --}}
+                                    @endif
+                                    {{-- Remove the static/placeholder option --}}
+                                    {{-- <option value="1">TEMP: BSCS Course</option> --}}
                                 </select>
+                                {{-- Note: You will still likely need JS to update the Sections dropdown based on this selection --}}
                             </div>
-                            <div class="col-md-6 form-group">
-                                <label for="section" class="control-label">Section</label>
-                                <select name="section" id="section" class="form-control form-control-sm  form-control-border rounded-0" required>
-                                    <option>CCIS1A - ayusin mo na to</option>
+                            <div class="form-group col-md-4">
+                                <label for="section" class="control-label">Section: </label>
+                                <select name="section_id" id="section_id" class="form-control form-control-sm rounded-0" required>
+                                    <option value="">Select Section</option>
+                                    @foreach($sections as $section)
+                                    <option value="{{ $section->id }}" data-course="{{ $section->course_id }}">
+                                        {{ $section->title }}
+                                    </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
-                        {{-- <div class="row">
-                            <div class="col-md-6 form-group">
-                                <label for="course_id" class="control-label">Course</label>
-                                <select name="course_id" id="course_id" class="form-control form-control-sm form-control-border rounded-0 select2" required>
-                                    <option>BSCS-lagyan nalang ng php reference</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="year" class="control-label">Year Level</label>
-                                <input type="text" id="year" name="year" value="" class="form-control form-control-border form-control-sm" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                <label for="status" class="control-label">Beginning of Semester Status</label>
-                                <select name="status" class="form-control form-control-sm form-control-border rounded-0" required>
-                                    <option value="1">New</option>
-                                    <option value="2">Regular</option>
-                                    <option value="3">Returnee</option>
-                                    <option value="4">Transferee</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label for="end_status" class="control-label">End of Semester Status</label>
-                                <select name="end_status" class="form-control form-control-sm form-control-border rounded-0" required>
-                                    <option value="0">Pending</option>
-                                    <option value="1">Completed</option>
-                                    <option value="2">Dropout</option>
-                                    <option value="3">Failed</option>
-                                    <option value="4">Transferred Out</option>
-                                    <option value="5">Graduated</option>
-                                </select>
-                            </div>
-                        </div> --}}
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-primary" type="submit">Save Record</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const courseSelect = document.getElementById('course');
+            const sectionSelect = document.getElementById('section_id');
+            const allSectionOptions = Array.from(sectionSelect.options).slice(1); // skip "Select Section"
+
+            courseSelect.addEventListener('change', function() {
+                const selectedCourseId = this.value;
+
+                // Clear and reset section dropdown
+                sectionSelect.innerHTML = '<option value="">Select Section</option>';
+
+                const filtered = allSectionOptions.filter(option => option.dataset.course === selectedCourseId);
+                filtered.forEach(option => sectionSelect.appendChild(option));
+            });
+        });
+    </script>
+    {{-- Add this somewhere in your main layout or student detail view to display flash messages --}}
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    @if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    {{-- Display validation errors if needed --}}
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 
     <div class="modal fade" id="updateStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">

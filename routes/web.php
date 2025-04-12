@@ -89,6 +89,9 @@ Route::middleware(['auth', 'userrole:1'])->group(function () {
     Route::get('/superadmin/section/subjects/{id}', [SuperadminController::class, 'show_sectionsub']);
     Route::post('/superadmin/section/subjects/add', [SuperadminController::class, 'attach_subject_to_section'])
         ->name('superadmin.section.subjects.add');
+
+    Route::post('/students/{student}/acadhistories', [SuperAdminController::class, 'store_acadhistory'])
+        ->name('students.acadhistories.store');
 });
 
 Route::middleware(['auth', 'userrole:2'])->group(function () {

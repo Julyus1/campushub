@@ -29,8 +29,10 @@ class StudentController extends Controller
 
     public function grade_list()
     {
-        $student = Auth::user()->student;
 
-        return view('student.grade-system', compact('student'));
+        $student = Auth::user()->student;
+        $acad =  $student->load('acadHistories.section');
+
+        return view('student.grade-system', compact('student', 'acad'));
     }
 }
