@@ -53,12 +53,12 @@
 
                     <!-- Success Message -->
                     @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     @endif
 
                     <div class="card shadow mb-4">
@@ -312,7 +312,8 @@
                         Add Academic Record for {{ $student['lastname'] }}, {{ $student['firstname'] }}
                         @if (!empty($student['middlename']))
                         {{ Str::substr($student['middlename'], 0, 1) }}.
-                        @endif</h5>
+                        @endif
+                    </h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

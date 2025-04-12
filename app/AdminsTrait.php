@@ -87,7 +87,8 @@ trait AdminsTrait
 
     public function stud_profile(Student $student)
     {
-        return view($this->viewprefix() . 'studdetail', ['student' => $student]);
+        $acad = $student->acadHistories();
+        return view($this->viewprefix() . 'studdetail', ['student' => $student, 'acads' => $acad]);
     }
 
     public function stud_showupdate(Student $student)
