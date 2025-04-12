@@ -205,6 +205,7 @@
                                                 <th class="py-1 text-center">Semester</th>
                                                 <th class="py-1 text-center">Year Level</th>
                                                 {{-- Optional: Add Section if needed --}}
+                                                <th class="py-1 text-center">Section</th>
                                                 {{-- <th class="py-1 text-center">Section</th> --}}
                                                 <th class="py-1 text-center">Action</th>
                                             </tr>
@@ -225,6 +226,12 @@
                                                 <td class="px-2 py-1 align-middle text-center">
                                                     {{-- Action buttons. You might want to add data attributes like data-id --}}
                                                     {{-- Or generate dynamic URLs using route() helper if you have named routes --}}
+                                                    <span class="rounded-pill badge badge-success px-3">Completed</span>
+                                                </td> --}}
+                                                <td class="px-2 py-1 align-middle text-center">1st Semester</td>
+                                                <td class="px-2 py-1 align-middle text-center">1st Year</td>
+                                                <td class="px-2 py-1 align-middle text-center">CCIS1A</td>
+                                                <td class="px-2 py-1 align-middle text-center">
                                                     <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                         Action
                                                         <span class="sr-only">Toggle Dropdown</span>
@@ -347,6 +354,20 @@
                                 <label for="schoolyear" class="control-label">School Year</label>
                                 <input type="text" id="schoolyear" name="schoolyear" value="" class="form-control form-control-border form-control-sm" required>
                             </div> --}}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="course" class="control-label">Course</label>
+                                <select name="course" id="course" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                    <option>BSCS - ayusin mo na to</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="section" class="control-label">Section</label>
+                                <select name="section" id="section" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                    <option>CCIS1A - ayusin mo na to</option>
+                                </select>
+                            </div>
                         </div>
                         {{-- <div class="row">
                             <div class="col-md-6 form-group">
