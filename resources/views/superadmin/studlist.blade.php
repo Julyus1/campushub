@@ -75,6 +75,9 @@
                                                     <th>Name</th>
                                                     <th class="text-center">Action</th>
                                                     @forelse ($students as $student)
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                                 <tr>
 
                                                     <td>{{ $student->id }}</td>
@@ -95,11 +98,6 @@
                                                     </td>
                                                 </tr>
                                                 @empty
-                                                {{-- Row to display if the $students collection is empty --}}
-                                                <tr>
-                                                    {{-- Make sure colspan matches the number of columns (5) --}}
-                                                    <td colspan="5" class="text-center">No students found.</td>
-                                                </tr>
                                                 @endforelse
                                                 </tbody>
                                         </table>

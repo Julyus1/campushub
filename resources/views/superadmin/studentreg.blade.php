@@ -93,12 +93,13 @@
                                             <h3>Student Profile</h3>
                                         </label>
                                         <div class="row">
-
                                             <div class="form-group col-md-4">
                                                 <label for="yearlevel" class="control-label">Year Level: </label>
                                                 <select name="year_level" id="yearlevel" class="form-control form-control-sm rounded-0" required>
-                                                    <option>Others</option>
+                                                    <option>1st Year</option>
+                                                    <option>2nd Year</option>
                                                     <option>3rd Year</option>
+                                                    <option>4th Year</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
@@ -118,7 +119,6 @@
                                             </div>
                                         </div>
                                         <div class="row">
-
                                             <div class="form-group col-md-4">
                                                 <label for="course" class="control-label">Course: </label>
                                                 <select name="course" id="course" class="form-control form-control-sm rounded-0" required>
@@ -126,6 +126,14 @@
                                                     @foreach($courses as $course)
                                                     <option value="{{ $course->id }}">{{ $course->title }}</option>
                                                     @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="semester" class="control-label">Semester: </label>
+                                                <select name="semester" id="semester" class="form-control form-control-sm rounded-0" required>
+                                                    <option value="">Select Semester</option>
+                                                    <option>1st Semester</option>
+                                                    <option>2nd Semester</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
@@ -152,6 +160,7 @@
                                             <div class="form-group col-md-4">
                                                 <label for="gender" class="control-label">Gender: </label>
                                                 <select name="gender" id="gender" class="form-control form-control-sm rounded-0" required>
+                                                    <option value="">Select Gender</option>
                                                     <option>Male</option>
                                                     <option>Female</option>
                                                 </select>
@@ -191,7 +200,6 @@
                                                     <option>Widdowed</option>
                                                 </select>
                                             </div>
-
                                         </div>
                                         <label>
                                             <h3>Complete Address</h3>
@@ -244,6 +252,7 @@
                                             <div class="form-group col-md-4">
                                                 <label for="relationship" class="control-label">Relationship: </label>
                                                 <select name="relationship" id="relationship" class="form-control form-control-sm rounded-0" required>
+                                                    <option value="">Select Relationship</option>
                                                     <option>Father</option>
                                                     <option>Mother</option>
                                                     <option>Guardian</option>
