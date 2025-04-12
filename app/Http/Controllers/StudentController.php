@@ -24,4 +24,9 @@ class StudentController extends Controller
     {
         return view('student.computed-grade');
     }
+
+    public function grade_list() 
+    {
+        return view('student.grade-system');
+    }
 }

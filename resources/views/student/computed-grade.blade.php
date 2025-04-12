@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-right">
-                            <a href="#" class="btn btn-flat btn-default border btn-sm">Close</a>
+                            <a href="{{url('student/grades')  }}" class="btn btn-flat btn-default border btn-sm">Close</a>
                         </div>
                     </div>
 

@@ -77,18 +77,18 @@
                                             <td>2024-2025</td>
                                             <td>1st</td>
                                             <td items-align="center">
-                                                <a href="{{url('#' .  }}" class="btn btn-flat btn-default btn-sm border">
+                                                <a href="{{url('grade/display')  }}" class="btn btn-flat btn-default btn-sm border">
                                                     <i class="fa fa-eye"></i> View Grades
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>1</td>
+                                            <td>2</td>
                                             <td>Pallasigue, Derek Joy C.</td>
                                             <td>1st Year</td>
                                             <td>2024-2025</td>
                                             <td>2nd</td>
                                             <td items-align="center">
-                                                <a href="{{url('#' . ) }}" class="btn btn-flat btn-default btn-sm border">
+                                                <a href="{{url('grade/display') }}" class="btn btn-flat btn-default btn-sm border">
                                                     <i class="fa fa-eye"></i> View Grades
                                             </td>
                                         </tr>
@@ -128,15 +128,6 @@
 
     <!-- Logout Modal-->
     <x-logoutmodal></x-logoutmodal>
-
-
-
-
-
-
-
-
-
 
 
     <!-- Bootstrap core JavaScript-->

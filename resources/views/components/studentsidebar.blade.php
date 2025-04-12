@@ -34,7 +34,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{url('grade/display') }}">
+        <a class="nav-link" href="{{url('student/grades') }}">
             <i class="fas fa-fw fa-list-alt"></i>
             <span class="text-dark">Grade Display</span></a>
     </li>
