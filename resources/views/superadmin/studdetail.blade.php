@@ -205,6 +205,7 @@
                                                 {{-- <th class="py-1 text-center">Department/Course</th> --}}
                                                 <th class="py-1 text-center">Semester</th>
                                                 <th class="py-1 text-center">Year Level</th>
+                                                <th class="py-1 text-center">Section</th>
                                                 {{-- <th class="py-1 text-center">Beg. of Sem. Status</th>
                                                 <th class="py-1 text-center">End of Sem. Status</th> --}}
                                                 <th class="py-1 text-center">Action</th>
@@ -230,6 +231,7 @@
                                                 </td> --}}
                                                 <td class="px-2 py-1 align-middle text-center">1st Semester</td>
                                                 <td class="px-2 py-1 align-middle text-center">1st Year</td>
+                                                <td class="px-2 py-1 align-middle text-center">CCIS1A</td>
                                                 <td class="px-2 py-1 align-middle text-center">
                                                     <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                                         Action
@@ -342,6 +344,20 @@
                                 <label for="schoolyear" class="control-label">School Year</label>
                                 <input type="text" id="schoolyear" name="schoolyear" value="" class="form-control form-control-border form-control-sm" required>
                             </div> --}}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="course" class="control-label">Course</label>
+                                <select name="course" id="course" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                    <option>BSCS - ayusin mo na to</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="section" class="control-label">Section</label>
+                                <select name="section" id="section" class="form-control form-control-sm  form-control-border rounded-0" required>
+                                    <option>CCIS1A - ayusin mo na to</option>
+                                </select>
+                            </div>
                         </div>
                         {{-- <div class="row">
                             <div class="col-md-6 form-group">
