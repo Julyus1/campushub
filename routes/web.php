@@ -118,9 +118,16 @@ Route::middleware(['auth', 'userrole:2'])->group(function () {
 Route::middleware(['auth', 'userrole:3'])->group(function () {
     Route::get('/faculty/dashboard', [FacultyController::class, 'index']);
     Route::get('faculty/grades/{section}', [FacultyController::class, 'show_grades']);
+    Route::post('grade/store', [FacultyController::class, 'store_grade'])->name('faculty.grades.store');
+    Route::patch('/faculty/grades/{id}', [FacultyController::class, 'update_grade'])->name('faculty.grades.update_grade');
 });
+
+
+
 Route::middleware(['auth', 'userrole:4'])->group(function () {
     Route::get('/student/dashboard', [StudentController::class, 'index']);
+    Route::get('student/profile', [StudentController::class, 'profile']);
+    Route::get('grade/display', [StudentController::class, 'grade_display']);
 });
 
 require __DIR__ . '/auth.php';

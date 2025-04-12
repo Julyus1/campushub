@@ -16,8 +16,8 @@ return new class extends Migration
             $table->timestamps();
             $table->string('semester');
             $table->string('year');
-            $table->foreignIdFor(App\Models\Student::class);
-            $table->foreignIdFor(App\Models\Section::class);
+            $table->foreignIdFor(App\Models\Student::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(App\Models\Section::class)->constrained()->onDelete('cascade');
         });
     }
 

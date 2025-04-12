@@ -6,19 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Grade extends Model
 {
+
+    protected $guarded = [];
     public function acadhistory()
     {
-        return $this->belongsTo(AcadHistory::class);
+        return $this->belongsTo(AcadHistory::class, 'acad_history_id');
     }
 
     public function subject()
     {
         return $this->belongsTo(Subject::class);
     }
-    public function student()
-    {
-        return $this->belongsTo(Student::class);  // Each grade belongs to a student
-    }
+
 
     public function faculty()
     {

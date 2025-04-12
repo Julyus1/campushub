@@ -14,10 +14,6 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
-            $table->string('year_level');
-            $table->string('department');
             $table->string('course');
             $table->string('firstname');
             $table->string('middlename')->nullable();

@@ -21,7 +21,7 @@
     @vite('resources/css/sb-admin-2.min.css')
 
     <style>
-        
+
     </style>
 
 </head>
@@ -51,83 +51,83 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-2 text-gray-800">Welcome Derek Joy!</h1>
+                        <h1 class="h3 mb-2 text-gray-800">Welcome {{ $student->firstname . " " . $student->lastname }}</h1>
                     </div>
 
                     <div class="card shadow mb-4">
-                    <div class="card-header d-flex align-items-center justify-content-between py-4">
-    <!-- Left Section: Profile Image and Title -->
-    <div class="d-flex align-items-center">
-        <img class="img-profile rounded-circle img-fluid me-3" src="../img/undraw_profile.svg" alt="Profile Image" style="max-width: 100px;">
-        <h6 class="m-3 font-weight-bold text-primary">Student Profile</h6>
-    </div>
+                        <div class="card-header d-flex align-items-center justify-content-between py-4">
+                            <!-- Left Section: Profile Image and Title -->
+                            <div class="d-flex align-items-center">
+                                <img class="img-profile rounded-circle img-fluid me-3" src="../img/undraw_profile.svg" alt="Profile Image" style="max-width: 100px;">
+                                <h6 class="m-3 font-weight-bold text-primary">Student Profile</h6>
+                            </div>
 
-    <!-- Right Section: Button
+                            <!-- Right Section: Button
     <div class="card-tools">
         <button class="btn btn-sm btn-success bg-success btn-flat" type="button" id="print">
             <i class="fa fa-print"></i> Print
         </button>
     </div>  -->
-</div>
+                        </div>
 
                         <div class="card-body">
-                        <div class="container-fluid" id="outprint">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label text-muted">Student ID</label>
-                            <div class="pl-4">0122301119</div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label text-muted">Status</label>
-                            <div class="pl-4">
-                                <span class="rounded-pill badge badge-primary bg-gradient-primary px-3">Active</span>
-                                           
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <fieldset class="border-bottom">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Name</label>
-                                <div class="pl-4">Pallasigue, Derek Joy C.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Gender</label>
-                                <div class="pl-4">Male</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Date of Birth</label>
-                                <div class="pl-4">February 13, 2003</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Contact #</label>
-                                <div class="pl-4">09474835441</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label text-muted">Complete Address</label>
-                                <div class="pl-4">Blk. 19 Lot 22, Sameera Subd. Brgy Sapalibutad, Angeles City Pampanga, 2009</div>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-                <!--<fieldset>
+                            <div class="container-fluid" id="outprint">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label text-muted">Student ID</label>
+                                            <div class="pl-4">{{ $student->id }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label text-muted">Status</label>
+                                            <div class="pl-4">
+                                                <span class="rounded-pill badge badge-primary bg-gradient-primary px-3">Active</span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <fieldset class="border-bottom">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted">Name</label>
+                                                <div class="pl-4">{{ $student->firstname . " " . $student->middlename . " " . $student->lastname }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted">Gender</label>
+                                                <div class="pl-4">{{ $student->gender }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted">Date of Birth</label>
+                                                <div class="pl-4">{{ $student->birthdate }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted">Contact #</label>
+                                                <div class="pl-4">{{ $student->mobilenumber }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label text-muted">Complete Address</label>
+                                                <div class="pl-4">{{ $student->stname . " " . $student->brgy . " " . $student->city . " " . $student->province   }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <!--<fieldset>
                     <legend class="text-muted">Academic History</legend>
                     <table class="table table-stripped table-bordered" id="academic-history">
                         <thead>
@@ -163,7 +163,7 @@
                         </tbody>
                     </table>
                 </fieldset> -->
-            </div>
+                            </div>
                         </div>
                     </div>
 

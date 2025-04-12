@@ -33,4 +33,9 @@ class Section extends Model
         // null‑safe navigation in case any relation is missing
         return optional($this->course)->department->title ?? '—';
     }
+    public function acadHistories()
+    {
+
+        return $this->hasMany(AcadHistory::class, 'section_id');
+    }
 }

@@ -71,12 +71,12 @@
 
                     <!-- Success Message -->
                     @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     @endif
 
                     <!-- Student Information Form -->
@@ -84,193 +84,178 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Update Student -{{ $student->lastname . ", " . $student->firstname}}</h6>
                         </div>
-                        <form method="POST" action="{{ url('student/update/' . $student->id) }}">
+                        <form method="POST" action="{{ url('superadmin/student/update/' . $student->id) }}">
                             @csrf
                             @method('PATCH')
                             <div class="card-body">
                                 <div class="container-fluid">
-                                    <form action="" id="student_form">
-                                        <input type="hidden" name="id">
-                                        <fieldset class="border-bottom">
-                                            <label>
-                                                <h3>Student Profile</h3>
-                                            </label>
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="yearlevel" class="control-label">Year Level</label>
-                                                    <select name="year_level" id="yearlevel" class="form-control form-control-sm rounded-0" required>
-                                                        <option>Others</option>
-                                                        <option>3rd Year</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="email" class="control-label">Email: </label>
-                                                    <input type="text" name="email" id="email" autofocus class="form-control form-control-sm rounded-0" required>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="section" class="control-label">Section: </label>
-                                                    <select name="section_id" id="section" class="form-control form-control-sm rounded-0" required>
-                                                        @foreach($sections as $section)
-                                                        <option value="{{ $section->id }}">{{ $section->title }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                    <input type="hidden" name="id" value="{{ $student->id }}">
+                                    <fieldset class="border-bottom">
+                                        <label>
+                                            <h3>Student Profile</h3>
+                                        </label>
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="yearlevel" class="control-label">Year Level: </label>
+                                                <select name="year_level" id="yearlevel" class="form-control form-control-sm rounded-0" required>
+                                                    <option value="Others" {{ $student->year_level == 'Others' ? 'selected' : '' }}>Others</option>
+                                                    <option value="3rd Year" {{ $student->year_level == '3rd Year' ? 'selected' : '' }}>3rd Year</option>
+                                                </select>
                                             </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="department" class="control-label">Department: </label>
-                                                    <select name="department" id="department" class="form-control form-control-sm rounded-0" required>
-                                                        <option>CCIS</option>
-                                                        <option>Others</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="course" class="control-label">Course: </label>
-                                                    <select name="course" id="course" class="form-control form-control-sm rounded-0" required>
-                                                        <option>BSCS</option>
-                                                        <option>BSIT-NETAD</option>
-                                                        <option>BSIT-MOBDEV</option>
-                                                        <option>BSEMC-AM</option>
-                                                        <option>BSEMC-GM</option>
-                                                        <option>BSIS</option>
-                                                        <option>Others</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="contact" class="control-label">Contact #</label>
-                                                    <input type="text" name="contact" id="contact" class="form-control form-control-sm rounded-0" 
-                                                           placeholder="09XX-XXX-XXXX" required maxlength="13">
-                                                </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="email" class="control-label">Email: </label>
+                                                <input type="text" name="email" id="email" value="{{ $student->email }}" class="form-control form-control-sm rounded-0" required>
                                             </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="firstname" class="control-label">First Name: </label>
-                                                    <input type="text" name="firstname" id="firstname" class="form-control form-control-sm rounded-0" value="{{ old('firstname', $student->firstname) }}" required>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="middlename" class="control-label">Middle Name: </label>
-                                                    <input type="text" name="middlename" id="middlename" class="form-control form-control-sm rounded-0" value="{{ old('firstname', $student->middlename) }}">
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="lastname" class="control-label">Last Name: </label>
-                                                    <input type="text" name="lastname" id="lastname" autofocus class="form-control form-control-sm rounded-0" value="{{ old('firstname', $student->lastname) }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="gender" class="control-label">Gender: </label>
-                                                    <select name="gender" id="gender" class="form-control form-control-sm rounded-0" required>
-                                                        <option>Male</option>
-                                                        <option>Female</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="dob" class="control-label">Date of Birth: </label>
-                                                    <input type="date" name="dob" id="dob" class="form-control form-control-sm rounded-0" required>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="nationality" class="control-label">Nationality: </label>
-                                                    <select name="nationality" id="nationality" class="form-control form-control-sm rounded-0" required>
-                                                        <option>Filipino</option>
-                                                        <option>Foreign</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="religion" class="control-label">Religion: </label>
-                                                    <input type="text" name="religion" id="religion" autofocus class="form-control form-control-sm rounded-0" required>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="origin" class="control-label">Province Origin: </label>
-                                                    <input type="text" name="origin" id="origin" autofocus class="form-control form-control-sm rounded-0" required>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="birthplace" class="control-label">Place of Birth: </label>
-                                                    <input type="text" name="birthplace" id="birthplace" autofocus class="form-control form-control-sm rounded-0" required>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="civilstatus" class="control-label">Civil Status: </label>
-                                                    <select name="civilstatus" id="civilstatus" class="form-control form-control-sm rounded-0" required>
-                                                        <option>Single</option>
-                                                        <option>Married</option>
-                                                        <option>Widdowed</option>
-                                                    </select>
-                                                </div>
-                                                
-                                            </div>
-                                            <label>
-                                                <h3>Complete Address</h3>
-                                            </label>
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="stname" class="control-label">Number & Street Name: </label>
-                                                    <input type="text" name="stname" id="stname" autofocus class="form-control form-control-sm rounded-0" required>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="brgy" class="control-label">Brgy, Bario, Village, Subdivision: </label>
-                                                    <input type="text" name="brgy" id="brgy" autofocus class="form-control form-control-sm rounded-0" required>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="city" class="control-label">Municipality, City: </label>
-                                                    <input type="text" name="city" id="city" autofocus class="form-control form-control-sm rounded-0" required>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="province" class="control-label">Province: </label>
-                                                    <input type="text" name="province" id="province" autofocus class="form-control form-control-sm rounded-0" required>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="postalcode" class="control-label">Postal Code: </label>
-                                                    <input type="text" name="postalcode" id="postalcode" autofocus class="form-control form-control-sm rounded-0" 
-                                                           placeholder="e.g., 1000" required maxlength="4">
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="homenumber" class="control-label">Home Phone No.: </label>
-                                                    <input type="text" name="homenumber" id="homenumber" autofocus class="form-control form-control-sm rounded-0" 
-                                                           placeholder="e.g., 045-1234 or 02-1234567" maxlength="9">
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="mobilenumber" class="control-label">Mobile Phone No.: </label>
-                                                    <input type="text" name="mobilenumber" id="mobilenumber" class="form-control form-control-sm rounded-0" 
-                                                           placeholder="09XX-XXX-XXXX" required maxlength="13">
-                                                </div>
-                                            </div>
-                                            <label>
-                                                <h3>In Case of Emergency</h3>
-                                            </label>
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label for="emergencyperson" class="control-label">Emergency Contact Person: </label>
-                                                    <input type="text" name="emergencyperson" id="emergencyperson" autofocus class="form-control form-control-sm rounded-0" required>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="relationship" class="control-label">Relationship: </label>
-                                                    <select name="relationship" id="relationship" class="form-control form-control-sm rounded-0" required>
-                                                        <option>Father</option>
-                                                        <option>Mother</option>
-                                                        <option>Guardian</option>
-                                                        <option>Partner</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="emergencycontact" class="control-label">Emergency Contact No.: </label>
-                                                    <input type="text" name="emergencycontact" id="emergencycontact" autofocus class="form-control form-control-sm rounded-0" 
-                                                           placeholder="09XX-XXX-XXXX" maxlength="13">
-                                                </div>
-                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="section_id" class="control-label">Section: </label>
+                                                <select name="section_id" id="section_id" class="form-control form-control-sm rounded-0" required>
 
+                                                    @foreach($sections as $section)
+                                                    <option value="{{ $section->id }}" {{ $student->section_id == $section->id ? 'selected' : '' }}>
+                                                        {{ $section->title }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="course" class="control-label">Course: </label>
+                                                <select name="course" id="course" class="form-control form-control-sm rounded-0" required>
+                                                    <option value="">Select Course</option>
+                                                    @foreach($courses as $course)
+                                                    <option value="{{ $course->id }}" {{ $student->course == $course->id ? 'selected' : '' }}>
+                                                        {{ $course->title }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="contact" class="control-label">Contact #</label>
+                                                <input type="text" name="contact" id="contact" value="{{ $student->contact }}" class="form-control form-control-sm rounded-0" required maxlength="13">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="firstname" class="control-label">First Name: </label>
+                                                <input type="text" name="firstname" id="firstname" value="{{ $student->firstname }}" class="form-control form-control-sm rounded-0" required>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="middlename" class="control-label">Middle Name: </label>
+                                                <input type="text" name="middlename" id="middlename" value="{{ $student->middlename }}" class="form-control form-control-sm rounded-0" placeholder="optional">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="lastname" class="control-label">Last Name: </label>
+                                                <input type="text" name="lastname" id="lastname" value="{{ $student->lastname }}" class="form-control form-control-sm rounded-0" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="gender" class="control-label">Gender: </label>
+                                                <select name="gender" id="gender" class="form-control form-control-sm rounded-0" required>
+                                                    <option value="Male" {{ $student->gender == 'Male' ? 'selected' : '' }}>Male</option>
+                                                    <option value="Female" {{ $student->gender == 'Female' ? 'selected' : '' }}>Female</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="dob" class="control-label">Date of Birth: </label>
+                                                <input type="date" name="birthdate" id="dob" value="{{ $student->birthdate }}" class="form-control form-control-sm rounded-0" required>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="nationality" class="control-label">Nationality: </label>
+                                                <select name="nationality" id="nationality" class="form-control form-control-sm rounded-0" required>
+                                                    <option value="Filipino" {{ $student->nationality == 'Filipino' ? 'selected' : '' }}>Filipino</option>
+                                                    <option value="Foreign" {{ $student->nationality == 'Foreign' ? 'selected' : '' }}>Foreign</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="religion" class="control-label">Religion: </label>
+                                                <input type="text" name="religion" id="religion" value="{{ $student->religion }}" class="form-control form-control-sm rounded-0" required>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="origin" class="control-label">Province of Origin: </label>
+                                                <input type="text" name="origin" id="origin" value="{{ $student->origin }}" class="form-control form-control-sm rounded-0" required>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="birthplace" class="control-label">Place of Birth: </label>
+                                                <input type="text" name="birthplace" id="birthplace" value="{{ $student->birthplace }}" class="form-control form-control-sm rounded-0" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="civilstatus" class="control-label">Civil Status: </label>
+                                                <select name="civilstatus" id="civilstatus" class="form-control form-control-sm rounded-0" required>
+                                                    <option value="Single" {{ $student->civilstatus == 'Single' ? 'selected' : '' }}>Single</option>
+                                                    <option value="Married" {{ $student->civilstatus == 'Married' ? 'selected' : '' }}>Married</option>
+                                                    <option value="Widdowed" {{ $student->civilstatus == 'Widdowed' ? 'selected' : '' }}>Widdowed</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <label>
+                                            <h3>Complete Address</h3>
+                                        </label>
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="stname" class="control-label">Number & Street Name: </label>
+                                                <input type="text" name="stname" id="stname" value="{{ $student->stname }}" class="form-control form-control-sm rounded-0" required>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="brgy" class="control-label">Brgy, Bario, Village, Subdivision: </label>
+                                                <input type="text" name="brgy" id="brgy" value="{{ $student->brgy }}" class="form-control form-control-sm rounded-0" required>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="city" class="control-label">Municipality, City: </label>
+                                                <input type="text" name="city" id="city" value="{{ $student->city }}" class="form-control form-control-sm rounded-0" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="province" class="control-label">Province: </label>
+                                                <input type="text" name="province" id="province" value="{{ $student->province }}" class="form-control form-control-sm rounded-0" required>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="postalcode" class="control-label">Postal Code: </label>
+                                                <input type="text" name="postalcode" id="postalcode" value="{{ $student->postalcode }}" class="form-control form-control-sm rounded-0" required maxlength="4">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="homenumber" class="control-label">Home Phone No.: </label>
+                                                <input type="text" name="homenumber" id="homenumber" value="{{ $student->homenumber }}" class="form-control form-control-sm rounded-0" maxlength="9">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="mobilenumber" class="control-label">Mobile Phone No.: </label>
+                                                <input type="text" name="mobilenumber" id="mobilenumber" value="{{ $student->mobilenumber }}" class="form-control form-control-sm rounded-0" required maxlength="13">
+                                            </div>
+                                        </div>
+
+                                        <label>
+                                            <h3>In Case of Emergency</h3>
+                                        </label>
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="emergencyperson" class="control-label">Emergency Contact Person: </label>
+                                                <input type="text" name="emergencyperson" id="emergencyperson" value="{{ $student->emergencyperson }}" class="form-control form-control-sm rounded-0" required>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="relationship" class="control-label">Relationship: </label>
+                                                <select name="relationship" id="relationship" class="form-control form-control-sm rounded-0" required>
+                                                    <option value="Father" {{ $student->relationship == 'Father' ? 'selected' : '' }}>Father</option>
+                                                    <option value="Mother" {{ $student->relationship == 'Mother' ? 'selected' : '' }}>Mother</option>
+                                                    <option value="Guardian" {{ $student->relationship == 'Guardian' ? 'selected' : '' }}>Guardian</option>
+                                                    <option value="Partner" {{ $student->relationship == 'Partner' ? 'selected' : '' }}>Partner</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="emergencycontact" class="control-label">Emergency Contact No.: </label>
+                                                <input type="text" name="emergencycontact" id="emergencycontact" value="{{ $student->emergencycontact }}" class="form-control form-control-sm rounded-0" maxlength="13">
+                                            </div>
+                                        </div>
+                                    </fieldset>
                                 </div>
-
-
-                                </fieldset>
-
                             </div>
                             <div class="card-footer text-right">
                                 <button class="btn btn-flat btn-primary btn-sm" type="submit">Save Student Details</button>
@@ -312,66 +297,66 @@
     <x-logoutmodal></x-logoutmodal>
 
 
-<!-- contact script-->
-<script>
-    document.getElementById("contact").addEventListener("input", function (e) {
-        let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
-        if (value.startsWith("9")) value = "0" + value; // Ensure 09XX format
-    
-        if (value.length > 11) value = value.substring(0, 11); // Max length for 09XX-XXX-XXXX
-        if (value.length >= 5) value = value.replace(/(\d{4})(\d{3})/, "$1-$2-");
-        if (value.length >= 9) value = value.replace(/(\d{4})-(\d{3})(\d{4})/, "$1-$2-$3");
-    
-        e.target.value = value;
-    });
-</script>
+    <!-- contact script-->
+    <script>
+        document.getElementById("contact").addEventListener("input", function(e) {
+            let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+            if (value.startsWith("9")) value = "0" + value; // Ensure 09XX format
 
-<!-- postal script-->
-<script>
-document.getElementById("postalcode").addEventListener("input", function (e) {
-    let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
-    if (value.length > 4) value = value.substring(0, 4); // Limit to 4 digits
-    e.target.value = value;
-});
-</script>
+            if (value.length > 11) value = value.substring(0, 11); // Max length for 09XX-XXX-XXXX
+            if (value.length >= 5) value = value.replace(/(\d{4})(\d{3})/, "$1-$2-");
+            if (value.length >= 9) value = value.replace(/(\d{4})-(\d{3})(\d{4})/, "$1-$2-$3");
 
-<!-- home no script-->
-<script>
-document.getElementById("homenumber").addEventListener("input", function (e) {
-    let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
-    if (value.length >= 3 && value.length <= 7) value = value.replace(/(\d{3})(\d{1,4})/, "$1-$2");
-    if (value.length > 9) value = value.substring(0, 9); // Limit to 9 characters
-    e.target.value = value;
-});
-</script>
+            e.target.value = value;
+        });
+    </script>
 
-<!-- mobile no script -->
-<script>
-document.getElementById("mobilenumber").addEventListener("input", function (e) {
-    let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
-    if (value.startsWith("9")) value = "0" + value; // Ensure 09XX format
+    <!-- postal script-->
+    <script>
+        document.getElementById("postalcode").addEventListener("input", function(e) {
+            let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+            if (value.length > 4) value = value.substring(0, 4); // Limit to 4 digits
+            e.target.value = value;
+        });
+    </script>
 
-    if (value.length > 11) value = value.substring(0, 11); // Max length
-    if (value.length >= 5) value = value.replace(/(\d{4})(\d{3})/, "$1-$2-");
-    if (value.length >= 9) value = value.replace(/(\d{4})-(\d{3})(\d{4})/, "$1-$2-$3");
+    <!-- home no script-->
+    <script>
+        document.getElementById("homenumber").addEventListener("input", function(e) {
+            let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+            if (value.length >= 3 && value.length <= 7) value = value.replace(/(\d{3})(\d{1,4})/, "$1-$2");
+            if (value.length > 9) value = value.substring(0, 9); // Limit to 9 characters
+            e.target.value = value;
+        });
+    </script>
 
-    e.target.value = value;
-});
-</script>
+    <!-- mobile no script -->
+    <script>
+        document.getElementById("mobilenumber").addEventListener("input", function(e) {
+            let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+            if (value.startsWith("9")) value = "0" + value; // Ensure 09XX format
 
-<!-- emergency contact -->
-<script>
-document.getElementById("emergencycontact").addEventListener("input", function (e) {
-    let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
-    if (value.startsWith("9")) value = "0" + value; // Ensure it starts with 09XX
+            if (value.length > 11) value = value.substring(0, 11); // Max length
+            if (value.length >= 5) value = value.replace(/(\d{4})(\d{3})/, "$1-$2-");
+            if (value.length >= 9) value = value.replace(/(\d{4})-(\d{3})(\d{4})/, "$1-$2-$3");
 
-    if (value.length > 11) value = value.substring(0, 11); // Limit to 11 digits
-    if (value.length >= 5) value = value.replace(/(\d{4})(\d{3})/, "$1-$2-");
-    if (value.length >= 9) value = value.replace(/(\d{4})-(\d{3})(\d{4})/, "$1-$2-$3");
+            e.target.value = value;
+        });
+    </script>
 
-    e.target.value = value;
-});
-</script>
+    <!-- emergency contact -->
+    <script>
+        document.getElementById("emergencycontact").addEventListener("input", function(e) {
+            let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+            if (value.startsWith("9")) value = "0" + value; // Ensure it starts with 09XX
+
+            if (value.length > 11) value = value.substring(0, 11); // Limit to 11 digits
+            if (value.length >= 5) value = value.replace(/(\d{4})(\d{3})/, "$1-$2-");
+            if (value.length >= 9) value = value.replace(/(\d{4})-(\d{3})(\d{4})/, "$1-$2-$3");
+
+            e.target.value = value;
+        });
+    </script>
 
 
     <!-- Bootstrap core JavaScript-->

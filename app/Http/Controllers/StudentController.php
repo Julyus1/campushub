@@ -3,12 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
     public function index()
     {
-        return view('student.dashboard');
+        $student = Auth::user()->student;
+        return view('student.dashboard', compact('student'));
     }
-    
+
+    public function profile()
+    {
+        $student = Auth::user()->student;
+
+        return view('student.studdetail', compact('student'));
+    }
+
+    public function grade_display()
+    {
+        return view('student.computed-grade');
+    }
 }

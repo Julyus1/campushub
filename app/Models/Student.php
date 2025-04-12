@@ -21,9 +21,19 @@ class Student extends Model
     {
         return $this->belongsTo(Section::class, 'section_id');
     }
+    public function acadHistories()
+    {
+        return $this->hasMany(AcadHistory::class);
+    }
+
+    public function latestAcadHistory()
+    {
+
+        return $this->hasOne(AcadHistory::class)->latestOfMany();
+    }
 
     public function grades()
     {
-        return $this->hasMany(Grade::class);
+        return $this->hasManyThrough(Grade::class, AcadHistory::class);
     }
 }

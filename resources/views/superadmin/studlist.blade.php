@@ -65,32 +65,53 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr class="bg-gradient-dark text-light">
-                                                <th>ID</th>
-                                                <th>Date Created</th>
-                                                <th>Section</th>
-                                                <th>Name</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr class="bg-gradient-dark text-light">
+                                                    <th>ID</th>
+                                                    <th>Date Created</th>
+                                                    <th>Current Section</th>
+                                                    <th>Name</th>
+                                                    <th class="text-center">Action</th>
+                                                    @forelse ($students as $student)
+                                                <tr>
 
-                                        <tbody>
-                                            @foreach ($students as $student)
-                                            <tr>
-                                                <td>{{ $student->id }}</td>
-                                                <td>{{ $student->created_at->format('Y/m/d') }}</td>
-                                                <td>{{ $student->section ? $student->section->title : 'No Section' }}</td>
-                                                <td>{{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }}</td>
-                                                <td items-align="center">
-                                                    <a href="{{url('superadmin/student/profile/' . $student->id) }}" class="btn btn-flat btn-default btn-sm border">
-                                                        <i class="fa fa-eye"></i> View
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                                    <td>{{ $student->id }}</td>
+
+
+                                                    <td>{{ $student->created_at ? $student->created_at->format('Y/m/d') : 'N/A' }}</td>
+                                                    <td>
+
+                                                        {{ $student->latestAcadHistory?->section?->title ?? 'No Section History' }}
+                                                    </td>
+
+                                                    <td>{{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ url('superadmin/student/profile/' . $student->id) }}" class="btn btn-flat btn-default btn-sm border" title="View Student Profile">
+                                                            <i class="fa fa-eye"></i> View
+                                                        </a>
+
+                                                    </td>
+                                                </tr>
+                                                @empty
+                                                {{-- Row to display if the $students collection is empty --}}
+                                                <tr>
+                                                    {{-- Make sure colspan matches the number of columns (5) --}}
+                                                    <td colspan="5" class="text-center">No students found.</td>
+                                                </tr>
+                                                @endforelse
+                                                </tbody>
+                                        </table>
+                                    </div>
+
+                                    {{-- If using pagination, display links (ensure controller uses ->paginate()) --}}
+                                    {{--
+<div class="d-flex justify-content-center">
+    {!! $students->links() !!}
+</div>
+--}}
+
                                 </div>
                             </div>
                         </div>

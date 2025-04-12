@@ -37,7 +37,7 @@
                 @foreach ($subjects as $subject)
                 @foreach ($subject->sections as $section)
                 <a class="collapse-item"
-                    href="{{ url('faculty/grades/'.$section->id) }}">
+                    href="{{ url('faculty/grades/'. $section->id) }}">
                     {{ $subject->name }} – {{ $section->title }}
                 </a>
                 @endforeach

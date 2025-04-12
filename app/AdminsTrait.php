@@ -7,6 +7,9 @@ use App\Models\Section;
 use App\Models\Department;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
+use App\Models\AcadHistory;
 
 trait AdminsTrait
 {
@@ -22,50 +25,63 @@ trait AdminsTrait
     }
     public function show_stud()
     {
-        $students = Student::latest()->get();
+        $students = Student::with(['latestAcadHistory.section'])
+            ->orderBy('lastname', 'asc')
+            ->paginate(20);
         return view($this->viewprefix() . 'studlist', ['students' => $students]);
     }
     public function create_stud()
     {
-        $sections = Section::all();
+        $courses = Course::all();
+        $sections = Section::all(); // or use Course::with('sections') if you want
 
-        return view($this->viewprefix() . 'studentreg', compact('sections'));
+        return view($this->viewprefix() . 'studentreg', compact('courses', 'sections'));
     }
 
-    public function store_stud()
+    public function store_stud(Request $request)
     {
+        $validated = $request->validate([
+            'section_id'        => 'required|exists:sections,id',
 
-        Student::create([
-            'section_id' => request('section_id'),
-
-            'year_level' => request('year_level'),
-
-            'department' => request('department'),
-            'course' => request('course'),
-            'email' => request('email'),
-            'firstname' => request('firstname'),
-            'middlename' => request('middlename'),
-            'lastname' => request('lastname'),
-            'gender' => request('gender'),
-            'birthdate' => request('dob'),
-            'contact' => request('contact'),
-            'religion' => request('religion'),
-            'origin' => request('origin'),
-            'nationality' => request('nationality'),
-            'civilstatus' => request('civilstatus'),
-            'birthplace' => request('birthplace'),
-            'stname' => request('stname'),
-            'brgy' => request('brgy'),
-            'city' => request('city'),
-            'province' => request('province'),
-            'postalcode' => request('postalcode'),
-            'homenumber' => request('homenumber'),
-            'mobilenumber' => request('mobilenumber'),
-            'emergencyperson' => request('emergencyperson'),
-            'relationship' => request('relationship'),
-            'emergencycontact' => request('emergencycontact'),
-
+            'year_level'        => 'required|string|max:255',
+            'course'            => 'required|string|max:255',
+            'email'             => 'required|email|unique:students,email',
+            'firstname'         => 'required|string|max:255',
+            'middlename'        => 'nullable|string|max:255',
+            'lastname'          => 'required|string|max:255',
+            'gender'            => 'required|in:Male,Female',
+            'birthdate'         => 'required|date',
+            'contact'           => 'nullable|string|max:20',
+            'religion'          => 'required|string|max:255',
+            'origin'            => 'nullable|string|max:255',
+            'nationality'       => 'required|string|max:255',
+            'civilstatus'       => 'required|in:Single,Married,Widowed',
+            'birthplace'        => 'required|string|max:255',
+            'stname'            => 'nullable|string|max:255',
+            'brgy'              => 'required|string|max:255',
+            'city'              => 'required|string|max:255',
+            'province'          => 'required|string|max:255',
+            'postalcode'        => 'nullable|string|max:10',
+            'homenumber'        => 'nullable|string|max:20',
+            'mobilenumber'      => 'required|string|max:20',
+            'emergencyperson'   => 'required|string|max:255',
+            'relationship'      => 'required|string|max:100',
+            'emergencycontact'  => 'required|string|max:20',
         ]);
+        DB::transaction(function () use ($validated) {
+            // 1) Create the Student (exclude section_id and year_level)
+            $studentData = Arr::except($validated, ['section_id', 'year_level']);
+            $student = Student::create($studentData);
+
+            // 2) Create Academic History
+            AcadHistory::create([
+                'student_id' => $student->id,
+                'section_id' => $validated['section_id'],
+                'year'       => $validated['year_level'], // Moved here
+                'semester'   => '1st Semester', // Change this as needed or make it dynamic
+            ]);
+        });
+
         return redirect($this->redirectprefix() . 'student/register');
     }
 
@@ -76,46 +92,68 @@ trait AdminsTrait
 
     public function stud_showupdate(Student $student)
     {
+        $courses = Course::all();
+
         $sections = Section::all();
-        return view($this->viewprefix() . 'studupdate', ['student' => $student, 'sections' => $sections]);
+        return view($this->viewprefix() . 'studupdate', ['student' => $student, 'sections' => $sections, 'courses' => $courses]);
     }
 
-    public function stud_update(Student $student)
+    public function stud_update(Student $student, Request $request)
     {
-        //validate
-        $student->update([
-            'section_id' => request('section_id'),
-            'stud_id' => request('stud_id'),
-            'year_level' => request('year_level'),
-            'stud_class' => request('stud_class'),
-            'department' => request('department'),
-            'course' => request('course'),
-            'email' => request('email'),
-            'firstname' => request('firstname'),
-            'middlename' => request('middlename'),
-            'lastname' => request('lastname'),
-            'gender' => request('gender'),
-            'birthdate' => request('dob'),
-            'contact' => request('contact'),
-            'religion' => request('religion'),
-            'origin' => request('origin'),
-            'nationality' => request('nationality'),
-            'civilstatus' => request('civilstatus'),
-            'birthplace' => request('birthplace'),
-            'stname' => request('stname'),
-            'brgy' => request('brgy'),
-            'city' => request('city'),
-            'province' => request('province'),
-            'postalcode' => request('postalcode'),
-            'homenumber' => request('homenumber'),
-            'mobilenumber' => request('mobilenumber'),
-            'emergencyperson' => request('emergencyperson'),
-            'relationship' => request('relationship'),
-            'emergencycontact' => request('emergencycontact'),
-
+        $validated = $request->validate([
+            'section_id'        => 'required|exists:sections,id',
+            'year_level'        => 'required|string|max:255',
+            'course'            => 'required|string|max:255',
+            'email'             => 'required|email|unique:students,email,' . $student->id,
+            'firstname'         => 'required|string|max:255',
+            'middlename'        => 'nullable|string|max:255',
+            'lastname'          => 'required|string|max:255',
+            'gender'            => 'required|in:Male,Female',
+            'birthdate'         => 'required|date',
+            'contact'           => 'nullable|string|max:20',
+            'religion'          => 'required|string|max:255',
+            'origin'            => 'nullable|string|max:255',
+            'nationality'       => 'required|string|max:255',
+            'civilstatus'       => 'required|in:Single,Married,Widowed',
+            'birthplace'        => 'required|string|max:255',
+            'stname'            => 'nullable|string|max:255',
+            'brgy'              => 'required|string|max:255',
+            'city'              => 'required|string|max:255',
+            'province'          => 'required|string|max:255',
+            'postalcode'        => 'nullable|string|max:10',
+            'homenumber'        => 'nullable|string|max:20',
+            'mobilenumber'      => 'required|string|max:20',
+            'emergencyperson'   => 'required|string|max:255',
+            'relationship'      => 'required|string|max:100',
+            'emergencycontact'  => 'required|string|max:20',
         ]);
 
-        return redirect(url($this->redirectprefix() . 'student/list'));
+        DB::transaction(function () use ($validated, $student) {
+            // Update student data (excluding section_id and year_level)
+            $studentData = Arr::except($validated, ['section_id', 'year_level']);
+            $student->update($studentData);
+
+            // Update academic history (you may need logic to get the correct record)
+            $history = AcadHistory::where('student_id', $student->id)->latest()->first();
+
+            if ($history) {
+                $history->update([
+                    'section_id' => $validated['section_id'],
+                    'year'       => $validated['year_level'],
+                    'semester'   => '1st Semester',
+                ]);
+            } else {
+                // Create new if no history exists
+                AcadHistory::create([
+                    'student_id' => $student->id,
+                    'section_id' => $validated['section_id'],
+                    'year'       => $validated['year_level'],
+                    'semester'   => '1st Semester',
+                ]);
+            }
+        });
+
+        return redirect()->back()->with('success', 'Student details updated successfully!');
     }
     public function stud_destroy(Student $student)
     {

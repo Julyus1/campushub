@@ -17,10 +17,11 @@ return new class extends Migration
             $table->decimal('prelims', 5, 2)->nullable();
             $table->decimal('midterm', 5, 2)->nullable();
             $table->decimal('finals', 5, 2)->nullable();
-            $table->foreignIdFor(App\Models\AcadHistory::class);
-            $table->foreignIdFor(App\Models\Faculty::class);
-            $table->foreignIdFor(App\Models\Student::class);
-            $table->foreignIdFor(App\Models\Subject::class);
+            $table->foreignId('acad_history_id')
+                ->constrained('acad_histories')
+                ->onDelete('cascade');
+            $table->foreignIdFor(App\Models\Faculty::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(App\Models\Subject::class)->constrained()->onDelete('cascade');
         });
     }
 
