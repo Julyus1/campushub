@@ -36,9 +36,11 @@ class StudentController extends Controller
             'section.course' // Load section and course details
         ]);
 
+        $student = Auth::user()->student;
+
         // --- Pass Data to the View ---
         // Return YOUR specified view ('student.computed-grade')
-        return view('student.computed-grade', compact('history'));
+        return view('student.computed-grade', compact('history', 'student'));
     }
 
     public function grade_list()

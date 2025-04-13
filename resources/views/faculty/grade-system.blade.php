@@ -29,6 +29,7 @@
 
         <!-- Sidebar -->
 
+        <x-facultysidebar :subjects="$allFacultySubjects" />
 
         <!-- End of Sidebar -->
 
