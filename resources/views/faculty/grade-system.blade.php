@@ -28,7 +28,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <x-facultysidebar :subjects="$subjects" />
+
 
         <!-- End of Sidebar -->
 
@@ -63,59 +63,57 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"> {{ $section->department_title . "-" . $section->course->title . "-". $section->title . "-" . $subject->name }}</h6>
+                            {{-- This should now display the correct subject name --}}
+                            <h6 class="m-0 font-weight-bold text-primary">
+                                {{ $section->department_title ?? 'Dept' }} - {{ $section->course->title ?? 'Course' }} - {{ $section->title }} - {{ $subject->name }}
+                            </h6>
                         </div>
                         <div class="card-body">
-
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-
                                         <tr class="bg-gradient-dark text-light">
                                             <th>Student ID</th>
                                             <th>Name</th>
-                                            <th>A.Y. / Year Lvl</th> {{-- Combined Header --}}
+                                            <th>A.Y. / Year Lvl</th>
                                             <th>Semester</th>
                                             <th class="text-center">Action</th>
                                             <th>Grade Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- Loop through the Academic History records passed from the controller --}}
                                         @forelse($acadHistories as $history)
-                                        {{-- Check if student relationship is loaded (it should be) --}}
                                         @if($history->student)
                                         <tr>
-                                            {{-- Access student data via the history record --}}
                                             <td>{{ $history->student->id }}</td>
                                             <td>{{ $history->student->lastname }}, {{ $history->student->firstname }} {{ $history->student->middlename }}</td>
-
-                                            {{-- Access Year and Semester FROM the history record --}}
-                                            <td>{{ $history->year ?? 'N/A' }}</td>
+                                            <td>{{ $history->year ?? 'N/A' }}</td> {{-- Consider adding Academic Year here too --}}
                                             <td>{{ $history->semester ?? 'N/A' }}</td>
                                             @php
+                                            // Look up the grade using the key we set in the controller
                                             $grade = $grades->get($history->id);
                                             @endphp
-                                            {{-- Action Button --}}
                                             <td class="text-center">
-                                                <button type="button"
-                                                    class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon"
-                                                    data-toggle="dropdown">
-                                                    Action
-                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                {{-- Action Button Dropdown --}}
+                                                <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                                    Action <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu" role="menu">
+                                                    {{-- Pass SUBJECT ID to the modal triggers --}}
                                                     <a class="dropdown-item add-btn"
                                                         href="#"
                                                         data-toggle="modal"
                                                         data-target="#addGrade"
                                                         data-student-id="{{ $history->student->id }}"
                                                         data-student-name="{{ $history->student->lastname }}, {{ $history->student->firstname }}"
-                                                        data-acad-history-id="{{ $history->id }}">
+                                                        data-acad-history-id="{{ $history->id }}"
+                                                        data-subject-id="{{ $subject->id }}"> {{-- ADD THIS --}}
                                                         <span class="fas fa-plus fa-sm text-success"></span>
                                                         {{ $grade ? 'Re-upload Grades' : 'Upload Grades' }}
                                                     </a>
                                                     <div class="dropdown-divider"></div>
+                                                    {{-- Only show edit if a grade exists --}}
+                                                    @if($grade)
                                                     <a class="dropdown-item edit_data"
                                                         href="#"
                                                         data-toggle="modal"
@@ -124,35 +122,36 @@
                                                         data-prelims="{{ $grade->prelims ?? '' }}"
                                                         data-midterm="{{ $grade->midterm ?? '' }}"
                                                         data-finals="{{ $grade->finals ?? '' }}"
-                                                        data-student-id="{{ $history->student->id }}">
-                                                        <span class="fa fa-edit text-primary"></span>
-                                                        Edit Grades
+                                                        data-student-id="{{ $history->student->id }}"
+                                                        data-subject-id="{{ $subject->id }}"> {{-- ADD THIS --}}
+                                                        <span class="fa fa-edit text-primary"></span> Edit Grades
                                                     </a>
+                                                    @endif
                                                 </div>
                                             </td>
-                                            <td> @if($grade)
+                                            <td>
+                                                {{-- Grade Status Badge --}}
+                                                @if($grade)
                                                 <span class="badge badge-success mb-1">Graded</span>
+                                                {{-- Optional: Display calculated final grade --}}
+                                                {{-- <br><span class="badge badge-info">Final: {{ $grade->calculated_final_grade ?? 'N/A' }}</span> --}}
                                                 @else
                                                 <span class="badge badge-warning mb-1">Not Graded</span>
                                                 @endif
-
                                                 <br>
                                             </td>
-
                                         </tr>
                                         @endif {{-- End @if($history->student) --}}
                                         @empty
-                                        {{-- Row displayed if $acadHistories is empty --}}
                                         <tr>
-                                            {{-- Update colspan to match number of columns (5) --}}
-                                            <td colspan="5" class="text-center">No students found enrolled in this section for the specified academic year and semester.</td>
+                                            <td colspan="6" class="text-center"> {{-- Updated colspan to 6 --}}
+                                                No students found enrolled in this section for this subject.
+                                            </td>
                                         </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
                             </div>
-
-
                         </div>
                     </div>
 

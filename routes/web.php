@@ -92,6 +92,9 @@ Route::middleware(['auth', 'userrole:1'])->group(function () {
 
     Route::post('/students/{student}/acadhistories', [SuperAdminController::class, 'store_acadhistory'])
         ->name('students.acadhistories.store');
+
+    Route::patch('/acadhistories/{acadHistory}', [SuperAdminController::class, 'update_acadhistory'])
+        ->name('acadhistories.update_acadhistory');
 });
 
 Route::middleware(['auth', 'userrole:2'])->group(function () {
@@ -120,7 +123,8 @@ Route::middleware(['auth', 'userrole:2'])->group(function () {
 });
 Route::middleware(['auth', 'userrole:3'])->group(function () {
     Route::get('/faculty/dashboard', [FacultyController::class, 'index']);
-    Route::get('faculty/grades/{section}', [FacultyController::class, 'show_grades']);
+    Route::get('/faculty/grades/{section}/{subject}', [FacultyController::class, 'show_grades'])
+        ->name('faculty.grades.show');
     Route::post('grade/store', [FacultyController::class, 'store_grade'])->name('faculty.grades.store');
     Route::patch('/faculty/grades/{id}', [FacultyController::class, 'update_grade'])->name('faculty.grades.update_grade');
 });
@@ -130,8 +134,9 @@ Route::middleware(['auth', 'userrole:3'])->group(function () {
 Route::middleware(['auth', 'userrole:4'])->group(function () {
     Route::get('/student/dashboard', [StudentController::class, 'index']);
     Route::get('student/profile', [StudentController::class, 'profile']);
-    Route::get('student/grades', [StudentController::class, 'grade_list']);
-    Route::get('grade/display', [StudentController::class, 'grade_display']);
+    Route::get('student/grades', [StudentController::class, 'grade_list'])->name('student.grades.list');
+    Route::get('grade/display/{history}', [StudentController::class, 'grade_display'])
+        ->name('student.grade.display');
 });
 
 require __DIR__ . '/auth.php';

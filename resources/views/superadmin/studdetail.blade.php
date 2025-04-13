@@ -234,7 +234,19 @@
 
                                                     {{-- Action Column with Dropdown --}}
                                                     <td class="px-2 py-1 align-middle text-center">
-                                                        <a class="btn btn-flat btn-default btn-sm border" data-target="#editAcad" data-toggle="modal"><i class="fa fa-edit text-primary"></i> Edit</a>
+                                                        <a href="#"
+                                                            class="btn btn-flat btn-default btn-sm border edit-acad-btn"
+                                                            data-toggle="modal"
+                                                            data-target="#editAcad"
+                                                            data-id="{{ $history->id }}"
+                                                            data-semester="{{ $history->semester }}"
+                                                            data-year="{{ $history->year }}"
+                                                            data-course-id="{{ $history->section ? $history->section->course_id : '' }}"
+                                                            data-section-id="{{ $history->section_id }}"
+                                                            {{-- This line MUST be updated to use the NEW route name --}}
+                                                            data-action="{{ route('acadhistories.update_acadhistory', $history->id) }}">
+                                                            <i class="fa fa-edit text-primary"></i> Edit
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 @empty
@@ -333,10 +345,10 @@
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label for="semester" class="control-label">Semester</label>
-                                
+
                                 <select name="semester" id="semester" class="form-control form-control-sm form-control-border rounded-0" required>
-                                    <option value="1st Semester">1st Semester</option> 
-                                    <option value="2nd Semester">2nd Semester</option> 
+                                    <option value="1st Semester">1st Semester</option>
+                                    <option value="2nd Semester">2nd Semester</option>
                                 </select>
                             </div>
                             <div class="col-md-6 form-group">
@@ -353,16 +365,16 @@
                             <div class="col-md-6 form-group">
                                 <label for="course" class="control-label">Course</label>
                                 <select name="course_id" id="course" class="form-control form-control-sm form-control-border rounded-0" required>
-                                    <option value="" disabled selected>-- Select Course --</option>                                 
-                                    @if(isset($courses) && $courses->count() > 0) 
+                                    <option value="" disabled selected>-- Select Course --</option>
+                                    @if(isset($courses) && $courses->count() > 0)
                                     @foreach($courses as $course)
-                                    
-                                    <option value="{{ $course->id }}">{{ $course->title }}</option> 
+
+                                    <option value="{{ $course->id }}">{{ $course->title }}</option>
                                     @endforeach
                                     @else
-                                    <option value="" disabled>No courses available</option> 
+                                    <option value="" disabled>No courses available</option>
                                     @endif
-                                </select>  
+                                </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="section" class="control-label">Section: </label>
@@ -401,107 +413,181 @@
         });
     </script>
 
-    <div class="modal fade" id="editAcad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="editAcad" tabindex="-1" role="dialog" aria-labelledby="editAcadLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        Update Academic Record for {{ $student['lastname'] }}, {{ $student['firstname'] }}
-                        @if (!empty($student['middlename']))
-                        {{ Str::substr($student['middlename'], 0, 1) }}.
-                        @endif
+                    <h5 class="modal-title" id="editAcadLabel">
+                        Update Academic Record for {{ $student->lastname }}, {{ $student->firstname }}
+                        @if (!empty($student->middlename)) {{ Str::substr($student->middlename, 0, 1) }}. @endif
                     </h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="" method="POST">
+                {{-- Add form ID, action set by JS, method="POST" --}}
+                <form action="" method="POST" id="editAcadForm">
                     @csrf
+                    {{-- Use PATCH method for update --}}
+                    @method('PATCH')
                     <input type="hidden" name="student_id" value="{{ $student->id }}">
 
                     <div class="modal-body">
+                        {{-- Row 1: Semester and Year --}}
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label for="semester" class="control-label">Semester</label>
-                                
+                                {{-- Assuming ID "semester" is intended for edit modal --}}
                                 <select name="semester" id="semester" class="form-control form-control-sm form-control-border rounded-0" required>
-                                    <option value="1st Semester">1st Semester</option> 
-                                    <option value="2nd Semester">2nd Semester</option> 
+                                    <option value="1st Semester">1st Semester</option>
+                                    <option value="2nd Semester">2nd Semester</option>
                                 </select>
                             </div>
                             <div class="col-md-6 form-group">
                                 <label for="year" class="control-label">Year Level</label>
+                                {{-- Assuming ID "year" is intended for edit modal --}}
                                 <select name="year" id="year" class="form-control form-control-sm form-control-border rounded-0" required>
                                     <option value="1st Year">1st Year</option>
                                     <option value="2nd Year">2nd Year</option>
                                     <option value="3rd Year">3rd Year</option>
                                     <option value="4th Year">4th Year</option>
+                                    <option value="Others">Others</option>
                                 </select>
                             </div>
                         </div>
+                        {{-- Row 2: Course and Section --}}
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label for="course" class="control-label">Course</label>
+                                {{-- Assuming ID "course" is intended for edit modal --}}
                                 <select name="course_id" id="course" class="form-control form-control-sm form-control-border rounded-0" required>
-                                    <option value="" disabled selected>-- Select Course --</option>                                 
-                                    @if(isset($courses) && $courses->count() > 0) 
+                                    <option value="" disabled selected>-- Select Course --</option>
+                                    @if(isset($courses) && $courses->count() > 0)
                                     @foreach($courses as $course)
-                                    
-                                    <option value="{{ $course->id }}">{{ $course->title }}</option> 
+                                    <option value="{{ $course->id }}">{{ $course->title }}</option>
                                     @endforeach
                                     @else
-                                    <option value="" disabled>No courses available</option> 
+                                    <option value="" disabled>No courses available</option>
                                     @endif
-                                </select>  
+                                </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="section" class="control-label">Section: </label>
+                                <label for="section_id" class="control-label">Section: </label>
+                                {{-- Assuming ID "section_id" is intended for edit modal --}}
                                 <select name="section_id" id="section_id" class="form-control form-control-sm rounded-0" required>
                                     <option value="">Select Section</option>
+                                    {{-- This requires $sections (or $all_sections) to be passed from controller --}}
+                                    {{-- Make sure your stud_profile controller PASSES this variable --}}
+                                    @if(isset($sections) && $sections->count() > 0)
                                     @foreach($sections as $section)
                                     <option value="{{ $section->id }}" data-course="{{ $section->course_id }}">
                                         {{ $section->title }}
                                     </option>
                                     @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-primary" type="submit">Update Record</button> {{-- Changed button text --}}
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const editCourseSelect = document.querySelector('#editAcad #course');
             const editSectionSelect = document.querySelector('#editAcad #section_id');
             const allEditSectionOptions = Array.from(editSectionSelect.options).slice(1); // Skip "Select Section"
-    
+
             if (editCourseSelect && editSectionSelect) {
-                editCourseSelect.addEventListener('change', function () {
+                editCourseSelect.addEventListener('change', function() {
                     const selectedCourseId = this.value;
                     editSectionSelect.innerHTML = '<option value="">Select Section</option>';
-    
+
                     const filtered = allEditSectionOptions.filter(option => option.dataset.course === selectedCourseId);
                     filtered.forEach(option => editSectionSelect.appendChild(option));
                 });
-    
+
                 // When modal is shown, trigger course change to refresh section list
                 const editModal = document.getElementById('editAcad');
                 if (editModal) {
-                    editModal.addEventListener('shown.bs.modal', function () {
+                    editModal.addEventListener('shown.bs.modal', function() {
                         editCourseSelect.dispatchEvent(new Event('change'));
                     });
                 }
             }
         });
     </script>
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const editModal = document.getElementById('editAcad');
+
+            if (editModal) {
+                // Using jQuery listener for Bootstrap event
+                $('#editAcad').on('show.bs.modal', function(event) {
+                    const button = event.relatedTarget;
+                    if (!button) return;
+
+                    // Extract data from the button that was clicked
+                    const semester = button.getAttribute('data-semester');
+                    const year = button.getAttribute('data-year');
+                    const courseId = button.getAttribute('data-course-id');
+                    const sectionId = button.getAttribute('data-section-id');
+                    const actionUrl = button.getAttribute('data-action');
+
+                    // Get references to the form elements INSIDE the modal
+                    // Use querySelector scoped to the modal to be safe
+                    const modalForm = editModal.querySelector('#editAcadForm');
+                    const semesterSelect = editModal.querySelector('#semester'); // Use ID from your form
+                    const yearSelect = editModal.querySelector('#year'); // Use ID from your form
+                    const courseSelect = editModal.querySelector('#course'); // Use ID from your form
+                    const sectionSelect = editModal.querySelector('#section_id'); // Use ID from your form
+
+                    // Populate the form
+                    if (modalForm) modalForm.action = actionUrl;
+                    if (semesterSelect) semesterSelect.value = semester;
+                    if (yearSelect) yearSelect.value = year;
+
+                    if (courseSelect) {
+                        courseSelect.value = courseId; // Set the course dropdown
+
+                        // IMPORTANT: Trigger change AFTER setting the course value.
+                        // This allows YOUR filtering script to run and update the section options.
+                        const changeEvent = new Event('change');
+                        courseSelect.dispatchEvent(changeEvent);
+
+                        // Now set the section value. The options should be filtered by your script.
+                        if (sectionSelect) {
+                            sectionSelect.value = sectionId;
+                        }
+                    }
+                });
+
+                // Optional: Reset form when modal closes (if needed)
+                $('#editAcad').on('hidden.bs.modal', function(event) {
+                    // Reset logic here if desired, e.g., reset dropdowns
+                    // Be careful not to remove all section options if using client-side filtering
+                    // Maybe just reset selected values:
+                    // editModal.querySelector('#editAcadForm').reset(); // Might work for simple fields
+                    const courseSelect = editModal.querySelector('#course');
+                    const sectionSelect = editModal.querySelector('#section_id');
+                    if (courseSelect) courseSelect.value = "";
+                    if (sectionSelect) {
+                        sectionSelect.value = "";
+                        // Re-trigger course change to reset section options based on no course selected
+                        courseSelect?.dispatchEvent(new Event('change'));
+                    }
+
+
+                });
+            }
+        });
+    </script>
 
 
     <script>

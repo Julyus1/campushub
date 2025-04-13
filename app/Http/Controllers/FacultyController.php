@@ -25,30 +25,57 @@ class FacultyController extends Controller
 
         return view('faculty.dashboard', compact('subjects', 'faculty'));
     }
-    public function show_grades(Section $section)
+    public function show_grades(Section $section, Subject $subject)
     {
-        $section->load('course.department');
+        // Load necessary relationships for the section
+        $section->load('course.department', 'subjects'); // Load subjects relationship for validation if needed
+
+        // Get the currently authenticated faculty member
         $faculty = Auth::user()->faculty;
 
-        $subjectIdsInSection = $section->subjects()->pluck('subjects.id'); // Get IDs from the 'subjects'
-        $subject = Subject::where('faculty_id', $faculty->id)
-            ->whereIn('id', $subjectIdsInSection)
-            ->first();
-
-        if (!$subject) {
-            abort(404, 'No subject taught by you was found in this section.');
+        // --- Validation (Important!) ---
+        // 1. Check if the logged-in faculty actually teaches the specific subject passed in the URL
+        if ($subject->faculty_id !== $faculty->id) {
+            abort(403, 'You are not authorized to grade this subject.');
         }
-        $subjects = $faculty->subjects()->with('sections')->get();
+
+        if (!$section->subjects->contains($subject)) {
+            abort(404, 'This subject is not offered in the specified section.');
+        }
+        // --- End Validation ---
+
+
+        // Fetch ALL subjects for the faculty (likely for sidebar/navigation - keep if needed)
+        $allFacultySubjects = $faculty->subjects()->with('sections')->get(); // Renamed for clarity
+
+
+        // Fetch Academic Histories (students) specifically for THIS section.
+        // Eager load the student data for efficiency.
         $acadHistories = $section->acadHistories()
             ->with('student')
+            // ->where('academic_year_id', $current_ay) // Optional: Add AY/Semester filters if needed
+            // ->where('semester', $current_sem)
             ->get();
-        $grades = Grade::where('subject_id', $subject->id)
-            ->where('faculty_id', Auth::user()->faculty->id)
-            ->get()
-            ->keyBy('acad_history_id');
 
-        return view('faculty.grade-system', compact('faculty', 'subject', 'section', 'acadHistories', 'grades', 'subjects'));
+
+        $acadHistoryIds = $acadHistories->pluck('id'); // Get the IDs of the relevant history records
+
+        $grades = Grade::whereIn('acad_history_id', $acadHistoryIds) // Only grades for students in this section
+            ->where('subject_id', $subject->id) // <<<< USES THE CORRECT SUBJECT passed to the function
+            ->where('faculty_id', $faculty->id)    // Grades assigned by this faculty
+            ->get()
+            ->keyBy('acad_history_id'); // Key by history ID for easy lookup in the view
+
+        return view('faculty.grade-system', compact(
+            'faculty',
+            'subject', // The specific subject being graded
+            'section', // The specific section being viewed
+            'acadHistories', // Students in this section
+            'grades', // Grades for THIS subject & section & faculty
+            'allFacultySubjects' // Renamed from 'subjects' to avoid confusion
+        ));
     }
+
 
     public function store_grade(Request $request)
     {

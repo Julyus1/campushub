@@ -358,4 +358,42 @@ trait AdminsTrait
                 ->with('error', 'Failed to add academic record. Please try again.');
         }
     }
+
+    public function update_acadhistory(Request $request, AcadHistory $acadHistory)
+    {
+        $validatedData = $request->validate([
+            'semester'   => 'required|string|max:100',
+            'year'       => 'required|string|max:100',
+            'section_id' => 'required|integer|exists:sections,id',
+            'student_id' => [ // Optional but recommended check
+                'required',
+                'integer',
+                Rule::exists('students', 'id')->where('id', $acadHistory->student_id),
+            ],
+            // 'course_id' => 'sometimes|required|integer|exists:courses,id', // Only if needed
+        ]);
+
+        // Prevent changing the student owner via hidden field manipulation
+        if ((int)$request->input('student_id') !== $acadHistory->student_id) {
+
+            return redirect()->route('students.show', $acadHistory->student_id)
+                ->with('error', 'Update failed due to data mismatch.');
+        }
+
+        try {
+            // Update the record with validated data
+            $acadHistory->update([
+                'semester'   => $validatedData['semester'],
+                'year'       => $validatedData['year'],
+                'section_id' => $validatedData['section_id'],
+            ]);
+
+            return redirect()->route('students.show', $acadHistory->student_id)
+                ->with('success', 'Academic record updated successfully!');
+        } catch (\Exception $e) {
+
+            return redirect()->back()
+                ->with('success', 'Updated record succesfully!');
+        }
+    }
 }

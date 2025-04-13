@@ -38,7 +38,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <x-studenttopbar :student="$student"/>
+                <x-studenttopbar :student="$student" />
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -52,38 +52,46 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Latest Grade Display</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">
+                                Academic History for: {{ $student->firstname }} {{ $student->lastname }}
+                            </h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <!-- Table -->
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr class="bg-gradient-dark text-light">
-                                            <th>ID</th>
-                                            <th>Name</th>
+                                            {{-- Removed Academic Year column --}}
                                             <th>Year Lvl</th>
-                                            <th>A.Y.</th>
                                             <th>Semester</th>
-                                            <th>View</th>
+                                            <th>Section</th>
+                                            <th class="text-center">View Grades</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($acadHistories as $history)
                                         <tr>
-                                            <td>{{ $student->id }}</td>
-                                            <td>{{ $student->firstname . " " .  strtoupper(substr($student->middlename, 0, 1)) . "." . " " . $student->lastname  }}</td>
-                                            <td></td>
-                                            <td>2024-2025</td>
-                                            <td>1st</td>
-                                            <td items-align="center">
-                                                <a href="{{url('grade/display')  }}" class="btn btn-flat btn-default btn-sm border">
+                                            <td>{{ $history->year ?? 'N/A' }}</td>
+                                            {{-- Removed Academic Year cell --}}
+                                            <td>{{ $history->semester ?? 'N/A' }}</td>
+                                            <td>
+                                                {{ $history->section->title ?? 'N/A' }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{-- CORRECTED LINK: Use the named route from previous steps --}}
+                                                <a href="{{ route('student.grade.display', ['history' => $history->id]) }}" class="btn btn-flat btn-default btn-sm border">
                                                     <i class="fa fa-eye"></i> View Grades
+                                                </a>
                                             </td>
                                         </tr>
-
+                                        @empty
+                                        <tr>
+                                            {{-- Updated colspan to 4 (since one column was removed) --}}
+                                            <td colspan="4" class="text-center">No academic history records found.</td>
+                                        </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
