@@ -115,6 +115,12 @@ Route::middleware(['auth', 'userrole:2'])->group(function () {
     Route::delete('course/delete/{course}', [AdminController::class, 'destroy_course']);
 
 
+    Route::get('admin/class-scheduling', [AdminController::class, 'show_class_schedule'])->name('admin.class.schedule');
+    Route::post('admin/class-scheduling/store', [AdminController::class, 'store_class_schedule'])->name('admin.class.schedule.store');
+    
+
+
+
 
     // Route::get('section/list', [AdminController::class, 'show_section']);
     // Route::post('section/add', [AdminController::class, 'store_section']);

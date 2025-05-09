@@ -20,7 +20,11 @@ class SuperAdminController extends Controller
     public function attach_subject()
 
     {
-        $departments = Department::all();
+        $departments = Department::withCount('sections')
+        ->with(['sections' => function($query) {
+            $query->withCount('subjects');
+        }])
+        ->get();
         return view('superadmin.subject-attachment', compact('departments'));
     }
     public function show_grades()

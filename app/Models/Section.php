@@ -38,4 +38,13 @@ class Section extends Model
 
         return $this->hasMany(AcadHistory::class, 'section_id');
     }
+    public function getSubjectsCountAttribute()
+    {
+        // Check if count is already loaded to avoid N+1 queries
+        if (array_key_exists('subjects_count', $this->attributes)) {
+            return $this->attributes['subjects_count'];
+        }
+        
+        return $this->subjects()->count();
+    }
 }

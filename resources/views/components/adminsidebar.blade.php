@@ -79,4 +79,15 @@
         </div>
     </li>
 
+    <!-- Heading -->
+    <div class="sidebar-heading text-dark">
+        Assign Schedule
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('admin/class-scheduling') }}">
+            <i class="fas fa-fw fa-calendar"></i>
+            <span class="text-dark">Class Scheduling</span></a>
+    </li>
+
 </ul>

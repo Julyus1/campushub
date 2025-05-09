@@ -24,6 +24,38 @@
         .min-height {
             min-height: 200px;
         }
+        /* For tree view option */
+.department-node {
+    margin-bottom: 1rem;
+}
+.department-header {
+    padding: 0.75rem 1.25rem;
+    background-color: #f8f9fa;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.department-header:hover {
+    background-color: #e9ecef;
+}
+
+/* For card-based layout */
+.section-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%;
+}
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* For accordion table */
+.accordion-toggle {
+    cursor: pointer;
+}
+.hiddenRow {
+    padding: 0 !important;
+}
     </style>
 
 </head>
@@ -63,30 +95,49 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
                             <h6 class="m-0 font-weight-bold text-primary">Attach Subjects to Sections</h6>
-
                         </div>
 
                         <!-- Drag and Drop Interface -->
-                        <div class="container mt-4">
-                            @foreach ($departments as $department)
-                            <div class="card mt-4"> <!-- Adds spacing between department cards -->
-                                <div class="card-header bg-primary text-white">
-                                    <h5 class="mb-0">{{ $department->title }}</h5>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-group">
-                                        @foreach ($department->sections as $section)
-                                        <li class="list-group-item">
-                                            <a href="{{ url('superadmin/section/subjects', $section->id) }}" class="text-decoration-none">
-                                                {{ $section->title }}
-                                            </a>
-                                        </li>
-                                        @endforeach
-                                    </ul>
+
+                            <div class="card-body">
+                                <div class="department-tree">
+                                    @foreach($departments as $department)
+                                    <div class="department-node">
+                                        <div class="department-header" data-toggle="collapse" href="#dept-{{ $department->id }}">
+                                            <i class="bi bi-building mr-2"></i>
+                                            <strong>{{ $department->title }}</strong>
+                                            <span class="badge badge-light float-right">{{ $department->sections_count }} section(s)</span>
+                                        </div>
+                                        <div class="collapse show" id="dept-{{ $department->id }}">
+                                            <ul class="list-group list-group-flush">
+                                                @foreach($department->sections as $section)
+                                                <li class="list-group-item section-item">
+                                                    <a href="{{ url('superadmin/section/subjects', $section->id) }}" class="d-flex justify-content-between align-items-center">
+                                                        <span>
+                                                            <i class="bi bi-folder2 mr-2"></i>
+                                                            {{ $section->title }}
+                                                        </span>
+                                                        @if($section->subjects_count === 1)
+                                                        <span class="badge badge-success">
+                                                            {{ $section->subjects_count}} subject
+                                                        </span>
+                                                        @elseif($section->subjects_count > 1)
+                                                        <span class="badge badge-success">
+                                                            {{ $section->subjects_count }} subjects
+                                                        </span>
+                                                        @else
+                                                        <span class="badge badge-warning">No subjects</span>
+                                                        @endif
+                                                    </a>
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
-                            @endforeach
-                        </div>
+
 
 
 

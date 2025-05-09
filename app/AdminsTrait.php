@@ -396,4 +396,12 @@ trait AdminsTrait
                 ->with('success', 'Updated record succesfully!');
         }
     }
+
+
+    public function show_class_schedule()
+    {
+        // Fetch data you want to display in the scheduling page (optional for now)
+        return view($this->viewprefix() . 'class-scheduling');
+    }
+
 }
